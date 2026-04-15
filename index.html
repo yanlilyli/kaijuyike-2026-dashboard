@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>开局一课2026 · 报名数据看板</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="schools-data.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0a0e1a;--card:#111827;--border:#1e293b;--cyan:#06b6d4;--purple:#8b5cf6;--amber:#f59e0b;--green:#22c55e;--red:#ef4444;--txt:#e2e8f0;--dim:#94a3b8}
@@ -132,13 +133,15 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
 
 <!-- ===== SCHOOLS ===== -->
 <div class="page" id="page-schools">
-<div class="card">
-  <h3>🏫 目标院校报名情况（37所）· 点击查看详情</h3>
+<div class="card" style="margin-bottom:16px">
+  <h3>🏫 目标院校报名情况 · 点击查看详情</h3>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px" id="tag-filters"></div>
   <div style="overflow-x:auto" id="school-table"></div>
+  <div style="margin-top:10px;font-size:11px;color:var(--dim)" id="school-summary"></div>
 </div>
 <div class="g2">
-  <div class="card"><h3>🏷️ 院校层级分布</h3><canvas id="c-school-tier" height="220"></canvas></div>
-  <div class="card"><h3>📊 目标院校覆盖率</h3><canvas id="c-school-cover" height="220"></canvas></div>
+  <div class="card"><h3>🏷️ 标签分布</h3><canvas id="c-school-tier" height="220"></canvas></div>
+  <div class="card"><h3>📊 覆盖率（有报名 vs 无报名）</h3><canvas id="c-school-cover" height="220"></canvas></div>
 </div>
 </div>
 
@@ -220,74 +223,53 @@ function showPage(id){
   setTimeout(()=>initPage(id),50);
 }
 
-// === SCHOOL DATA ===
-const schools=[
-  {name:'上海交通大学',tier:'985',uhr:'junoyyichen',count:8,s:3,o:2,c:2,a:1},
-  {name:'浙江大学',tier:'985',uhr:'junoyyichen',count:7,s:3,o:1,c:2,a:1},
-  {name:'同济大学',tier:'985',uhr:'junoyyichen',count:7,s:2,o:2,c:2,a:1},
-  {name:'清华大学',tier:'985',uhr:'erichdeng',count:6,s:3,o:1,c:1,a:1},
-  {name:'复旦大学',tier:'985',uhr:'junoyyichen',count:5,s:2,o:1,c:1,a:1},
-  {name:'中山大学',tier:'985',uhr:'adnaluo',count:5,s:2,o:2,c:1,a:0},
-  {name:'北京大学',tier:'985',uhr:'erichdeng',count:5,s:1,o:3,c:1,a:0},
-  {name:'华中科技大学',tier:'985',uhr:'yichenljiang',count:5,s:1,o:1,c:2,a:1},
-  {name:'中国人民大学',tier:'985',uhr:'erichdeng',count:4,s:1,o:2,c:1,a:0},
-  {name:'北京航空航天大学',tier:'985',uhr:'kvanboil',count:4,s:1,o:1,c:2,a:0},
-  {name:'杭州电子科技大学',tier:'双一流',uhr:'junoyyichen',count:4,s:1,o:1,c:1,a:1},
-  {name:'北京理工大学',tier:'985',uhr:'erichdeng',count:3,s:1,o:0,c:2,a:0},
-  {name:'天津大学',tier:'985',uhr:'erichdeng',count:3,s:1,o:1,c:1,a:0},
-  {name:'北京邮电大学',tier:'211',uhr:'erichdeng',count:3,s:0,o:1,c:2,a:0},
-  {name:'武汉大学',tier:'985',uhr:'yichenljiang',count:3,s:0,o:2,c:0,a:1},
-  {name:'中国科学院大学',tier:'双一流',uhr:'rdeaguo',count:3,s:0,o:1,c:2,a:0},
-  {name:'中南大学',tier:'985',uhr:'adnaluo',count:2,s:1,o:0,c:1,a:0},
-  {name:'南京大学',tier:'985',uhr:'chenruigguqi',count:2,s:0,o:1,c:1,a:0},
-  {name:'东南大学',tier:'985',uhr:'chenruigguqi',count:2,s:1,o:0,c:1,a:0},
-  {name:'四川大学',tier:'985',uhr:'adnaluo',count:2,s:0,o:1,c:0,a:1},
-  {name:'湖南大学',tier:'985',uhr:'adnaluo',count:1,s:0,o:1,c:0,a:0},
-  {name:'华东师范大学',tier:'985',uhr:'chenruigguqi',count:1,s:0,o:0,c:1,a:0},
-  {name:'哈尔滨工业大学(深圳)',tier:'985',uhr:'kvanboil',count:1,s:0,o:0,c:1,a:0},
-  {name:'北京交通大学',tier:'211',uhr:'jiaweizhouu',count:1,s:1,o:0,c:0,a:0},
-  {name:'西安电子科技大学',tier:'211',uhr:'adnaluo',count:1,s:0,o:0,c:1,a:0},
-  {name:'南京航空航天大学',tier:'211',uhr:'chenruigguqi',count:1,s:0,o:1,c:0,a:0},
-  {name:'北京科技大学',tier:'211',uhr:'jiaweizhouu',count:1,s:0,o:0,c:1,a:0},
-  {name:'南开大学',tier:'985',uhr:'erichdeng',count:0,s:0,o:0,c:0,a:0},
-  {name:'山东大学',tier:'985',uhr:'erichdeng',count:0,s:0,o:0,c:0,a:0},
-  {name:'哈尔滨工业大学',tier:'985',uhr:'kvanboil',count:0,s:0,o:0,c:0,a:0},
-  {name:'哈尔滨工程大学',tier:'211',uhr:'kvanboil',count:0,s:0,o:0,c:0,a:0},
-  {name:'大连理工大学',tier:'985',uhr:'kvanboil',count:0,s:0,o:0,c:0,a:0},
-  {name:'东北大学',tier:'985',uhr:'kvanboil',count:0,s:0,o:0,c:0,a:0},
-  {name:'中国地质大学(武汉)',tier:'211',uhr:'yichenljiang',count:0,s:0,o:0,c:0,a:0},
-  {name:'西南科技大学',tier:'其他',uhr:'adnaluo',count:0,s:0,o:0,c:0,a:0},
-].sort((a,b)=>b.count-a.count);
+// === SCHOOL (uses SCHOOLS from schools-data.js) ===
+let activeTag='all';
+function renderTagFilters(){
+  const tags=['all',...Object.keys(TAG_COLORS)];
+  const labels={all:'全部',...Object.fromEntries(Object.entries(TAG_COLORS).map(([k,v])=>[k,v.label]))};
+  document.getElementById('tag-filters').innerHTML=tags.map(t=>{
+    const tc=t==='all'?{bg:'rgba(255,255,255,0.1)',color:'var(--txt)'}:TAG_COLORS[t];
+    const act=activeTag===t;
+    return `<button onclick="filterTag('${t}')" style="padding:4px 12px;border-radius:8px;border:1px solid ${act?tc.color:'transparent'};background:${act?tc.bg:'rgba(255,255,255,0.05)'};color:${act?tc.color:'var(--dim)'};font-size:11px;cursor:pointer;font-family:inherit;font-weight:${act?700:400}">${labels[t]}</button>`;
+  }).join('');
+}
+function filterTag(t){activeTag=t;renderTagFilters();renderSchools()}
 
 // === RENDER SCHOOLS TABLE ===
 function renderSchools(){
-  const el=document.getElementById('school-table');
-  const mx=schools[0].count||1;
-  let h=`<table class="school-table"><tr><th>排名</th><th>院校</th><th>层级</th><th>UHR分工</th><th>报名</th><th>占比</th><th>分布</th></tr>`;
-  schools.forEach((s,i)=>{
-    const tc=s.tier==='985'?'b-985':s.tier==='211'?'b-211':s.tier==='双一流'?'b-dbl':'b-other';
-    const rc=i<3?['r1','r2','r3'][i]:'';
-    h+=`<tr class="clickable" onclick="openSchool(${i})">
-      <td><span class="rank ${rc}">${String(i+1).padStart(2,'0')}</span></td>
+  const filtered=activeTag==='all'?SCHOOLS.filter(s=>s.tag!=='非目标'):SCHOOLS.filter(s=>s.tag===activeTag);
+  const sorted=[...filtered].sort((a,b)=>b.count-a.count);
+  const mx=sorted.length>0?Math.max(sorted[0].count,1):1;
+  const withData=sorted.filter(s=>s.count>0).length;
+  let h=`<table class="school-table"><tr><th>排名</th><th>院校</th><th>标签</th><th>UHR</th><th>报名</th><th>占比</th><th>分布</th></tr>`;
+  sorted.forEach((s,i)=>{
+    const tc=TAG_COLORS[s.tag]||TAG_COLORS['非目标'];
+    const rc=i<3&&s.count>0?['r1','r2','r3'][i]:'';
+    h+=`<tr class="clickable" onclick="openSchool(${SCHOOLS.indexOf(s)})">
+      <td><span class="rank ${rc} mono">${String(i+1).padStart(2,'0')}</span></td>
       <td><strong>${s.name}</strong></td>
-      <td style="text-align:center"><span class="badge ${tc}">${s.tier}</span></td>
-      <td style="color:var(--dim)">${s.uhr}</td>
+      <td style="text-align:center"><span class="badge" style="background:${tc.bg};color:${tc.color}">${tc.label}</span></td>
+      <td style="color:var(--dim);font-size:11px">${s.uhr}</td>
       <td style="text-align:center" class="mono"><strong style="color:${s.count>0?'var(--cyan)':'var(--red)'}">${s.count}</strong></td>
       <td style="text-align:center" class="mono">${(s.count/785*100).toFixed(1)}%</td>
-      <td><div class="mini-bar"><div class="mini-bar-fill" style="width:${s.count/mx*100}%;background:${s.count>0?'var(--cyan)':'var(--red)'}"></div></div></td>
+      <td><div class="mini-bar"><div class="mini-bar-fill" style="width:${s.count/mx*100}%;background:${s.count>0?tc.color:'var(--red)'}"></div></div></td>
     </tr>`;
   });
-  el.innerHTML=h+'</table>';
+  document.getElementById('school-table').innerHTML=h+'</table>';
+  document.getElementById('school-summary').textContent=`共 ${sorted.length} 所 | 有报名 ${withData} 所 | 无报名 ${sorted.length-withData} 所 | 覆盖率 ${(withData/sorted.length*100).toFixed(0)}%`;
 }
 
-function openSchool(i){
-  const s=schools[i];
+function openSchool(idx){
+  const s=SCHOOLS[idx];
+  const tc=TAG_COLORS[s.tag]||TAG_COLORS['非目标'];
   document.getElementById('modal-title').textContent='🏫 '+s.name;
-  const items=[['🎯 策划',s.s,C.purple],['🎮 运营',s.o,C.cyan],['💻 客户端',s.c,C.amber],['🎨 美术',s.a,C.green]];
+  const items=[['🎯 策划',s.s,'var(--purple)'],['🎮 运营',s.o,'var(--cyan)'],['💻 客户端',s.c,'var(--amber)'],['🎨 美术',s.a,'var(--green)']];
   document.getElementById('modal-body').innerHTML=`
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
-      <div style="padding:12px;background:rgba(6,182,212,0.08);border-radius:10px;text-align:center"><div style="font-size:10px;color:var(--dim)">总报名</div><div class="mono" style="font-size:28px;font-weight:900;color:var(--cyan)">${s.count}</div></div>
-      <div style="padding:12px;background:rgba(139,92,246,0.08);border-radius:10px;text-align:center"><div style="font-size:10px;color:var(--dim)">层级 / UHR</div><div style="font-size:14px;font-weight:700;color:var(--purple);margin-top:4px">${s.tier}</div><div style="font-size:11px;color:var(--dim)">${s.uhr}</div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px">
+      <div style="padding:10px;background:rgba(6,182,212,0.08);border-radius:10px;text-align:center"><div style="font-size:10px;color:var(--dim)">总报名</div><div class="mono" style="font-size:26px;font-weight:900;color:var(--cyan)">${s.count}</div></div>
+      <div style="padding:10px;background:${tc.bg};border-radius:10px;text-align:center"><div style="font-size:10px;color:var(--dim)">标签</div><div style="font-size:14px;font-weight:700;color:${tc.color};margin-top:4px">${tc.label}</div></div>
+      <div style="padding:10px;background:rgba(139,92,246,0.08);border-radius:10px;text-align:center"><div style="font-size:10px;color:var(--dim)">UHR</div><div style="font-size:12px;color:var(--purple);margin-top:6px">${s.uhr}</div></div>
     </div>
     <table><tr><th>方向</th><th>人数</th><th>占比</th><th>分布</th></tr>
     ${items.map(([n,v,c])=>`<tr><td>${n}</td><td class="mono">${v}</td><td>${s.count>0?(v/s.count*100).toFixed(0)+'%':'-'}</td><td><div class="mini-bar"><div class="mini-bar-fill" style="width:${s.count>0?v/s.count*100:0}%;background:${c}"></div></div></td></tr>`).join('')}
@@ -344,9 +326,13 @@ function initPage(id){
     sbar('c-grad',['策划','运营','客户端','美术'],[{label:'27届',data:[135,119,87,36],backgroundColor:C.purple+'cc',borderRadius:3},{label:'28届',data:[41,31,50,26],backgroundColor:C.cyan+'b3',borderRadius:3},{label:'29届',data:[22,16,37,21],backgroundColor:C.amber+'99',borderRadius:3},{label:'其他',data:[43,62,41,18],backgroundColor:C.dim+'66',borderRadius:3}]);
     mc('c-master',{type:'bar',data:{labels:['运营 38.2%','策划 35.3%','客户端 28.4%','美术 13.9%'],datasets:[{data:[38.2,35.3,28.4,13.9],backgroundColor:[C.cyan,C.purple,C.amber,C.green],borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(30,41,59,0.4)'},ticks:{callback:v=>v+'%'}},y:{grid:{display:false}}}}});
   }
-  if(id==='schools'){renderSchools();
-    donut('c-school-tier',['985','211','双一流','其他'],[25,6,3,1],[C.purple,C.cyan,C.amber,C.dim]);
-    donut('c-school-cover',['已有报名 27','暂无报名 8'],[27,8],[C.green,C.red]);
+  if(id==='schools'){renderTagFilters();renderSchools();
+    // 按标签统计
+    const tagCounts={};Object.keys(TAG_COLORS).forEach(t=>{tagCounts[t]=SCHOOLS.filter(s=>s.tag===t).length});
+    donut('c-school-tier',Object.keys(tagCounts).map(t=>TAG_COLORS[t].label+' '+tagCounts[t]),Object.values(tagCounts),Object.keys(tagCounts).map(t=>TAG_COLORS[t].color));
+    const withData=SCHOOLS.filter(s=>s.count>0&&s.tag!=='非目标').length;
+    const noData=SCHOOLS.filter(s=>s.count===0&&s.tag!=='非目标').length;
+    donut('c-school-cover',['有报名 '+withData,'无报名 '+noData],[withData,noData],[C.green,C.red]);
   }
   // Direction pages
   if(dirs[id]){
