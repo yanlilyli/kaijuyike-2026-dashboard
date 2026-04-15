@@ -7,87 +7,83 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0e1a;--card:#111827;--card2:#1a2332;--border:#1e293b;--cyan:#06b6d4;--purple:#8b5cf6;--amber:#f59e0b;--green:#22c55e;--red:#ef4444;--pink:#ec4899;--txt:#e2e8f0;--dim:#94a3b8;--bright:#f8fafc}
+:root{--bg:#0a0e1a;--card:#111827;--border:#1e293b;--cyan:#06b6d4;--purple:#8b5cf6;--amber:#f59e0b;--green:#22c55e;--red:#ef4444;--txt:#e2e8f0;--dim:#94a3b8}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Noto Sans SC',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh}
 .mono{font-family:'DM Mono',monospace}
 .container{max-width:1440px;margin:0 auto;padding:20px}
-
-/* Nav Tabs */
+.hdr{text-align:center;padding:28px 0 20px;background:linear-gradient(135deg,rgba(6,182,212,0.06),rgba(139,92,246,0.06));border-radius:16px;margin-bottom:20px;border:1px solid var(--border)}
+.hdr h1{font-size:26px;font-weight:900;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hdr .sub{font-size:12px;color:var(--dim);margin-top:4px}
+.hdr .badge{display:inline-block;margin-top:8px;padding:3px 14px;background:rgba(6,182,212,0.12);border:1px solid rgba(6,182,212,0.25);border-radius:16px;font-size:12px;color:var(--cyan)}
 .nav{display:flex;gap:4px;background:var(--card);border-radius:12px;padding:4px;margin-bottom:20px;border:1px solid var(--border);overflow-x:auto}
-.nav-btn{padding:10px 20px;border:none;background:transparent;color:var(--dim);font-size:13px;font-weight:500;border-radius:8px;cursor:pointer;white-space:nowrap;transition:all .2s;font-family:inherit}
+.nav-btn{padding:10px 18px;border:none;background:transparent;color:var(--dim);font-size:13px;font-weight:500;border-radius:8px;cursor:pointer;white-space:nowrap;transition:all .2s;font-family:inherit}
 .nav-btn:hover{color:var(--txt);background:rgba(255,255,255,0.05)}
 .nav-btn.active{background:var(--cyan);color:#000;font-weight:700}
-
-/* Header */
-.hdr{text-align:center;padding:32px 0 24px;background:linear-gradient(135deg,rgba(6,182,212,0.06),rgba(139,92,246,0.06));border-radius:16px;margin-bottom:20px;border:1px solid var(--border)}
-.hdr h1{font-size:28px;font-weight:900;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hdr .sub{font-size:12px;color:var(--dim);margin-top:6px}
-.hdr .badge{display:inline-block;margin-top:8px;padding:3px 14px;background:rgba(6,182,212,0.12);border:1px solid rgba(6,182,212,0.25);border-radius:16px;font-size:12px;color:var(--cyan)}
-
-/* KPI Row */
 .kpi{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px}
 .kpi-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;text-align:center;transition:transform .2s}
 .kpi-card:hover{transform:translateY(-2px)}
 .kpi-card .k-label{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:1px}
-.kpi-card .k-val{font-size:32px;font-weight:900;margin:4px 0}
+.kpi-card .k-val{font-size:30px;font-weight:900;margin:4px 0}
 .kpi-card .k-sub{font-size:10px;color:var(--dim)}
 .k-tag{font-size:9px;padding:2px 6px;border-radius:8px;display:inline-block;margin-top:2px}
 .k-tag.up{background:rgba(34,197,94,0.15);color:var(--green)}
 .k-tag.warn{background:rgba(245,158,11,0.15);color:var(--amber)}
-
-/* Direction Cards */
+.k-tag.down{background:rgba(239,68,68,0.15);color:var(--red)}
 .dir-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
-.dir-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
-.dir-card:hover{transform:translateY(-2px)}
-.dir-card.selected{border-color:var(--cyan);box-shadow:0 0 20px rgba(6,182,212,0.15)}
-.dir-card .d-icon{font-size:20px}
+.dir-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;cursor:pointer;transition:all .2s}
+.dir-card:hover{transform:translateY(-2px);border-color:var(--cyan)}
 .dir-card .d-name{font-size:12px;font-weight:700;margin-top:4px}
-.dir-card .d-num{font-size:28px;font-weight:900;margin:2px 0}
+.dir-card .d-num{font-size:26px;font-weight:900;margin:2px 0}
 .dir-card .d-pct{font-size:11px;color:var(--dim)}
 .dir-card .d-bar{height:3px;background:var(--border);border-radius:2px;margin-top:8px;overflow:hidden}
 .dir-card .d-bar-fill{height:100%;border-radius:2px;transition:width .5s}
-
-/* Page sections */
-.page{display:none}
-.page.active{display:block}
-
-/* Grid layouts */
+.page{display:none}.page.active{display:block}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:16px}
 .card h3{font-size:14px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:6px}
-.card-full{grid-column:1/-1}
-
-/* Table */
-table{width:100%;border-collapse:collapse}
-th{text-align:left;padding:8px 10px;font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border)}
-td{padding:8px 10px;font-size:12px;border-bottom:1px solid rgba(30,41,59,0.4)}
+/* TABLE FIX - 关键对齐修复 */
+table{width:100%;border-collapse:collapse;table-layout:fixed}
+th,td{padding:8px 10px;font-size:12px;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+th{color:var(--dim);text-transform:uppercase;letter-spacing:0.5px;font-size:10px;border-bottom:2px solid var(--border);font-weight:600}
+td{border-bottom:1px solid rgba(30,41,59,0.4)}
 tr:hover td{background:rgba(6,182,212,0.03)}
-tr.clickable{cursor:pointer}
-tr.clickable:hover td{background:rgba(6,182,212,0.08)}
-.badge{display:inline-block;padding:1px 8px;border-radius:8px;font-size:10px;font-weight:500}
+tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08)}
+/* 院校表列宽 */
+.school-table th:nth-child(1),.school-table td:nth-child(1){width:50px}
+.school-table th:nth-child(2),.school-table td:nth-child(2){width:160px}
+.school-table th:nth-child(3),.school-table td:nth-child(3){width:70px;text-align:center}
+.school-table th:nth-child(4),.school-table td:nth-child(4){width:120px}
+.school-table th:nth-child(5),.school-table td:nth-child(5){width:80px;text-align:center}
+.school-table th:nth-child(6),.school-table td:nth-child(6){width:60px;text-align:center}
+.school-table th:nth-child(7),.school-table td:nth-child(7){width:auto}
+.badge{display:inline-block;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:500}
 .b-985{background:rgba(139,92,246,0.15);color:var(--purple)}
 .b-211{background:rgba(6,182,212,0.15);color:var(--cyan)}
 .b-dbl{background:rgba(245,158,11,0.15);color:var(--amber)}
 .b-other{background:rgba(100,116,139,0.15);color:var(--dim)}
-.rank{font-weight:900;width:24px;display:inline-block;text-align:center}
-.r1{color:var(--amber)}.r2{color:#cbd5e1}.r3{color:#b45309}
-
-/* Mini bar */
-.mini-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden;min-width:80px}
+.rank{font-weight:900;font-family:'DM Mono',monospace}.r1{color:var(--amber)}.r2{color:#cbd5e1}.r3{color:#b45309}
+.mini-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
 .mini-bar-fill{height:100%;border-radius:3px;transition:width .5s}
-
+/* Insight Box */
+.insight{border-radius:12px;padding:16px;margin-bottom:16px;font-size:12px;line-height:1.8}
+.insight.good{background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15)}
+.insight.warn{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.15)}
+.insight.bad{background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15)}
+.insight h4{font-size:13px;font-weight:700;margin-bottom:6px}
+.insight.good h4{color:var(--green)}.insight.warn h4{color:var(--amber)}.insight.bad h4{color:var(--red)}
+.insight ul{padding-left:16px;color:var(--dim)}
+.insight strong{color:var(--txt)}
 /* Modal */
 .modal-bg{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:100;align-items:center;justify-content:center}
 .modal-bg.show{display:flex}
 .modal{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;max-width:700px;width:90%;max-height:80vh;overflow-y:auto}
 .modal h2{font-size:18px;font-weight:900;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
-.modal .close-btn{background:none;border:none;color:var(--dim);font-size:20px;cursor:pointer}
+.modal .close-btn{background:none;border:none;color:var(--dim);font-size:20px;cursor:pointer;padding:4px 8px}
 .modal .close-btn:hover{color:var(--txt)}
-
 .footer{text-align:center;padding:16px;font-size:10px;color:var(--dim)}
-@media(max-width:768px){.kpi,.dir-row{grid-template-columns:repeat(2,1fr)}.g2,.g3{grid-template-columns:1fr}.nav{flex-wrap:wrap}}
+@media(max-width:768px){.kpi{grid-template-columns:repeat(2,1fr)}.dir-row{grid-template-columns:repeat(2,1fr)}.g2,.g3{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -95,107 +91,50 @@ tr.clickable:hover td{background:rgba(6,182,212,0.08)}
 <div class="hdr">
   <h1>🎮 开局一课 2026 · 报名数据看板</h1>
   <div class="sub mono">TENCENT GAMES FIRST LESSON · SIGNUP DASHBOARD</div>
-  <div class="badge mono">📊 更新时间 2026-04-15 · 报名期 4/14-4/30</div>
+  <div class="badge mono">📊 更新 2026-04-15 · 报名期 4/14 - 4/30</div>
 </div>
+<div class="nav" id="nav"></div>
 
-<div class="nav">
-  <button class="nav-btn active" onclick="showPage('overview')">📊 总览</button>
-  <button class="nav-btn" onclick="showPage('daily')">📅 每日趋势</button>
-  <button class="nav-btn" onclick="showPage('schools')">🏫 院校分析</button>
-  <button class="nav-btn" onclick="showPage('strategy')">🎯 游戏策划</button>
-  <button class="nav-btn" onclick="showPage('ops')">🎮 游戏运营</button>
-  <button class="nav-btn" onclick="showPage('client')">💻 游戏客户端</button>
-  <button class="nav-btn" onclick="showPage('art')">🎨 游戏美术</button>
-</div>
-
-<!-- ========== OVERVIEW ========== -->
+<!-- ===== OVERVIEW ===== -->
 <div class="page active" id="page-overview">
 <div class="kpi">
-  <div class="kpi-card"><div class="k-label">报名总人数</div><div class="k-val mono" style="color:var(--cyan)">785</div><div class="k-sub">目标 5,000+</div><div class="k-tag up">完成15.7%</div></div>
+  <div class="kpi-card"><div class="k-label">报名总人数</div><div class="k-val mono" style="color:var(--cyan)">785</div><div class="k-sub">目标 5,000+</div><div class="k-tag up">15.7%</div></div>
   <div class="kpi-card"><div class="k-label">日均报名</div><div class="k-val mono" style="color:var(--green)">393</div><div class="k-sub">达标线 281/天</div><div class="k-tag up">↑ 超40%</div></div>
-  <div class="kpi-card"><div class="k-label">预测最终</div><div class="k-val mono" style="color:var(--purple)">6.7K</div><div class="k-sub">按当前速度</div><div class="k-tag up">超目标33%</div></div>
+  <div class="kpi-card"><div class="k-label">预测最终</div><div class="k-val mono" style="color:var(--purple)">6.7K</div><div class="k-sub">按日均393推算</div><div class="k-tag up">超目标33%</div></div>
   <div class="kpi-card"><div class="k-label">硕士占比</div><div class="k-val mono" style="color:var(--amber)">31.5%</div><div class="k-sub">247人</div><div class="k-tag up">质量优</div></div>
   <div class="kpi-card"><div class="k-label">剩余天数</div><div class="k-val mono" style="color:var(--red)">15</div><div class="k-sub">截止4/30</div><div class="k-tag warn">时间过半</div></div>
 </div>
-
-<!-- Progress -->
-<div class="card" style="margin-bottom:20px">
-  <h3>📈 报名进度</h3>
+<div class="card"><h3>📈 报名进度</h3>
   <div style="display:flex;align-items:center;gap:12px">
-    <div style="flex:1">
-      <div style="height:20px;background:var(--border);border-radius:10px;overflow:hidden">
-        <div style="width:15.7%;height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));border-radius:10px;position:relative">
-          <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);animation:sh 2s infinite"></div>
-        </div>
-      </div>
-      <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:var(--dim)"><span>0</span><span>1K</span><span>2K</span><span>3K</span><span>4K</span><span>5K</span></div>
-    </div>
+    <div style="flex:1"><div style="height:20px;background:var(--border);border-radius:10px;overflow:hidden"><div style="width:15.7%;height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));border-radius:10px"></div></div>
+    <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:var(--dim)"><span>0</span><span>1K</span><span>2K</span><span>3K</span><span>4K</span><span>5K</span></div></div>
     <div class="mono" style="font-size:18px;font-weight:900;color:var(--cyan)">785<span style="font-size:12px;color:var(--dim)">/5000</span></div>
   </div>
 </div>
-<style>@keyframes sh{0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}</style>
-
-<!-- Direction Cards -->
-<div class="dir-row">
-  <div class="dir-card" onclick="showPage('strategy')">
-    <div class="d-icon">🎯</div><div class="d-name" style="color:var(--purple)">游戏策划</div>
-    <div class="d-num mono" style="color:var(--purple)">241</div><div class="d-pct">30.7% · 最多</div>
-    <div class="d-bar"><div class="d-bar-fill" style="width:100%;background:var(--purple)"></div></div>
-  </div>
-  <div class="dir-card" onclick="showPage('ops')">
-    <div class="d-icon">🎮</div><div class="d-name" style="color:var(--cyan)">游戏运营</div>
-    <div class="d-num mono" style="color:var(--cyan)">228</div><div class="d-pct">29.0%</div>
-    <div class="d-bar"><div class="d-bar-fill" style="width:94.6%;background:var(--cyan)"></div></div>
-  </div>
-  <div class="dir-card" onclick="showPage('client')">
-    <div class="d-icon">💻</div><div class="d-name" style="color:var(--amber)">游戏客户端</div>
-    <div class="d-num mono" style="color:var(--amber)">215</div><div class="d-pct">27.4%</div>
-    <div class="d-bar"><div class="d-bar-fill" style="width:89.2%;background:var(--amber)"></div></div>
-  </div>
-  <div class="dir-card" onclick="showPage('art')">
-    <div class="d-icon">🎨</div><div class="d-name" style="color:var(--green)">游戏美术</div>
-    <div class="d-num mono" style="color:var(--green)">101</div><div class="d-pct">12.9% ⚠️</div>
-    <div class="d-bar"><div class="d-bar-fill" style="width:41.9%;background:var(--green)"></div></div>
-  </div>
-</div>
-
+<!-- 每日趋势（总览内） -->
 <div class="g2">
-  <div class="card"><h3>🎓 学历分布</h3><canvas id="c-edu" height="220"></canvas></div>
-  <div class="card"><h3>📆 毕业届次</h3><canvas id="c-grad" height="220"></canvas></div>
+  <div class="card"><h3>📅 每日新增趋势</h3><canvas id="c-daily-overview" height="200"></canvas></div>
+  <div class="card"><h3>📈 累计报名趋势</h3><canvas id="c-cumul-overview" height="200"></canvas></div>
+</div>
+<div class="dir-row">
+  <div class="dir-card" onclick="showPage('strategy')"><div>🎯</div><div class="d-name" style="color:var(--purple)">游戏策划</div><div class="d-num mono" style="color:var(--purple)">241</div><div class="d-pct">30.7%</div><div class="d-bar"><div class="d-bar-fill" style="width:100%;background:var(--purple)"></div></div></div>
+  <div class="dir-card" onclick="showPage('ops')"><div>🎮</div><div class="d-name" style="color:var(--cyan)">游戏运营</div><div class="d-num mono" style="color:var(--cyan)">228</div><div class="d-pct">29.0%</div><div class="d-bar"><div class="d-bar-fill" style="width:94.6%;background:var(--cyan)"></div></div></div>
+  <div class="dir-card" onclick="showPage('client')"><div>💻</div><div class="d-name" style="color:var(--amber)">游戏客户端</div><div class="d-num mono" style="color:var(--amber)">215</div><div class="d-pct">27.4%</div><div class="d-bar"><div class="d-bar-fill" style="width:89.2%;background:var(--amber)"></div></div></div>
+  <div class="dir-card" onclick="showPage('art')"><div>🎨</div><div class="d-name" style="color:var(--green)">游戏美术</div><div class="d-num mono" style="color:var(--green)">101</div><div class="d-pct">12.9% ⚠️</div><div class="d-bar"><div class="d-bar-fill" style="width:41.9%;background:var(--green)"></div></div></div>
+</div>
+<div class="g2">
   <div class="card"><h3>🎯 方向占比</h3><canvas id="c-dir" height="220"></canvas></div>
-  <div class="card"><h3>📊 各方向硕士占比</h3><canvas id="c-master" height="220"></canvas></div>
+  <div class="card"><h3>🎓 各方向学历</h3><canvas id="c-edu" height="220"></canvas></div>
+  <div class="card"><h3>📆 各方向届次</h3><canvas id="c-grad" height="220"></canvas></div>
+  <div class="card"><h3>📊 硕士占比对比</h3><canvas id="c-master" height="220"></canvas></div>
 </div>
 </div>
 
-<!-- ========== DAILY TREND ========== -->
-<div class="page" id="page-daily">
-<div class="card" style="margin-bottom:20px">
-  <h3>📅 每日新增报名趋势</h3>
-  <canvas id="c-daily" height="300"></canvas>
-</div>
-<div class="g3">
-  <div class="card"><h3>📈 累计趋势</h3><canvas id="c-cumul" height="200"></canvas></div>
-  <div class="card"><h3>🎯 分方向每日</h3><canvas id="c-daily-dir" height="200"></canvas></div>
-  <div class="card">
-    <h3>📋 每日数据明细</h3>
-    <table>
-      <tr><th>日期</th><th>新增</th><th>累计</th><th>策划</th><th>运营</th><th>客户端</th><th>美术</th></tr>
-      <tr><td>4/14</td><td style="color:var(--cyan);font-weight:700">423</td><td>423</td><td>130</td><td>123</td><td>116</td><td>54</td></tr>
-      <tr><td>4/15</td><td style="color:var(--cyan);font-weight:700">362</td><td>785</td><td>111</td><td>105</td><td>99</td><td>47</td></tr>
-    </table>
-    <div style="margin-top:12px;font-size:11px;color:var(--dim)">⚠️ 数据仅2天，需持续追踪3-7天趋势</div>
-  </div>
-</div>
-</div>
-
-<!-- ========== SCHOOLS ========== -->
+<!-- ===== SCHOOLS ===== -->
 <div class="page" id="page-schools">
-<div class="card" style="margin-bottom:20px">
-  <h3>🏫 目标院校报名情况（37所）· 点击院校查看详情</h3>
-  <table>
-    <tr><th>排名</th><th>院校</th><th>层级</th><th>UHR分工</th><th>报名人数</th><th>占比</th><th>分布</th></tr>
-  </table>
-  <div id="school-table"></div>
+<div class="card">
+  <h3>🏫 目标院校报名情况（37所）· 点击查看详情</h3>
+  <div style="overflow-x:auto" id="school-table"></div>
 </div>
 <div class="g2">
   <div class="card"><h3>🏷️ 院校层级分布</h3><canvas id="c-school-tier" height="220"></canvas></div>
@@ -203,102 +142,82 @@ tr.clickable:hover td{background:rgba(6,182,212,0.08)}
 </div>
 </div>
 
-<!-- ========== DIRECTION PAGES ========== -->
-<div class="page" id="page-strategy">
-<div class="kpi" style="grid-template-columns:repeat(4,1fr)">
-  <div class="kpi-card"><div class="k-label">策划报名</div><div class="k-val mono" style="color:var(--purple)">241</div><div class="k-sub">占比 30.7%</div></div>
-  <div class="kpi-card"><div class="k-label">本科</div><div class="k-val mono" style="color:var(--cyan)">147</div><div class="k-sub">61.0%</div></div>
-  <div class="kpi-card"><div class="k-label">硕士</div><div class="k-val mono" style="color:var(--purple)">85</div><div class="k-sub">35.3%</div></div>
-  <div class="kpi-card"><div class="k-label">27届</div><div class="k-val mono" style="color:var(--amber)">135</div><div class="k-sub">56.0%</div></div>
-</div>
-<div class="g3">
-  <div class="card"><h3>🎓 学历分布</h3><canvas id="c-s-edu" height="200"></canvas></div>
-  <div class="card"><h3>📆 届次分布</h3><canvas id="c-s-grad" height="200"></canvas></div>
-  <div class="card"><h3>🏫 Top院校</h3>
-    <table><tr><th>院校</th><th>人数</th></tr>
-    <tr><td>清华大学</td><td>5+</td></tr><tr><td>同济大学</td><td>4+</td></tr><tr><td>浙江大学</td><td>3+</td></tr><tr><td>复旦大学</td><td>3+</td></tr><tr><td>中山大学</td><td>3+</td></tr></table>
-  </div>
-</div>
-</div>
-
-<div class="page" id="page-ops">
-<div class="kpi" style="grid-template-columns:repeat(4,1fr)">
-  <div class="kpi-card"><div class="k-label">运营报名</div><div class="k-val mono" style="color:var(--cyan)">228</div><div class="k-sub">占比 29.0%</div></div>
-  <div class="kpi-card"><div class="k-label">本科</div><div class="k-val mono" style="color:var(--cyan)">127</div><div class="k-sub">55.7%</div></div>
-  <div class="kpi-card"><div class="k-label">硕士</div><div class="k-val mono" style="color:var(--purple)">87</div><div class="k-sub">38.2% 🔥最高</div></div>
-  <div class="kpi-card"><div class="k-label">27届</div><div class="k-val mono" style="color:var(--amber)">119</div><div class="k-sub">52.2%</div></div>
-</div>
-<div class="g3">
-  <div class="card"><h3>🎓 学历分布</h3><canvas id="c-o-edu" height="200"></canvas></div>
-  <div class="card"><h3>📆 届次分布</h3><canvas id="c-o-grad" height="200"></canvas></div>
-  <div class="card"><h3>🏫 Top院校</h3>
-    <table><tr><th>院校</th><th>人数</th></tr>
-    <tr><td>北京大学</td><td>4+</td></tr><tr><td>香港科技大学</td><td>3+</td></tr><tr><td>华中科技大学</td><td>3+</td></tr><tr><td>南京大学</td><td>2+</td></tr><tr><td>武汉大学</td><td>2+</td></tr></table>
-  </div>
-</div>
-</div>
-
-<div class="page" id="page-client">
-<div class="kpi" style="grid-template-columns:repeat(4,1fr)">
-  <div class="kpi-card"><div class="k-label">客户端报名</div><div class="k-val mono" style="color:var(--amber)">215</div><div class="k-sub">占比 27.4%</div></div>
-  <div class="kpi-card"><div class="k-label">本科</div><div class="k-val mono" style="color:var(--cyan)">141</div><div class="k-sub">65.6%</div></div>
-  <div class="kpi-card"><div class="k-label">硕士</div><div class="k-val mono" style="color:var(--purple)">61</div><div class="k-sub">28.4%</div></div>
-  <div class="kpi-card"><div class="k-label">27届</div><div class="k-val mono" style="color:var(--amber)">87</div><div class="k-sub">40.5%</div></div>
-</div>
-<div class="g3">
-  <div class="card"><h3>🎓 学历分布</h3><canvas id="c-c-edu" height="200"></canvas></div>
-  <div class="card"><h3>📆 届次分布</h3><canvas id="c-c-grad" height="200"></canvas></div>
-  <div class="card"><h3>🏫 Top院校</h3>
-    <table><tr><th>院校</th><th>人数</th></tr>
-    <tr><td>同济大学</td><td>4+</td></tr><tr><td>华中科技大学</td><td>3+</td></tr><tr><td>哈尔滨工业大学</td><td>2+</td></tr><tr><td>北京理工大学</td><td>2+</td></tr><tr><td>中国科学院大学</td><td>2+</td></tr></table>
-  </div>
-</div>
-</div>
-
-<div class="page" id="page-art">
-<div class="kpi" style="grid-template-columns:repeat(4,1fr)">
-  <div class="kpi-card"><div class="k-label">美术报名</div><div class="k-val mono" style="color:var(--green)">101</div><div class="k-sub">占比 12.9% ⚠️</div></div>
-  <div class="kpi-card"><div class="k-label">本科</div><div class="k-val mono" style="color:var(--cyan)">82</div><div class="k-sub">81.2%</div></div>
-  <div class="kpi-card"><div class="k-label">硕士</div><div class="k-val mono" style="color:var(--purple)">14</div><div class="k-sub">13.9%</div></div>
-  <div class="kpi-card"><div class="k-label">27届</div><div class="k-val mono" style="color:var(--amber)">36</div><div class="k-sub">35.6%</div></div>
-</div>
-<div class="g3">
-  <div class="card"><h3>🎓 学历分布</h3><canvas id="c-a-edu" height="200"></canvas></div>
-  <div class="card"><h3>📆 届次分布</h3><canvas id="c-a-grad" height="200"></canvas></div>
-  <div class="card"><h3>⚠️ 美术方向分析</h3>
-    <div style="font-size:12px;line-height:1.8;color:var(--dim)">
-      <p>• 总量<strong style="color:var(--red)">101人仅占12.9%</strong>，远低于其他方向</p>
-      <p>• 本科占81.2%为最高，硕士仅13.9%为最低</p>
-      <p>• 27届占35.6%为最低，低年级（28-29届）占46.5%</p>
-      <p style="margin-top:8px;color:var(--amber)">💡 建议：定向美术院校推广（国美、央美、广美、北影动画等）</p>
-    </div>
-  </div>
-</div>
-</div>
+<!-- ===== DIRECTION PAGES (template-driven) ===== -->
+<div class="page" id="page-strategy"></div>
+<div class="page" id="page-ops"></div>
+<div class="page" id="page-client"></div>
+<div class="page" id="page-art"></div>
 
 <!-- Modal -->
 <div class="modal-bg" id="modal" onclick="if(event.target===this)closeModal()">
-  <div class="modal">
-    <h2><span id="modal-title"></span><button class="close-btn" onclick="closeModal()">✕</button></h2>
-    <div id="modal-body"></div>
-  </div>
+  <div class="modal"><h2><span id="modal-title"></span><button class="close-btn" onclick="closeModal()">✕</button></h2><div id="modal-body"></div></div>
 </div>
-
-<div class="footer mono">007团队 · 开局一课PM | 数据截止 2026-04-15 | 总报名 785人</div>
+<div class="footer mono">007团队 · 开局一课PM | 更新 2026-04-15 | 总报名 785人 | <a href="https://github.com/yanlilyli/kaijuyike-2026-dashboard" style="color:var(--cyan)">GitHub</a></div>
 </div>
 
 <script>
 Chart.defaults.color='#94a3b8';Chart.defaults.borderColor='#1e293b';Chart.defaults.font.family="'Noto Sans SC',sans-serif";
 const C={cyan:'#06b6d4',purple:'#8b5cf6',amber:'#f59e0b',green:'#22c55e',red:'#ef4444',dim:'#475569'};
 
-// === NAVIGATION ===
+// === DATA ===
+const daily=[{d:'4/14',total:423,s:130,o:123,c:116,a:54},{d:'4/15',total:362,s:111,o:105,c:99,a:47}];
+const dirs={
+  strategy:{name:'游戏策划',icon:'🎯',color:C.purple,total:241,pct:'30.7%',
+    edu:{本科:147,硕士:85,博士:1,其他:8},grad:{'27届':135,'28届':41,'29届':22,'30届':4,'其他':39},
+    daily:[130,111],
+    topSchools:[['清华大学',5],['同济大学',4],['浙江大学',3],['复旦大学',3],['中山大学',3],['北京大学',2],['华中科技大学',2]],
+    insights:[
+      {type:'good',title:'✅ 策划方向表现最强',points:['报名241人，四方向中最多（30.7%）','27届占56.0%，目标届次精准度最高','硕士占比35.3%，质量优秀']},
+      {type:'warn',title:'⚠️ 关注点',points:['日均从130降到111（↓14.6%），需关注后续趋势','\"其他\"届次39人（16.2%），建议核查数据质量','院校集中度不高，Top1仅5人，需推动校内传播']},
+      {type:'good',title:'💡 建议',points:['策划方向最受欢迎，可作为宣传主打方向','利用策划方向高热度带动其他方向曝光','在高校游戏社团定向推广策划方向课程内容']}
+    ]
+  },
+  ops:{name:'游戏运营',icon:'🎮',color:C.cyan,total:228,pct:'29.0%',
+    edu:{本科:127,硕士:87,博士:1,其他:13},grad:{'27届':119,'28届':31,'29届':16,'30届':3,'其他':59},
+    daily:[123,105],
+    topSchools:[['北京大学',4],['香港科技大学',3],['华中科技大学',3],['武汉大学',2],['南京大学',2],['中山大学',2]],
+    insights:[
+      {type:'good',title:'✅ 运营方向硕士占比最高',points:['硕士87人占38.2%，四方向中最高','说明运营方向吸引了大量高学历人才','27届占52.2%，目标届次匹配良好']},
+      {type:'bad',title:'🚨 数据质量需关注',points:['"其他"届次59人（25.9%），占比异常偏高','可能存在填写错误或非目标人群报名','建议抽查"其他"类别的具体毕业年份']},
+      {type:'warn',title:'💡 建议',points:['运营方向硕士多，可侧重推广"运营→产品经理"的职业路径','利用运营方向的高质量候选人池做深度培养','关注"其他"届次数据，及时清洗异常数据']}
+    ]
+  },
+  client:{name:'游戏客户端',icon:'💻',color:C.amber,total:215,pct:'27.4%',
+    edu:{本科:141,硕士:61,博士:1,其他:12},grad:{'27届':87,'28届':50,'29届':37,'30届':2,'其他':39},
+    daily:[116,99],
+    topSchools:[['同济大学',4],['华中科技大学',3],['哈尔滨工业大学',2],['北京理工大学',2],['中国科学院大学',2]],
+    insights:[
+      {type:'warn',title:'⚠️ 低年级占比偏高',points:['27届仅40.5%，四方向中最低','28-29届合计87人（40.5%），与27届持平','说明低年级学生对客户端技术兴趣浓厚，但短期转化率可能偏低']},
+      {type:'good',title:'✅ 积极信号',points:['本科占65.6%，技术方向本科占比高属正常','理工院校覆盖好（同济、华科、哈工大、北理工）','虽然总量排第三，但与运营差距不大（228 vs 215）']},
+      {type:'warn',title:'💡 建议',points:['针对27届计算机/软件专业学生加大推广','在技术社区（GitHub、掘金、CSDN）投放','低年级候选人可纳入长期人才池，为明年储备']}
+    ]
+  },
+  art:{name:'游戏美术',icon:'🎨',color:C.green,total:101,pct:'12.9%',
+    edu:{本科:82,硕士:14,博士:1,其他:4},grad:{'27届':36,'28届':26,'29届':21,'30届':1,'其他':17},
+    daily:[54,47],
+    topSchools:[['中国美术学院',2],['广州美术学院',1],['四川大学',1],['同济大学',1],['华中科技大学',1]],
+    insights:[
+      {type:'bad',title:'🚨 美术方向严重偏低',points:['仅101人，占12.9%，不到策划的一半','是四方向中唯一低于150人的','日均仅50人左右，预测最终仅~850人']},
+      {type:'warn',title:'⚠️ 质量指标也偏弱',points:['硕士仅14人（13.9%），远低于其他方向（28-38%）','27届仅36人（35.6%），目标届次占比最低','低年级（28-29届）合计47人占46.5%，短期转化难']},
+      {type:'bad',title:'💡 紧急行动',points:['🔴 定向美术类院校推广：国美、央美、广美、川美、鲁美、北影动画学院','🔴 在站酷、花瓣、Behance等设计社区投放','🔴 利用"游戏美术岗位高薪"做吸引力包装','考虑降低美术方向的报名门槛（如不强制作品集）']}
+    ]
+  }
+};
+
+// === NAV ===
+const pages=[
+  {id:'overview',label:'📊 总览'},{id:'schools',label:'🏫 院校分析'},
+  {id:'strategy',label:'🎯 策划'},{id:'ops',label:'🎮 运营'},
+  {id:'client',label:'💻 客户端'},{id:'art',label:'🎨 美术'}
+];
+document.getElementById('nav').innerHTML=pages.map((p,i)=>`<button class="nav-btn${i===0?' active':''}" data-page="${p.id}">${p.label}</button>`).join('');
+document.querySelectorAll('.nav-btn').forEach(b=>b.onclick=function(){showPage(this.dataset.page)});
+
 function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  event.target.classList.add('active');
-  // Init charts if needed
-  setTimeout(()=>initCharts(id),100);
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
+  setTimeout(()=>initPage(id),50);
 }
 
 // === SCHOOL DATA ===
@@ -318,130 +237,128 @@ const schools=[
   {name:'天津大学',tier:'985',uhr:'erichdeng',count:3,s:1,o:1,c:1,a:0},
   {name:'北京邮电大学',tier:'211',uhr:'erichdeng',count:3,s:0,o:1,c:2,a:0},
   {name:'武汉大学',tier:'985',uhr:'yichenljiang',count:3,s:0,o:2,c:0,a:1},
-  {name:'华中科技大学(华科)',tier:'985',uhr:'yichenljiang',count:3,s:1,o:0,c:2,a:0},
   {name:'中国科学院大学',tier:'双一流',uhr:'rdeaguo',count:3,s:0,o:1,c:2,a:0},
+  {name:'中南大学',tier:'985',uhr:'adnaluo',count:2,s:1,o:0,c:1,a:0},
   {name:'南京大学',tier:'985',uhr:'chenruigguqi',count:2,s:0,o:1,c:1,a:0},
   {name:'东南大学',tier:'985',uhr:'chenruigguqi',count:2,s:1,o:0,c:1,a:0},
   {name:'四川大学',tier:'985',uhr:'adnaluo',count:2,s:0,o:1,c:0,a:1},
+  {name:'湖南大学',tier:'985',uhr:'adnaluo',count:1,s:0,o:1,c:0,a:0},
+  {name:'华东师范大学',tier:'985',uhr:'chenruigguqi',count:1,s:0,o:0,c:1,a:0},
+  {name:'哈尔滨工业大学(深圳)',tier:'985',uhr:'kvanboil',count:1,s:0,o:0,c:1,a:0},
+  {name:'北京交通大学',tier:'211',uhr:'jiaweizhouu',count:1,s:1,o:0,c:0,a:0},
+  {name:'西安电子科技大学',tier:'211',uhr:'adnaluo',count:1,s:0,o:0,c:1,a:0},
+  {name:'南京航空航天大学',tier:'211',uhr:'chenruigguqi',count:1,s:0,o:1,c:0,a:0},
+  {name:'北京科技大学',tier:'211',uhr:'jiaweizhouu',count:1,s:0,o:0,c:1,a:0},
   {name:'南开大学',tier:'985',uhr:'erichdeng',count:0,s:0,o:0,c:0,a:0},
   {name:'山东大学',tier:'985',uhr:'erichdeng',count:0,s:0,o:0,c:0,a:0},
   {name:'哈尔滨工业大学',tier:'985',uhr:'kvanboil',count:0,s:0,o:0,c:0,a:0},
   {name:'哈尔滨工程大学',tier:'211',uhr:'kvanboil',count:0,s:0,o:0,c:0,a:0},
   {name:'大连理工大学',tier:'985',uhr:'kvanboil',count:0,s:0,o:0,c:0,a:0},
   {name:'东北大学',tier:'985',uhr:'kvanboil',count:0,s:0,o:0,c:0,a:0},
-  {name:'湖南大学',tier:'985',uhr:'adnaluo',count:1,s:0,o:1,c:0,a:0},
-  {name:'华东师范大学',tier:'985',uhr:'chenruigguqi',count:1,s:0,o:0,c:1,a:0},
-  {name:'北京科技大学',tier:'211',uhr:'jiaweizhouu',count:1,s:0,o:0,c:1,a:0},
-  {name:'北京交通大学',tier:'211',uhr:'jiaweizhouu',count:1,s:1,o:0,c:0,a:0},
-  {name:'西安电子科技大学',tier:'211',uhr:'adnaluo',count:1,s:0,o:0,c:1,a:0},
-  {name:'南京航空航天大学',tier:'211',uhr:'chenruigguqi',count:1,s:0,o:1,c:0,a:0},
   {name:'中国地质大学(武汉)',tier:'211',uhr:'yichenljiang',count:0,s:0,o:0,c:0,a:0},
   {name:'西南科技大学',tier:'其他',uhr:'adnaluo',count:0,s:0,o:0,c:0,a:0},
-  {name:'中南大学',tier:'985',uhr:'adnaluo',count:2,s:1,o:0,c:1,a:0},
-  {name:'武汉大学(武大)',tier:'985',uhr:'yichenljiang',count:1,s:0,o:0,c:0,a:1},
-  {name:'哈尔滨工业大学(深圳)',tier:'985',uhr:'kvanboil',count:1,s:0,o:0,c:1,a:0},
 ].sort((a,b)=>b.count-a.count);
 
-// Render school table
+// === RENDER SCHOOLS TABLE ===
 function renderSchools(){
   const el=document.getElementById('school-table');
-  const maxCount=schools[0].count;
-  let html='<table>';
+  const mx=schools[0].count||1;
+  let h=`<table class="school-table"><tr><th>排名</th><th>院校</th><th>层级</th><th>UHR分工</th><th>报名</th><th>占比</th><th>分布</th></tr>`;
   schools.forEach((s,i)=>{
-    const tierClass=s.tier==='985'?'b-985':s.tier==='211'?'b-211':s.tier==='双一流'?'b-dbl':'b-other';
+    const tc=s.tier==='985'?'b-985':s.tier==='211'?'b-211':s.tier==='双一流'?'b-dbl':'b-other';
     const rc=i<3?['r1','r2','r3'][i]:'';
-    const pct=785>0?(s.count/785*100).toFixed(1):'0';
-    const barW=maxCount>0?s.count/maxCount*100:0;
-    html+=`<tr class="clickable" onclick="openSchool(${i})">
-      <td><span class="rank ${rc} mono">${String(i+1).padStart(2,'0')}</span></td>
+    h+=`<tr class="clickable" onclick="openSchool(${i})">
+      <td><span class="rank ${rc}">${String(i+1).padStart(2,'0')}</span></td>
       <td><strong>${s.name}</strong></td>
-      <td><span class="badge ${tierClass}">${s.tier}</span></td>
-      <td style="font-size:11px;color:var(--dim)">${s.uhr}</td>
-      <td class="mono" style="font-weight:700;color:${s.count>0?'var(--cyan)':'var(--red)'}">${s.count}</td>
-      <td class="mono">${pct}%</td>
-      <td><div class="mini-bar"><div class="mini-bar-fill" style="width:${barW}%;background:${s.count>0?'var(--cyan)':'var(--red)'}"></div></div></td>
+      <td style="text-align:center"><span class="badge ${tc}">${s.tier}</span></td>
+      <td style="color:var(--dim)">${s.uhr}</td>
+      <td style="text-align:center" class="mono"><strong style="color:${s.count>0?'var(--cyan)':'var(--red)'}">${s.count}</strong></td>
+      <td style="text-align:center" class="mono">${(s.count/785*100).toFixed(1)}%</td>
+      <td><div class="mini-bar"><div class="mini-bar-fill" style="width:${s.count/mx*100}%;background:${s.count>0?'var(--cyan)':'var(--red)'}"></div></div></td>
     </tr>`;
   });
-  html+='</table>';
-  el.innerHTML=html;
+  el.innerHTML=h+'</table>';
 }
 
-function openSchool(idx){
-  const s=schools[idx];
+function openSchool(i){
+  const s=schools[i];
   document.getElementById('modal-title').textContent='🏫 '+s.name;
+  const items=[['🎯 策划',s.s,C.purple],['🎮 运营',s.o,C.cyan],['💻 客户端',s.c,C.amber],['🎨 美术',s.a,C.green]];
   document.getElementById('modal-body').innerHTML=`
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
-      <div style="padding:12px;background:rgba(6,182,212,0.08);border-radius:10px;text-align:center">
-        <div style="font-size:10px;color:var(--dim)">总报名</div>
-        <div class="mono" style="font-size:28px;font-weight:900;color:var(--cyan)">${s.count}</div>
-      </div>
-      <div style="padding:12px;background:rgba(139,92,246,0.08);border-radius:10px;text-align:center">
-        <div style="font-size:10px;color:var(--dim)">层级</div>
-        <div style="font-size:16px;font-weight:700;color:var(--purple);margin-top:6px">${s.tier}</div>
-      </div>
+      <div style="padding:12px;background:rgba(6,182,212,0.08);border-radius:10px;text-align:center"><div style="font-size:10px;color:var(--dim)">总报名</div><div class="mono" style="font-size:28px;font-weight:900;color:var(--cyan)">${s.count}</div></div>
+      <div style="padding:12px;background:rgba(139,92,246,0.08);border-radius:10px;text-align:center"><div style="font-size:10px;color:var(--dim)">层级 / UHR</div><div style="font-size:14px;font-weight:700;color:var(--purple);margin-top:4px">${s.tier}</div><div style="font-size:11px;color:var(--dim)">${s.uhr}</div></div>
     </div>
-    <h3 style="font-size:13px;margin-bottom:10px">📊 分方向分布</h3>
-    <table>
-      <tr><th>方向</th><th>人数</th><th>占比</th><th>分布</th></tr>
-      <tr><td>🎯 策划</td><td class="mono">${s.s}</td><td>${s.count>0?(s.s/s.count*100).toFixed(0)+'%':'-'}</td>
-        <td><div class="mini-bar" style="min-width:60px"><div class="mini-bar-fill" style="width:${s.count>0?s.s/s.count*100:0}%;background:var(--purple)"></div></div></td></tr>
-      <tr><td>🎮 运营</td><td class="mono">${s.o}</td><td>${s.count>0?(s.o/s.count*100).toFixed(0)+'%':'-'}</td>
-        <td><div class="mini-bar" style="min-width:60px"><div class="mini-bar-fill" style="width:${s.count>0?s.o/s.count*100:0}%;background:var(--cyan)"></div></div></td></tr>
-      <tr><td>💻 客户端</td><td class="mono">${s.c}</td><td>${s.count>0?(s.c/s.count*100).toFixed(0)+'%':'-'}</td>
-        <td><div class="mini-bar" style="min-width:60px"><div class="mini-bar-fill" style="width:${s.count>0?s.c/s.count*100:0}%;background:var(--amber)"></div></div></td></tr>
-      <tr><td>🎨 美术</td><td class="mono">${s.a}</td><td>${s.count>0?(s.a/s.count*100).toFixed(0)+'%':'-'}</td>
-        <td><div class="mini-bar" style="min-width:60px"><div class="mini-bar-fill" style="width:${s.count>0?s.a/s.count*100:0}%;background:var(--green)"></div></div></td></tr>
-    </table>
-    <div style="margin-top:12px;font-size:11px;color:var(--dim)">UHR负责人: ${s.uhr}</div>
-  `;
+    <table><tr><th>方向</th><th>人数</th><th>占比</th><th>分布</th></tr>
+    ${items.map(([n,v,c])=>`<tr><td>${n}</td><td class="mono">${v}</td><td>${s.count>0?(v/s.count*100).toFixed(0)+'%':'-'}</td><td><div class="mini-bar"><div class="mini-bar-fill" style="width:${s.count>0?v/s.count*100:0}%;background:${c}"></div></div></td></tr>`).join('')}
+    </table>`;
   document.getElementById('modal').classList.add('show');
 }
 function closeModal(){document.getElementById('modal').classList.remove('show')}
 
-// === CHARTS ===
-const chartCache={};
-function makeChart(id,cfg){if(chartCache[id]){chartCache[id].destroy()}chartCache[id]=new Chart(document.getElementById(id),cfg)}
-function doughnut(id,labels,data,colors){makeChart(id,{type:'doughnut',data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:0,borderRadius:3}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{padding:10,usePointStyle:true,pointStyleWidth:8,font:{size:11}}}},cutout:'60%'}})}
-function bar(id,labels,datasets,stacked){makeChart(id,{type:'bar',data:{labels,datasets},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{padding:8,usePointStyle:true,pointStyleWidth:8,font:{size:10}}}},scales:{x:{stacked:!!stacked,grid:{display:false}},y:{stacked:!!stacked,grid:{color:'rgba(30,41,59,0.4)'}}}}})}
-function hbar(id,labels,data,colors){makeChart(id,{type:'bar',data:{labels,datasets:[{data,backgroundColor:colors,borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(30,41,59,0.4)'},ticks:{callback:v=>v+'%'}},y:{grid:{display:false}}}}})}
-
-function initCharts(page){
-  if(page==='overview'){
-    doughnut('c-dir',['策划 241','运营 228','客户端 215','美术 101'],[241,228,215,101],[C.purple,C.cyan,C.amber,C.green]);
-    bar('c-edu',['策划','运营','客户端','美术'],[{label:'本科',data:[147,127,141,82],backgroundColor:C.cyan+'b3',borderRadius:3},{label:'硕士',data:[85,87,61,14],backgroundColor:C.purple+'b3',borderRadius:3},{label:'其他',data:[9,14,13,5],backgroundColor:C.dim+'80',borderRadius:3}],true);
-    bar('c-grad',['策划','运营','客户端','美术'],[{label:'27届',data:[135,119,87,36],backgroundColor:C.purple+'cc',borderRadius:3},{label:'28届',data:[41,31,50,26],backgroundColor:C.cyan+'b3',borderRadius:3},{label:'29届',data:[22,16,37,21],backgroundColor:C.amber+'99',borderRadius:3},{label:'其他',data:[43,62,41,18],backgroundColor:C.dim+'66',borderRadius:3}],true);
-    hbar('c-master',['运营','策划','客户端','美术'],[38.2,35.3,28.4,13.9],[C.cyan,C.purple,C.amber,C.green]);
-  }
-  if(page==='daily'){
-    makeChart('c-daily',{type:'bar',data:{labels:['4/14','4/15'],datasets:[{label:'新增报名',data:[423,362],backgroundColor:[C.cyan+'cc',C.cyan+'99'],borderRadius:8}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'rgba(30,41,59,0.4)'}},x:{grid:{display:false}}}}});
-    makeChart('c-cumul',{type:'line',data:{labels:['4/14','4/15'],datasets:[{label:'累计',data:[423,785],borderColor:C.cyan,backgroundColor:C.cyan+'20',fill:true,tension:0.3,pointRadius:6,pointBackgroundColor:C.cyan}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'rgba(30,41,59,0.4)'}},x:{grid:{display:false}}}}});
-    bar('c-daily-dir',['4/14','4/15'],[{label:'策划',data:[130,111],backgroundColor:C.purple+'b3',borderRadius:3},{label:'运营',data:[123,105],backgroundColor:C.cyan+'b3',borderRadius:3},{label:'客户端',data:[116,99],backgroundColor:C.amber+'b3',borderRadius:3},{label:'美术',data:[54,47],backgroundColor:C.green+'b3',borderRadius:3}],true);
-  }
-  if(page==='schools'){
-    renderSchools();
-    doughnut('c-school-tier',['985','211','双一流','其他'],[25,6,3,3],[C.purple,C.cyan,C.amber,C.dim]);
-    doughnut('c-school-cover',['已有报名','暂无报名'],[27,10],[C.green,C.red]);
-  }
-  if(page==='strategy'){
-    doughnut('c-s-edu',['本科 147','硕士 85','博士 1','其他 8'],[147,85,1,8],[C.cyan,C.purple,C.green,C.dim]);
-    doughnut('c-s-grad',['27届 135','28届 41','29届 22','30届 4','其他 39'],[135,41,22,4,39],[C.purple,C.cyan,C.amber,C.green,C.dim]);
-  }
-  if(page==='ops'){
-    doughnut('c-o-edu',['本科 127','硕士 87','博士 1','其他 13'],[127,87,1,13],[C.cyan,C.purple,C.green,C.dim]);
-    doughnut('c-o-grad',['27届 119','28届 31','29届 16','30届 3','其他 59'],[119,31,16,3,59],[C.purple,C.cyan,C.amber,C.green,C.dim]);
-  }
-  if(page==='client'){
-    doughnut('c-c-edu',['本科 141','硕士 61','博士 1','其他 12'],[141,61,1,12],[C.cyan,C.purple,C.green,C.dim]);
-    doughnut('c-c-grad',['27届 87','28届 50','29届 37','30届 2','其他 39'],[87,50,37,2,39],[C.purple,C.cyan,C.amber,C.green,C.dim]);
-  }
-  if(page==='art'){
-    doughnut('c-a-edu',['本科 82','硕士 14','博士 1','其他 4'],[82,14,1,4],[C.cyan,C.purple,C.green,C.dim]);
-    doughnut('c-a-grad',['27届 36','28届 26','29届 21','30届 1','其他 17'],[36,26,21,1,17],[C.purple,C.cyan,C.amber,C.green,C.dim]);
-  }
+// === DIRECTION PAGE TEMPLATE ===
+function renderDirPage(key){
+  const d=dirs[key];
+  const el=document.getElementById('page-'+key);
+  const eduLabels=Object.keys(d.edu),eduData=Object.values(d.edu);
+  const gradLabels=Object.keys(d.grad),gradData=Object.values(d.grad);
+  el.innerHTML=`
+    <div class="kpi" style="grid-template-columns:repeat(4,1fr)">
+      <div class="kpi-card"><div class="k-label">${d.name}报名</div><div class="k-val mono" style="color:${d.color}">${d.total}</div><div class="k-sub">占比 ${d.pct}</div></div>
+      <div class="kpi-card"><div class="k-label">本科</div><div class="k-val mono" style="color:var(--cyan)">${d.edu['本科']}</div><div class="k-sub">${(d.edu['本科']/d.total*100).toFixed(1)}%</div></div>
+      <div class="kpi-card"><div class="k-label">硕士</div><div class="k-val mono" style="color:var(--purple)">${d.edu['硕士']}</div><div class="k-sub">${(d.edu['硕士']/d.total*100).toFixed(1)}%</div></div>
+      <div class="kpi-card"><div class="k-label">27届</div><div class="k-val mono" style="color:var(--amber)">${d.grad['27届']}</div><div class="k-sub">${(d.grad['27届']/d.total*100).toFixed(1)}%</div></div>
+    </div>
+    <!-- 每日趋势 -->
+    <div class="card"><h3>📅 ${d.name}每日报名趋势</h3><canvas id="c-${key}-daily" height="160"></canvas></div>
+    <!-- 洞察分析 -->
+    ${d.insights.map(ins=>`<div class="insight ${ins.type}"><h4>${ins.title}</h4><ul>${ins.points.map(p=>`<li>${p}</li>`).join('')}</ul></div>`).join('')}
+    <!-- 图表 -->
+    <div class="g3">
+      <div class="card"><h3>🎓 学历分布</h3><canvas id="c-${key}-edu" height="200"></canvas></div>
+      <div class="card"><h3>📆 届次分布</h3><canvas id="c-${key}-grad" height="200"></canvas></div>
+      <div class="card"><h3>🏫 Top报名院校</h3>
+        <table><tr><th>院校</th><th>人数</th></tr>${d.topSchools.map(([n,c])=>`<tr><td>${n}</td><td class="mono" style="color:var(--cyan)">${c}</td></tr>`).join('')}</table>
+      </div>
+    </div>`;
 }
 
-// Init
-initCharts('overview');
+// === CHARTS ===
+const cc={};
+function mc(id,cfg){if(cc[id]){cc[id].destroy()}const el=document.getElementById(id);if(!el)return;cc[id]=new Chart(el,cfg)}
+function donut(id,labels,data,colors){mc(id,{type:'doughnut',data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:0,borderRadius:3}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{padding:10,usePointStyle:true,pointStyleWidth:8,font:{size:11}}}},cutout:'60%'}})}
+function sbar(id,labels,datasets){mc(id,{type:'bar',data:{labels,datasets},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{padding:8,usePointStyle:true,pointStyleWidth:8,font:{size:10}}}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,grid:{color:'rgba(30,41,59,0.4)'}}}}})}
+
+function initPage(id){
+  if(id==='overview'){
+    // 每日趋势
+    mc('c-daily-overview',{type:'bar',data:{labels:daily.map(d=>d.d),datasets:[
+      {label:'策划',data:daily.map(d=>d.s),backgroundColor:C.purple+'b3',borderRadius:3},
+      {label:'运营',data:daily.map(d=>d.o),backgroundColor:C.cyan+'b3',borderRadius:3},
+      {label:'客户端',data:daily.map(d=>d.c),backgroundColor:C.amber+'b3',borderRadius:3},
+      {label:'美术',data:daily.map(d=>d.a),backgroundColor:C.green+'b3',borderRadius:3}
+    ]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{padding:8,usePointStyle:true,pointStyleWidth:8,font:{size:10}}}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,grid:{color:'rgba(30,41,59,0.4)'}}}}});
+    let cum=0;mc('c-cumul-overview',{type:'line',data:{labels:daily.map(d=>d.d),datasets:[{label:'累计',data:daily.map(d=>(cum+=d.total,cum)),borderColor:C.cyan,backgroundColor:C.cyan+'20',fill:true,tension:.3,pointRadius:6,pointBackgroundColor:C.cyan}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'rgba(30,41,59,0.4)'}},x:{grid:{display:false}}}}});
+    donut('c-dir',['策划 241','运营 228','客户端 215','美术 101'],[241,228,215,101],[C.purple,C.cyan,C.amber,C.green]);
+    sbar('c-edu',['策划','运营','客户端','美术'],[{label:'本科',data:[147,127,141,82],backgroundColor:C.cyan+'b3',borderRadius:3},{label:'硕士',data:[85,87,61,14],backgroundColor:C.purple+'b3',borderRadius:3},{label:'其他',data:[9,14,13,5],backgroundColor:C.dim+'80',borderRadius:3}]);
+    sbar('c-grad',['策划','运营','客户端','美术'],[{label:'27届',data:[135,119,87,36],backgroundColor:C.purple+'cc',borderRadius:3},{label:'28届',data:[41,31,50,26],backgroundColor:C.cyan+'b3',borderRadius:3},{label:'29届',data:[22,16,37,21],backgroundColor:C.amber+'99',borderRadius:3},{label:'其他',data:[43,62,41,18],backgroundColor:C.dim+'66',borderRadius:3}]);
+    mc('c-master',{type:'bar',data:{labels:['运营 38.2%','策划 35.3%','客户端 28.4%','美术 13.9%'],datasets:[{data:[38.2,35.3,28.4,13.9],backgroundColor:[C.cyan,C.purple,C.amber,C.green],borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(30,41,59,0.4)'},ticks:{callback:v=>v+'%'}},y:{grid:{display:false}}}}});
+  }
+  if(id==='schools'){renderSchools();
+    donut('c-school-tier',['985','211','双一流','其他'],[25,6,3,1],[C.purple,C.cyan,C.amber,C.dim]);
+    donut('c-school-cover',['已有报名 27','暂无报名 8'],[27,8],[C.green,C.red]);
+  }
+  // Direction pages
+  if(dirs[id]){
+    renderDirPage(id);
+    const d=dirs[id];
+    mc('c-'+id+'-daily',{type:'bar',data:{labels:daily.map(x=>x.d),datasets:[{label:d.name,data:d.daily,backgroundColor:d.color+'b3',borderRadius:6}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'rgba(30,41,59,0.4)'}},x:{grid:{display:false}}}}});
+    const el=Object.keys(d.edu),ev=Object.values(d.edu),gl=Object.keys(d.grad),gv=Object.values(d.grad);
+    donut('c-'+id+'-edu',el.map((l,i)=>l+' '+ev[i]),ev,[C.cyan,C.purple,C.green,C.dim]);
+    donut('c-'+id+'-grad',gl.map((l,i)=>l+' '+gv[i]),gv,[C.purple,C.cyan,C.amber,C.green,C.dim]);
+  }
+}
+initPage('overview');
 </script>
 </body>
 </html>
