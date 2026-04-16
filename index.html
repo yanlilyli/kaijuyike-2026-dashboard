@@ -102,8 +102,8 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
   <div class="kpi-card"><div class="k-label">报名总人数</div><div class="k-val mono" style="color:var(--cyan)">1331</div><div class="k-sub">目标 6,000+</div><div class="k-tag up">22.2%</div></div>
   <div class="kpi-card"><div class="k-label">日均报名</div><div class="k-val mono" style="color:var(--green)">444</div><div class="k-sub">达标线 334/天</div><div class="k-tag up">↑ 超33%</div></div>
   <div class="kpi-card"><div class="k-label">预测最终</div><div class="k-val mono" style="color:var(--purple)">6.2K</div><div class="k-sub">按日均444×17天</div><div class="k-tag up">超目标4%</div></div>
-  <div class="kpi-card"><div class="k-label">硕士占比</div><div class="k-val mono" style="color:var(--amber)">31.2%</div><div class="k-sub">415人</div><div class="k-tag up">质量优</div></div>
-  <div class="kpi-card"><div class="k-label">剩余天数</div><div class="k-val mono" style="color:var(--red)">15</div><div class="k-sub">截止4/30</div><div class="k-tag warn">时间过半</div></div>
+  <div class="kpi-card"><div class="k-label">硕士占比</div><div class="k-val mono" style="color:var(--amber)">30.7%</div><div class="k-sub">409人</div><div class="k-tag up">质量优</div></div>
+  <div class="kpi-card"><div class="k-label">剩余天数</div><div class="k-val mono" style="color:var(--red)">14</div><div class="k-sub">截止4/30</div><div class="k-tag warn">倒计时</div></div>
 </div>
 <div class="card"><h3>📈 报名进度</h3>
   <div style="display:flex;align-items:center;gap:12px">
@@ -155,7 +155,7 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
 <div class="modal-bg" id="modal" onclick="if(event.target===this)closeModal()">
   <div class="modal"><h2><span id="modal-title"></span><button class="close-btn" onclick="closeModal()">✕</button></h2><div id="modal-body"></div></div>
 </div>
-<div class="footer mono">007团队 · 开局一课PM | 更新 2026-04-16 | 总报名 1,331人 | <a href="https://github.com/yanlilyli/kaijuyike-2026-dashboard" style="color:var(--cyan)">GitHub</a></div>
+<div class="footer mono">007团队 · 开局一课PM | 更新 2026-04-16 15:00 | 总报名 1,331人 | <a href="https://github.com/yanlilyli/kaijuyike-2026-dashboard" style="color:var(--cyan)">GitHub</a></div>
 </div>
 
 <script>
@@ -166,12 +166,12 @@ const C={cyan:'#06b6d4',purple:'#8b5cf6',amber:'#f59e0b',green:'#22c55e',red:'#e
 const daily=[{d:'4/14',total:423,s:130,o:123,c:116,a:54},{d:'4/15',total:362,s:111,o:105,c:99,a:47},{d:'4/16',total:546,s:192,o:149,c:146,a:59}];
 const dirs={
   strategy:{name:'游戏策划',icon:'🎯',color:C.purple,total:433,pct:'32.5%',
-    edu:{本科:267,硕士:151,博士:2,其他:13},grad:{'27届':234,'28届':70,'29届':42,'30届':4,'其他':83},
+    edu:{本科:267,硕士:151,博士:2,其他:13},grad:{'27届':234,'28届':78,'29届':42,'30届':5,'其他':74},
     daily:[130,111,192],
     topSchools:[['清华大学',5],['同济大学',4],['浙江大学',3],['复旦大学',3],['中山大学',3],['北京大学',2],['华中科技大学',2]],
     insights:[
-      {type:'good',title:'✅ 策划方向表现最强',points:['报名241人，四方向中最多（32.5%）','27届占56.0%，目标届次精准度最高','硕士占比35.3%，质量优秀']},
-      {type:'warn',title:'⚠️ 关注点',points:['日均从130降到111（↓14.6%），需关注后续趋势','\"其他\"届次39人（16.2%），建议核查数据质量','院校集中度不高，Top1仅5人，需推动校内传播']},
+      {type:'good',title:'✅ 策划方向表现最强',points:['报名433人，四方向中最多（32.5%）','27届占54.0%，目标届次精准度最高','硕士占比34.9%，质量优秀']},
+      {type:'warn',title:'⚠️ 关注点',points:['4/16新增192人反弹，关注后续是否可持续','\"其他\"届次74人（17.1%），建议核查数据质量','院校集中度不高，Top1仅5人，需推动校内传播']},
       {type:'good',title:'💡 建议',points:['策划方向最受欢迎，可作为宣传主打方向','利用策划方向高热度带动其他方向曝光','在高校游戏社团定向推广策划方向课程内容']}
     ]
   },
@@ -180,28 +180,28 @@ const dirs={
     daily:[123,105,149],
     topSchools:[['北京大学',4],['香港科技大学',3],['华中科技大学',3],['武汉大学',2],['南京大学',2],['中山大学',2]],
     insights:[
-      {type:'good',title:'✅ 运营方向硕士占比最高',points:['硕士87人占38.2%，四方向中最高','说明运营方向吸引了大量高学历人才','27届占52.2%，目标届次匹配良好']},
-      {type:'bad',title:'🚨 数据质量需关注',points:['"其他"届次59人（25.9%），占比异常偏高','可能存在填写错误或非目标人群报名','建议抽查"其他"类别的具体毕业年份']},
+      {type:'good',title:'✅ 运营方向硕士占比最高',points:['硕士142人占37.7%，四方向中最高','说明运营方向吸引了大量高学历人才','27届占52.8%，目标届次匹配良好']},
+      {type:'bad',title:'🚨 数据质量需关注',points:['"其他"届次85人（22.5%），占比异常偏高','可能存在填写错误或非目标人群报名','建议抽查"其他"类别的具体毕业年份']},
       {type:'warn',title:'💡 建议',points:['运营方向硕士多，可侧重推广"运营→产品经理"的职业路径','利用运营方向的高质量候选人池做深度培养','关注"其他"届次数据，及时清洗异常数据']}
     ]
   },
   client:{name:'游戏客户端',icon:'💻',color:C.amber,total:361,pct:'27.1%',
-    edu:{本科:237,硕士:100,博士:2,其他:22},grad:{'27届':146,'28届':84,'29届':62,'30届':3,'其他':66},
+    edu:{本科:234,硕士:98,博士:5,其他:24},grad:{'27届':155,'28届':85,'29届':57,'30届':3,'其他':61},
     daily:[116,99,146],
     topSchools:[['同济大学',4],['华中科技大学',3],['哈尔滨工业大学',2],['北京理工大学',2],['中国科学院大学',2]],
     insights:[
-      {type:'warn',title:'⚠️ 低年级占比偏高',points:['27届仅40.5%，四方向中最低','28-29届合计87人（40.5%），与27届持平','说明低年级学生对客户端技术兴趣浓厚，但短期转化率可能偏低']},
-      {type:'good',title:'✅ 积极信号',points:['本科占65.6%，技术方向本科占比高属正常','理工院校覆盖好（同济、华科、哈工大、北理工）','虽然总量排第三，但与运营差距不大（228 vs 215）']},
+      {type:'warn',title:'⚠️ 低年级占比偏高',points:['27届仅42.9%，四方向中最低','28-29届合计142人（39.3%），与27届持平','说明低年级学生对客户端技术兴趣浓厚，但短期转化率可能偏低']},
+      {type:'good',title:'✅ 积极信号',points:['本科占64.8%，技术方向本科占比高属正常','理工院校覆盖好（同济、华科、哈工大、北理工）','虽然总量排第三，但与运营差距不大（361 vs 377）']},
       {type:'warn',title:'💡 建议',points:['针对27届计算机/软件专业学生加大推广','在技术社区（GitHub、掘金、CSDN）投放','低年级候选人可纳入长期人才池，为明年储备']}
     ]
   },
   art:{name:'游戏美术',icon:'🎨',color:C.green,total:160,pct:'12.0%',
-    edu:{本科:130,硕士:22,博士:1,其他:7},grad:{'27届':57,'28届':41,'29届':33,'30届':2,'其他':27},
+    edu:{本科:131,硕士:18,博士:1,其他:10},grad:{'27届':59,'28届':38,'29届':32,'30届':1,'其他':30},
     daily:[54,47,59],
     topSchools:[['中国美术学院',2],['广州美术学院',1],['四川大学',1],['同济大学',1],['华中科技大学',1]],
     insights:[
-      {type:'bad',title:'🚨 美术方向严重偏低',points:['仅101人，占12.0%，不到策划的一半','是四方向中唯一低于150人的','日均仅50人左右，预测最终仅~850人']},
-      {type:'warn',title:'⚠️ 质量指标也偏弱',points:['硕士仅14人（13.9%），远低于其他方向（28-38%）','27届仅36人（35.6%），目标届次占比最低','低年级（28-29届）合计47人占46.5%，短期转化难']},
+      {type:'bad',title:'🚨 美术方向严重偏低',points:['仅160人，占12.0%，不到策划的一半','是四方向中唯一低于200人的','日均53人左右，预测最终仅~900人']},
+      {type:'warn',title:'⚠️ 质量指标也偏弱',points:['硕士仅18人（11.3%），远低于其他方向（27-38%）','27届仅59人（36.9%），目标届次占比最低','低年级（28-29届）合计70人占43.8%，短期转化难']},
       {type:'bad',title:'💡 紧急行动',points:['🔴 定向美术类院校推广：国美、央美、广美、川美、鲁美、北影动画学院','🔴 在站酷、花瓣、Behance等设计社区投放','🔴 利用"游戏美术岗位高薪"做吸引力包装','考虑降低美术方向的报名门槛（如不强制作品集）']}
     ]
   }
@@ -252,7 +252,7 @@ function renderSchools(){
       <td style="text-align:center"><span class="badge" style="background:${tc.bg};color:${tc.color}">${tc.label}</span></td>
       <td style="color:var(--dim);font-size:11px">${s.uhr}</td>
       <td style="text-align:center" class="mono"><strong style="color:${s.count>0?'var(--cyan)':'var(--red)'}">${s.count}</strong></td>
-      <td style="text-align:center" class="mono">${(s.count/785*100).toFixed(1)}%</td>
+      <td style="text-align:center" class="mono">${(s.count/1331*100).toFixed(1)}%</td>
       <td><div class="mini-bar"><div class="mini-bar-fill" style="width:${s.count/mx*100}%;background:${s.count>0?tc.color:'var(--red)'}"></div></div></td>
     </tr>`;
   });
@@ -321,10 +321,10 @@ function initPage(id){
       {label:'美术',data:daily.map(d=>d.a),backgroundColor:C.green+'b3',borderRadius:3}
     ]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{padding:8,usePointStyle:true,pointStyleWidth:8,font:{size:10}}}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,grid:{color:'rgba(30,41,59,0.4)'}}}}});
     let cum=0;mc('c-cumul-overview',{type:'line',data:{labels:daily.map(d=>d.d),datasets:[{label:'累计',data:daily.map(d=>(cum+=d.total,cum)),borderColor:C.cyan,backgroundColor:C.cyan+'20',fill:true,tension:.3,pointRadius:6,pointBackgroundColor:C.cyan}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'rgba(30,41,59,0.4)'}},x:{grid:{display:false}}}}});
-    donut('c-dir',['策划 241','运营 228','客户端 215','美术 101'],[241,228,215,101],[C.purple,C.cyan,C.amber,C.green]);
-    sbar('c-edu',['策划','运营','客户端','美术'],[{label:'本科',data:[147,127,141,82],backgroundColor:C.cyan+'b3',borderRadius:3},{label:'硕士',data:[85,87,61,14],backgroundColor:C.purple+'b3',borderRadius:3},{label:'其他',data:[9,14,13,5],backgroundColor:C.dim+'80',borderRadius:3}]);
-    sbar('c-grad',['策划','运营','客户端','美术'],[{label:'27届',data:[135,119,87,36],backgroundColor:C.purple+'cc',borderRadius:3},{label:'28届',data:[41,31,50,26],backgroundColor:C.cyan+'b3',borderRadius:3},{label:'29届',data:[22,16,37,21],backgroundColor:C.amber+'99',borderRadius:3},{label:'其他',data:[43,62,41,18],backgroundColor:C.dim+'66',borderRadius:3}]);
-    mc('c-master',{type:'bar',data:{labels:['运营 38.2%','策划 35.3%','客户端 28.4%','美术 13.9%'],datasets:[{data:[38.2,35.3,28.4,13.9],backgroundColor:[C.cyan,C.purple,C.amber,C.green],borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(30,41,59,0.4)'},ticks:{callback:v=>v+'%'}},y:{grid:{display:false}}}}});
+    donut('c-dir',['策划 433','运营 377','客户端 361','美术 160'],[433,377,361,160],[C.purple,C.cyan,C.amber,C.green]);
+    sbar('c-edu',['策划','运营','客户端','美术'],[{label:'本科',data:[267,213,234,131],backgroundColor:C.cyan+'b3',borderRadius:3},{label:'硕士',data:[151,142,98,18],backgroundColor:C.purple+'b3',borderRadius:3},{label:'其他',data:[15,22,29,11],backgroundColor:C.dim+'80',borderRadius:3}]);
+    sbar('c-grad',['策划','运营','客户端','美术'],[{label:'27届',data:[234,199,155,59],backgroundColor:C.purple+'cc',borderRadius:3},{label:'28届',data:[78,58,85,38],backgroundColor:C.cyan+'b3',borderRadius:3},{label:'29届',data:[42,32,57,32],backgroundColor:C.amber+'99',borderRadius:3},{label:'其他',data:[79,88,64,31],backgroundColor:C.dim+'66',borderRadius:3}]);
+    mc('c-master',{type:'bar',data:{labels:['运营 37.7%','策划 34.9%','客户端 27.1%','美术 11.3%'],datasets:[{data:[37.7,34.9,27.1,11.3],backgroundColor:[C.cyan,C.purple,C.amber,C.green],borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(30,41,59,0.4)'},ticks:{callback:v=>v+'%'}},y:{grid:{display:false}}}}});
   }
   if(id==='schools'){renderTagFilters();renderSchools();
     // 按标签统计
