@@ -92,24 +92,24 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
 <div class="hdr">
   <h1>🎮 开局一课 2026 · 报名数据看板</h1>
   <div class="sub mono">TENCENT GAMES FIRST LESSON · SIGNUP DASHBOARD</div>
-  <div class="badge mono">📊 更新 2026-04-15 · 报名期 4/14 - 4/30</div>
+  <div class="badge mono">📊 更新 2026-04-16 · 报名期 4/14 - 4/30 · 第3天</div>
 </div>
 <div class="nav" id="nav"></div>
 
 <!-- ===== OVERVIEW ===== -->
 <div class="page active" id="page-overview">
 <div class="kpi">
-  <div class="kpi-card"><div class="k-label">报名总人数</div><div class="k-val mono" style="color:var(--cyan)">785</div><div class="k-sub">目标 6,000+</div><div class="k-tag up">13.1%</div></div>
-  <div class="kpi-card"><div class="k-label">日均报名</div><div class="k-val mono" style="color:var(--green)">393</div><div class="k-sub">达标线 348/天</div><div class="k-tag up">↑ 超13%</div></div>
-  <div class="kpi-card"><div class="k-label">预测最终</div><div class="k-val mono" style="color:var(--purple)">6.7K</div><div class="k-sub">按日均393×17天</div><div class="k-tag up">超目标11%</div></div>
-  <div class="kpi-card"><div class="k-label">硕士占比</div><div class="k-val mono" style="color:var(--amber)">31.5%</div><div class="k-sub">247人</div><div class="k-tag up">质量优</div></div>
+  <div class="kpi-card"><div class="k-label">报名总人数</div><div class="k-val mono" style="color:var(--cyan)">1331</div><div class="k-sub">目标 6,000+</div><div class="k-tag up">22.2%</div></div>
+  <div class="kpi-card"><div class="k-label">日均报名</div><div class="k-val mono" style="color:var(--green)">444</div><div class="k-sub">达标线 334/天</div><div class="k-tag up">↑ 超33%</div></div>
+  <div class="kpi-card"><div class="k-label">预测最终</div><div class="k-val mono" style="color:var(--purple)">6.2K</div><div class="k-sub">按日均444×17天</div><div class="k-tag up">超目标4%</div></div>
+  <div class="kpi-card"><div class="k-label">硕士占比</div><div class="k-val mono" style="color:var(--amber)">31.2%</div><div class="k-sub">415人</div><div class="k-tag up">质量优</div></div>
   <div class="kpi-card"><div class="k-label">剩余天数</div><div class="k-val mono" style="color:var(--red)">15</div><div class="k-sub">截止4/30</div><div class="k-tag warn">时间过半</div></div>
 </div>
 <div class="card"><h3>📈 报名进度</h3>
   <div style="display:flex;align-items:center;gap:12px">
-    <div style="flex:1"><div style="height:20px;background:var(--border);border-radius:10px;overflow:hidden"><div style="width:13.1%;height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));border-radius:10px"></div></div>
+    <div style="flex:1"><div style="height:20px;background:var(--border);border-radius:10px;overflow:hidden"><div style="width:22.2%;height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));border-radius:10px"></div></div>
     <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:var(--dim)"><span>0</span><span>1K</span><span>2K</span><span>3K</span><span>4K</span><span>6K</span></div></div>
-    <div class="mono" style="font-size:18px;font-weight:900;color:var(--cyan)">785<span style="font-size:12px;color:var(--dim)">/6000</span></div>
+    <div class="mono" style="font-size:18px;font-weight:900;color:var(--cyan)">1331<span style="font-size:12px;color:var(--dim)">/6000</span></div>
   </div>
 </div>
 <!-- 每日趋势（总览内） -->
@@ -118,10 +118,10 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
   <div class="card"><h3>📈 累计报名趋势</h3><canvas id="c-cumul-overview" height="200"></canvas></div>
 </div>
 <div class="dir-row">
-  <div class="dir-card" onclick="showPage('strategy')"><div>🎯</div><div class="d-name" style="color:var(--purple)">游戏策划</div><div class="d-num mono" style="color:var(--purple)">241</div><div class="d-pct">30.7%</div><div class="d-bar"><div class="d-bar-fill" style="width:100%;background:var(--purple)"></div></div></div>
-  <div class="dir-card" onclick="showPage('ops')"><div>🎮</div><div class="d-name" style="color:var(--cyan)">游戏运营</div><div class="d-num mono" style="color:var(--cyan)">228</div><div class="d-pct">29.0%</div><div class="d-bar"><div class="d-bar-fill" style="width:94.6%;background:var(--cyan)"></div></div></div>
-  <div class="dir-card" onclick="showPage('client')"><div>💻</div><div class="d-name" style="color:var(--amber)">游戏客户端</div><div class="d-num mono" style="color:var(--amber)">215</div><div class="d-pct">27.4%</div><div class="d-bar"><div class="d-bar-fill" style="width:89.2%;background:var(--amber)"></div></div></div>
-  <div class="dir-card" onclick="showPage('art')"><div>🎨</div><div class="d-name" style="color:var(--green)">游戏美术</div><div class="d-num mono" style="color:var(--green)">101</div><div class="d-pct">12.9% ⚠️</div><div class="d-bar"><div class="d-bar-fill" style="width:41.9%;background:var(--green)"></div></div></div>
+  <div class="dir-card" onclick="showPage('strategy')"><div>🎯</div><div class="d-name" style="color:var(--purple)">游戏策划</div><div class="d-num mono" style="color:var(--purple)">433</div><div class="d-pct">32.5%</div><div class="d-bar"><div class="d-bar-fill" style="width:100%;background:var(--purple)"></div></div></div>
+  <div class="dir-card" onclick="showPage('ops')"><div>🎮</div><div class="d-name" style="color:var(--cyan)">游戏运营</div><div class="d-num mono" style="color:var(--cyan)">377</div><div class="d-pct">28.3%</div><div class="d-bar"><div class="d-bar-fill" style="width:87.1%;background:var(--cyan)"></div></div></div>
+  <div class="dir-card" onclick="showPage('client')"><div>💻</div><div class="d-name" style="color:var(--amber)">游戏客户端</div><div class="d-num mono" style="color:var(--amber)">361</div><div class="d-pct">27.1%</div><div class="d-bar"><div class="d-bar-fill" style="width:83.4%;background:var(--amber)"></div></div></div>
+  <div class="dir-card" onclick="showPage('art')"><div>🎨</div><div class="d-name" style="color:var(--green)">游戏美术</div><div class="d-num mono" style="color:var(--green)">160</div><div class="d-pct">12.0% ⚠️</div><div class="d-bar"><div class="d-bar-fill" style="width:37.0%;background:var(--green)"></div></div></div>
 </div>
 <div class="g2">
   <div class="card"><h3>🎯 方向占比</h3><canvas id="c-dir" height="220"></canvas></div>
@@ -155,7 +155,7 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
 <div class="modal-bg" id="modal" onclick="if(event.target===this)closeModal()">
   <div class="modal"><h2><span id="modal-title"></span><button class="close-btn" onclick="closeModal()">✕</button></h2><div id="modal-body"></div></div>
 </div>
-<div class="footer mono">007团队 · 开局一课PM | 更新 2026-04-15 | 总报名 785人 | <a href="https://github.com/yanlilyli/kaijuyike-2026-dashboard" style="color:var(--cyan)">GitHub</a></div>
+<div class="footer mono">007团队 · 开局一课PM | 更新 2026-04-16 | 总报名 1,331人 | <a href="https://github.com/yanlilyli/kaijuyike-2026-dashboard" style="color:var(--cyan)">GitHub</a></div>
 </div>
 
 <script>
@@ -163,21 +163,21 @@ Chart.defaults.color='#94a3b8';Chart.defaults.borderColor='#1e293b';Chart.defaul
 const C={cyan:'#06b6d4',purple:'#8b5cf6',amber:'#f59e0b',green:'#22c55e',red:'#ef4444',dim:'#475569'};
 
 // === DATA ===
-const daily=[{d:'4/14',total:423,s:130,o:123,c:116,a:54},{d:'4/15',total:362,s:111,o:105,c:99,a:47}];
+const daily=[{d:'4/14',total:423,s:130,o:123,c:116,a:54},{d:'4/15',total:362,s:111,o:105,c:99,a:47},{d:'4/16',total:546,s:192,o:149,c:146,a:59}];
 const dirs={
-  strategy:{name:'游戏策划',icon:'🎯',color:C.purple,total:241,pct:'30.7%',
-    edu:{本科:147,硕士:85,博士:1,其他:8},grad:{'27届':135,'28届':41,'29届':22,'30届':4,'其他':39},
-    daily:[130,111],
+  strategy:{name:'游戏策划',icon:'🎯',color:C.purple,total:433,pct:'32.5%',
+    edu:{本科:267,硕士:151,博士:2,其他:13},grad:{'27届':234,'28届':70,'29届':42,'30届':4,'其他':83},
+    daily:[130,111,192],
     topSchools:[['清华大学',5],['同济大学',4],['浙江大学',3],['复旦大学',3],['中山大学',3],['北京大学',2],['华中科技大学',2]],
     insights:[
-      {type:'good',title:'✅ 策划方向表现最强',points:['报名241人，四方向中最多（30.7%）','27届占56.0%，目标届次精准度最高','硕士占比35.3%，质量优秀']},
+      {type:'good',title:'✅ 策划方向表现最强',points:['报名241人，四方向中最多（32.5%）','27届占56.0%，目标届次精准度最高','硕士占比35.3%，质量优秀']},
       {type:'warn',title:'⚠️ 关注点',points:['日均从130降到111（↓14.6%），需关注后续趋势','\"其他\"届次39人（16.2%），建议核查数据质量','院校集中度不高，Top1仅5人，需推动校内传播']},
       {type:'good',title:'💡 建议',points:['策划方向最受欢迎，可作为宣传主打方向','利用策划方向高热度带动其他方向曝光','在高校游戏社团定向推广策划方向课程内容']}
     ]
   },
-  ops:{name:'游戏运营',icon:'🎮',color:C.cyan,total:228,pct:'29.0%',
-    edu:{本科:127,硕士:87,博士:1,其他:13},grad:{'27届':119,'28届':31,'29届':16,'30届':3,'其他':59},
-    daily:[123,105],
+  ops:{name:'游戏运营',icon:'🎮',color:C.cyan,total:377,pct:'28.3%',
+    edu:{本科:213,硕士:142,博士:1,其他:21},grad:{'27届':199,'28届':58,'29届':32,'30届':3,'其他':85},
+    daily:[123,105,149],
     topSchools:[['北京大学',4],['香港科技大学',3],['华中科技大学',3],['武汉大学',2],['南京大学',2],['中山大学',2]],
     insights:[
       {type:'good',title:'✅ 运营方向硕士占比最高',points:['硕士87人占38.2%，四方向中最高','说明运营方向吸引了大量高学历人才','27届占52.2%，目标届次匹配良好']},
@@ -185,9 +185,9 @@ const dirs={
       {type:'warn',title:'💡 建议',points:['运营方向硕士多，可侧重推广"运营→产品经理"的职业路径','利用运营方向的高质量候选人池做深度培养','关注"其他"届次数据，及时清洗异常数据']}
     ]
   },
-  client:{name:'游戏客户端',icon:'💻',color:C.amber,total:215,pct:'27.4%',
-    edu:{本科:141,硕士:61,博士:1,其他:12},grad:{'27届':87,'28届':50,'29届':37,'30届':2,'其他':39},
-    daily:[116,99],
+  client:{name:'游戏客户端',icon:'💻',color:C.amber,total:361,pct:'27.1%',
+    edu:{本科:237,硕士:100,博士:2,其他:22},grad:{'27届':146,'28届':84,'29届':62,'30届':3,'其他':66},
+    daily:[116,99,146],
     topSchools:[['同济大学',4],['华中科技大学',3],['哈尔滨工业大学',2],['北京理工大学',2],['中国科学院大学',2]],
     insights:[
       {type:'warn',title:'⚠️ 低年级占比偏高',points:['27届仅40.5%，四方向中最低','28-29届合计87人（40.5%），与27届持平','说明低年级学生对客户端技术兴趣浓厚，但短期转化率可能偏低']},
@@ -195,12 +195,12 @@ const dirs={
       {type:'warn',title:'💡 建议',points:['针对27届计算机/软件专业学生加大推广','在技术社区（GitHub、掘金、CSDN）投放','低年级候选人可纳入长期人才池，为明年储备']}
     ]
   },
-  art:{name:'游戏美术',icon:'🎨',color:C.green,total:101,pct:'12.9%',
-    edu:{本科:82,硕士:14,博士:1,其他:4},grad:{'27届':36,'28届':26,'29届':21,'30届':1,'其他':17},
-    daily:[54,47],
+  art:{name:'游戏美术',icon:'🎨',color:C.green,total:160,pct:'12.0%',
+    edu:{本科:130,硕士:22,博士:1,其他:7},grad:{'27届':57,'28届':41,'29届':33,'30届':2,'其他':27},
+    daily:[54,47,59],
     topSchools:[['中国美术学院',2],['广州美术学院',1],['四川大学',1],['同济大学',1],['华中科技大学',1]],
     insights:[
-      {type:'bad',title:'🚨 美术方向严重偏低',points:['仅101人，占12.9%，不到策划的一半','是四方向中唯一低于150人的','日均仅50人左右，预测最终仅~850人']},
+      {type:'bad',title:'🚨 美术方向严重偏低',points:['仅101人，占12.0%，不到策划的一半','是四方向中唯一低于150人的','日均仅50人左右，预测最终仅~850人']},
       {type:'warn',title:'⚠️ 质量指标也偏弱',points:['硕士仅14人（13.9%），远低于其他方向（28-38%）','27届仅36人（35.6%），目标届次占比最低','低年级（28-29届）合计47人占46.5%，短期转化难']},
       {type:'bad',title:'💡 紧急行动',points:['🔴 定向美术类院校推广：国美、央美、广美、川美、鲁美、北影动画学院','🔴 在站酷、花瓣、Behance等设计社区投放','🔴 利用"游戏美术岗位高薪"做吸引力包装','考虑降低美术方向的报名门槛（如不强制作品集）']}
     ]
