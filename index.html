@@ -129,19 +129,115 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
   <div class="card"><h3>📆 各方向届次</h3><canvas id="c-grad" height="220"></canvas></div>
   <div class="card"><h3>📊 硕士占比对比</h3><canvas id="c-master" height="220"></canvas></div>
 </div>
+
+<!-- ===== 毕业届次分析 ===== -->
+<div class="card" style="margin-bottom:16px">
+  <h3>📆 毕业届次分布（全体 1,990人）</h3>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px">
+    <div style="padding:14px;background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.3);border-radius:10px;text-align:center">
+      <div style="font-size:11px;color:var(--dim)">27届（核心目标）</div>
+      <div class="mono" style="font-size:28px;font-weight:900;color:var(--purple);margin:4px 0">947</div>
+      <div style="font-size:11px;color:var(--purple)">47.6%</div>
+    </div>
+    <div style="padding:14px;background:rgba(6,182,212,0.12);border:1px solid rgba(6,182,212,0.3);border-radius:10px;text-align:center">
+      <div style="font-size:11px;color:var(--dim)">28届</div>
+      <div class="mono" style="font-size:28px;font-weight:900;color:var(--cyan);margin:4px 0">445</div>
+      <div style="font-size:11px;color:var(--cyan)">22.4%</div>
+    </div>
+    <div style="padding:14px;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3);border-radius:10px;text-align:center">
+      <div style="font-size:11px;color:var(--dim)">29届</div>
+      <div class="mono" style="font-size:28px;font-weight:900;color:var(--amber);margin:4px 0">234</div>
+      <div style="font-size:11px;color:var(--amber)">11.8%</div>
+    </div>
+    <div style="padding:14px;background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.3);border-radius:10px;text-align:center">
+      <div style="font-size:11px;color:var(--dim)">30届</div>
+      <div class="mono" style="font-size:28px;font-weight:900;color:var(--green);margin:4px 0">15</div>
+      <div style="font-size:11px;color:var(--green)">0.8%</div>
+    </div>
+    <div style="padding:14px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:10px;text-align:center">
+      <div style="font-size:11px;color:var(--dim)">其他</div>
+      <div class="mono" style="font-size:28px;font-weight:900;color:var(--red);margin:4px 0">349</div>
+      <div style="font-size:11px;color:var(--red)">17.5% ⚠️</div>
+    </div>
+  </div>
+  <div style="padding:12px;background:rgba(245,158,11,0.08);border-left:3px solid var(--amber);border-radius:6px;font-size:12px;line-height:1.7">
+    <strong style="color:var(--amber)">💡 届次分析结论：</strong><br>
+    • <strong>27届(核心目标) 47.6%</strong>，目标届次精准度良好，但仍有~1,043人非27届<br>
+    • <strong>"其他"届次 17.5%</strong>（349人）异常偏高，需抽查数据质量（可能为非目标人群或填写错误）<br>
+    • <strong>28-29届合计 34.2%</strong>（679人），低年级占比较大，可纳入明年人才池<br>
+    • <strong>30届 0.8%</strong>，基本为新生试水，长期关注
+  </div>
+</div>
+
+<!-- ===== 渠道分析 ===== -->
+<div class="card" style="margin-bottom:16px">
+  <h3>🌐 报名渠道分布（全体 1,990人）</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px">
+    <div>
+      <canvas id="c-channel" height="220"></canvas>
+    </div>
+    <div>
+      <table style="width:100%">
+        <tr><th>渠道</th><th style="text-align:right">人数</th><th style="text-align:right">占比</th></tr>
+        <tr><td><span style="display:inline-block;width:10px;height:10px;background:#06b6d4;border-radius:50%;margin-right:6px"></span>自然流量(Tcamp)</td><td class="mono" style="text-align:right;color:var(--cyan);font-weight:700">1,781</td><td class="mono" style="text-align:right">89.5%</td></tr>
+        <tr><td><span style="display:inline-block;width:10px;height:10px;background:#8b5cf6;border-radius:50%;margin-right:6px"></span>UHR</td><td class="mono" style="text-align:right;color:var(--purple);font-weight:700">147</td><td class="mono" style="text-align:right">7.4%</td></tr>
+        <tr><td><span style="display:inline-block;width:10px;height:10px;background:#22c55e;border-radius:50%;margin-right:6px"></span>公众号(gzh)</td><td class="mono" style="text-align:right;color:var(--green);font-weight:700">22</td><td class="mono" style="text-align:right">1.1%</td></tr>
+        <tr><td><span style="display:inline-block;width:10px;height:10px;background:#f59e0b;border-radius:50%;margin-right:6px"></span>效果广告(xggg26)</td><td class="mono" style="text-align:right;color:var(--amber);font-weight:700">16</td><td class="mono" style="text-align:right">0.8%</td></tr>
+        <tr><td><span style="display:inline-block;width:10px;height:10px;background:#ef4444;border-radius:50%;margin-right:6px"></span>瓦友社(wys)</td><td class="mono" style="text-align:right;color:var(--red);font-weight:700">1</td><td class="mono" style="text-align:right">0.1%</td></tr>
+        <tr><td><span style="display:inline-block;width:10px;height:10px;background:#475569;border-radius:50%;margin-right:6px"></span>未标记/其他</td><td class="mono" style="text-align:right;color:var(--dim);font-weight:700">23</td><td class="mono" style="text-align:right">1.2%</td></tr>
+      </table>
+    </div>
+  </div>
+  <div style="padding:12px;background:rgba(239,68,68,0.08);border-left:3px solid var(--red);border-radius:6px;font-size:12px;line-height:1.7">
+    <strong style="color:var(--red)">🔴 渠道关键结论：</strong><br>
+    • <strong>Tcamp自然流量占89.5%</strong> — 绝对主力，说明项目品牌力强，需持续优化落地页/SEO<br>
+    • <strong>UHR仅7.4%（147人）</strong> — 校招官转化有限，需加大定向宣推（尤其美术方向仅7人）<br>
+    • <strong>效果广告仅16人（0.8%）</strong> — 🚨 ROI极低，需 check with Hans 重新评估投放策略<br>
+    • <strong>瓦友社仅1人</strong> — 🚨 渠道形同虚设，建议放弃或重新定位<br>
+    • <strong>公众号22人（1.1%）</strong> — 运营方向表现最佳，可作为补充渠道加大内容运营
+  </div>
+</div>
 </div>
 
 <!-- ===== SCHOOLS ===== -->
 <div class="page" id="page-schools">
-<div class="card" style="margin-bottom:16px">
-  <h3>🏫 目标院校报名情况 · 点击查看详情</h3>
-  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px" id="tag-filters"></div>
-  <div style="overflow-x:auto" id="school-table"></div>
-  <div style="margin-top:10px;font-size:11px;color:var(--dim)" id="school-summary"></div>
+<div class="card" style="margin-bottom:16px;padding:20px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.3)">
+  <div style="font-size:14px;line-height:1.8">
+    <strong style="color:var(--amber);font-size:16px">⚠️ 数据源待更新</strong><br>
+    <span style="color:var(--dim)">目标院校表（UHR负责填报）当前 <strong>I-N 列报名数据列完全为空</strong>，UHR尚未录入4/14~4/28的院校级报名数据。</span><br><br>
+    <span style="color:var(--dim)">从各方向底表"学校"字段反查的估算数据误差较大（同名匹配/未覆盖新增院校），暂不展示。</span><br><br>
+    <strong style="color:var(--green)">📍 下一步行动</strong>：
+    <ul style="margin:6px 0 0 20px;color:var(--dim)">
+      <li>🔴 推动37所目标院校UHR本周内按周填报（0414启动/0416-0417/0420-0422）</li>
+      <li>🟡 UHR填报后切换本页为官方数据源</li>
+      <li>✅ 当前可从各方向页面(策划/运营/客户端/美术)查看 Top 院校（反查估算）</li>
+    </ul>
+  </div>
 </div>
-<div class="g2">
-  <div class="card"><h3>🏷️ 标签分布</h3><canvas id="c-school-tier" height="220"></canvas></div>
-  <div class="card"><h3>📊 覆盖率（有报名 vs 无报名）</h3><canvas id="c-school-cover" height="220"></canvas></div>
+<div class="card" style="margin-bottom:16px">
+  <h3>📊 目标院校标签分布（37所）</h3>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px">
+    <div style="padding:12px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:8px;text-align:center">
+      <div style="font-size:11px;color:var(--dim)">C9（核心目标）</div>
+      <div class="mono" style="font-size:24px;font-weight:900;color:var(--red);margin:4px 0">11</div>
+      <div style="font-size:10px;color:var(--dim)">上交/浙大/清华/北大等</div>
+    </div>
+    <div style="padding:12px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:8px;text-align:center">
+      <div style="font-size:11px;color:var(--dim)">T28（头部院校）</div>
+      <div class="mono" style="font-size:24px;font-weight:900;color:var(--amber);margin:4px 0">16</div>
+      <div style="font-size:10px;color:var(--dim)">华科/武大/中科大等</div>
+    </div>
+    <div style="padding:12px;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.3);border-radius:8px;text-align:center">
+      <div style="font-size:11px;color:var(--dim)">海外院校</div>
+      <div class="mono" style="font-size:24px;font-weight:900;color:var(--cyan);margin:4px 0">6</div>
+      <div style="font-size:10px;color:var(--dim)">杜克/CMU/东大等</div>
+    </div>
+    <div style="padding:12px;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);border-radius:8px;text-align:center">
+      <div style="font-size:11px;color:var(--dim)">其他(垂类/美术)</div>
+      <div class="mono" style="font-size:24px;font-weight:900;color:var(--purple);margin:4px 0">4</div>
+      <div style="font-size:10px;color:var(--dim)">中戏/上戏/美术院校等</div>
+    </div>
+  </div>
 </div>
 </div>
 
@@ -155,7 +251,7 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
 <div class="modal-bg" id="modal" onclick="if(event.target===this)closeModal()">
   <div class="modal"><h2><span id="modal-title"></span><button class="close-btn" onclick="closeModal()">✕</button></h2><div id="modal-body"></div></div>
 </div>
-<div class="footer mono">007团队 · 开局一课PM | 更新 2026-04-20 14:17 | 总报名 1,990人 | <a href="https://github.com/yanlilyli/kaijuyike-2026-dashboard" style="color:var(--cyan)">GitHub</a></div>
+<div class="footer mono">007团队 · 开局一课PM | 更新 2026-04-20 17:20 | 总报名 1,990人 | <a href="https://github.com/yanlilyli/kaijuyike-2026-dashboard" style="color:var(--cyan)">GitHub</a></div>
 </div>
 
 <script>
@@ -325,14 +421,10 @@ function initPage(id){
     sbar('c-edu',['策划','运营','客户端','美术'],[{label:'本科',data:[385,308,371,208],backgroundColor:C.cyan+'b3',borderRadius:3},{label:'硕士',data:[226,200,142,30],backgroundColor:C.purple+'b3',borderRadius:3},{label:'其他',data:[30,33,38,19],backgroundColor:C.dim+'80',borderRadius:3}]);
     sbar('c-grad',['策划','运营','客户端','美术'],[{label:'27届',data:[342,272,241,92],backgroundColor:C.purple+'cc',borderRadius:3},{label:'28届',data:[127,102,146,70],backgroundColor:C.cyan+'b3',borderRadius:3},{label:'29届',data:[62,46,75,51],backgroundColor:C.amber+'99',borderRadius:3},{label:'其他',data:[110,121,89,44],backgroundColor:C.dim+'66',borderRadius:3}]);
     mc('c-master',{type:'bar',data:{labels:['运营 37.0%','策划 35.3%','客户端 25.8%','美术 11.7%'],datasets:[{data:[37.0,35.3,25.8,11.7],backgroundColor:[C.cyan,C.purple,C.amber,C.green],borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(30,41,59,0.4)'},ticks:{callback:v=>v+'%'}},y:{grid:{display:false}}}}});
+    donut('c-channel',['自然流量 1781 (89.5%)','UHR 147 (7.4%)','公众号 22 (1.1%)','效果广告 16 (0.8%)','瓦友社 1 (0.1%)','其他 23 (1.2%)'],[1781,147,22,16,1,23],[C.cyan,C.purple,C.green,C.amber,C.red,C.dim]);
   }
-  if(id==='schools'){renderTagFilters();renderSchools();
-    // 按标签统计
-    const tagCounts={};Object.keys(TAG_COLORS).forEach(t=>{tagCounts[t]=SCHOOLS.filter(s=>s.tag===t).length});
-    donut('c-school-tier',Object.keys(tagCounts).map(t=>TAG_COLORS[t].label+' '+tagCounts[t]),Object.values(tagCounts),Object.keys(tagCounts).map(t=>TAG_COLORS[t].color));
-    const withData=SCHOOLS.filter(s=>s.count>0&&s.tag!=='非目标').length;
-    const noData=SCHOOLS.filter(s=>s.count===0&&s.tag!=='非目标').length;
-    donut('c-school-cover',['有报名 '+withData,'无报名 '+noData],[withData,noData],[C.green,C.red]);
+  if(id==='schools'){
+    // 院校数据源待UHR填报，暂不渲染动态表格
   }
   // Direction pages
   if(dirs[id]){
