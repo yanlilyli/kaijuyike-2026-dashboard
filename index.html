@@ -318,40 +318,36 @@ const C={cyan:'#06b6d4',purple:'#8b5cf6',amber:'#f59e0b',green:'#22c55e',red:'#e
 // === DATA ===
 const daily=[{d:'4/14',total:423,s:130,o:123,c:116,a:54},{d:'4/15',total:362,s:111,o:105,c:99,a:47},{d:'4/16',total:546,s:192,o:149,c:146,a:59},{d:'4/17',total:389,s:127,o:103,c:109,a:50},{d:'4/20',total:270,s:81,o:61,c:81,a:47}];
 const dirs={
-  strategy:{name:'游戏策划',icon:'🎯',color:C.purple,total:641,pct:'32.2%',
+  strategy:{name:'游戏策划',icon:'🎯',color:C.purple,total:641,pct:'32.2%',field:'s',
     edu:{本科:385,硕士:226,博士:3,其他:27},grad:{'27届':342,'28届':127,'29届':62,'30届':5,'其他':105},
     daily:[130,111,192,127,81],
-    topSchools:[['清华大学',5],['同济大学',4],['浙江大学',3],['复旦大学',3],['中山大学',3],['北京大学',2],['华中科技大学',2]],
     insights:[
       {type:'good',title:'✅ 策划方向持续领先',points:['报名641人，四方向中最多（32.2%）','27届占53.4%，目标届次精准度最高','硕士占比35.3%，质量优秀']},
-      {type:'warn',title:'⚠️ 关注点',points:['4/20新增81人，较4/17(127)有明显回落','周末后首日增速放缓，需关注是否为趋势','院校集中度不高，Top1仅5人，需推动校内传播']},
+      {type:'warn',title:'⚠️ 关注点',points:['4/20新增81人，较4/17(127)有明显回落','周末后首日增速放缓，需关注是否为趋势','浙大(19人)领跑，院校分散度高，需推动更多校内传播']},
       {type:'good',title:'💡 建议',points:['策划方向最受欢迎，可作为宣传主打方向','利用策划方向高热度带动其他方向曝光','在高校游戏社团定向推广策划方向课程内容']}
     ]
   },
-  ops:{name:'游戏运营',icon:'🎮',color:C.cyan,total:541,pct:'27.2%',
+  ops:{name:'游戏运营',icon:'🎮',color:C.cyan,total:541,pct:'27.2%',field:'o',
     edu:{本科:308,硕士:200,博士:2,其他:31},grad:{'27届':272,'28届':102,'29届':46,'30届':4,'其他':117},
     daily:[123,105,149,103,61],
-    topSchools:[['北京大学',4],['香港科技大学',3],['华中科技大学',3],['武汉大学',2],['南京大学',2],['中山大学',2]],
     insights:[
       {type:'good',title:'✅ 运营方向硕士占比最高',points:['硕士200人占37.0%，四方向中最高','说明运营方向吸引了大量高学历人才','27届占50.3%，目标届次匹配良好']},
       {type:'bad',title:'🚨 数据质量需关注',points:['"其他"届次117人（21.6%），占比异常偏高','可能存在填写错误或非目标人群报名','建议抽查"其他"类别的具体毕业年份']},
       {type:'warn',title:'💡 建议',points:['运营方向硕士多，可侧重推广"运营→产品经理"的职业路径','4/20新增仅61人，为四方向最低，需关注运营方向宣传力度','关注"其他"届次数据，及时清洗异常数据']}
     ]
   },
-  client:{name:'游戏客户端',icon:'💻',color:C.amber,total:551,pct:'27.7%',
+  client:{name:'游戏客户端',icon:'💻',color:C.amber,total:551,pct:'27.7%',field:'c',
     edu:{本科:371,硕士:142,博士:5,其他:33},grad:{'27届':241,'28届':146,'29届':75,'30届':4,'其他':85},
     daily:[116,99,146,109,81],
-    topSchools:[['同济大学',4],['华中科技大学',3],['哈尔滨工业大学',2],['北京理工大学',2],['中国科学院大学',2]],
     insights:[
       {type:'warn',title:'⚠️ 低年级占比偏高',points:['27届仅43.7%，四方向中最低','28-29届合计221人（40.1%），超过27届','说明低年级学生对客户端技术兴趣浓厚，但短期转化率可能偏低']},
       {type:'good',title:'✅ 积极信号',points:['本科占67.3%，技术方向本科占比高属正常','理工院校覆盖好（同济、华科、哈工大、北理工）','4/20新增81人，与策划持平，增长势头良好']},
       {type:'warn',title:'💡 建议',points:['针对27届计算机/软件专业学生加大推广','在技术社区（GitHub、掘金、CSDN）投放','低年级候选人可纳入长期人才池，为明年储备']}
     ]
   },
-  art:{name:'游戏美术',icon:'🎨',color:C.green,total:257,pct:'12.9%',
+  art:{name:'游戏美术',icon:'🎨',color:C.green,total:257,pct:'12.9%',field:'a',
     edu:{本科:208,硕士:30,博士:1,其他:18},grad:{'27届':92,'28届':70,'29届':51,'30届':2,'其他':42},
     daily:[54,47,59,50,47],
-    topSchools:[['中国美术学院',2],['广州美术学院',1],['四川大学',1],['同济大学',1],['华中科技大学',1]],
     insights:[
       {type:'bad',title:'🚨 美术方向仍然偏低',points:['仅257人，占12.9%，不到策划的一半','日均约51人，预测最终仅~1,065人','需要UHR定向美术院校宣推（已确认启动）']},
       {type:'warn',title:'⚠️ 质量指标偏弱',points:['硕士仅30人（11.7%），远低于其他方向（26-37%）','27届仅92人（35.8%），目标届次占比最低','低年级（28-29届）合计121人占47.1%']},
@@ -437,6 +433,8 @@ function renderDirPage(key){
   const el=document.getElementById('page-'+key);
   const eduLabels=Object.keys(d.edu),eduData=Object.values(d.edu);
   const gradLabels=Object.keys(d.grad),gradData=Object.values(d.grad);
+  // 从SCHOOLS动态计算Top报名院校
+  const topSchools=SCHOOLS.filter(s=>s[d.field]>0).sort((a,b)=>b[d.field]-a[d.field]).slice(0,10).map(s=>[s.name,s[d.field],s.tag]);
   el.innerHTML=`
     <div class="kpi" style="grid-template-columns:repeat(4,1fr)">
       <div class="kpi-card"><div class="k-label">${d.name}报名</div><div class="k-val mono" style="color:${d.color}">${d.total}</div><div class="k-sub">占比 ${d.pct}</div></div>
@@ -453,7 +451,11 @@ function renderDirPage(key){
       <div class="card"><h3>🎓 学历分布</h3><canvas id="c-${key}-edu" height="200"></canvas></div>
       <div class="card"><h3>📆 届次分布</h3><canvas id="c-${key}-grad" height="200"></canvas></div>
       <div class="card"><h3>🏫 Top报名院校</h3>
-        <table><tr><th>院校</th><th>人数</th></tr>${d.topSchools.map(([n,c])=>`<tr><td>${n}</td><td class="mono" style="color:var(--cyan)">${c}</td></tr>`).join('')}</table>
+        <table><tr><th>排名</th><th>院校</th><th>标签</th><th>人数</th></tr>${topSchools.map(([n,c,t],i)=>{
+          const tc=TAG_COLORS[t]||TAG_COLORS['非目标'];
+          const rc=i<3?['r1','r2','r3'][i]:'';
+          return `<tr><td><span class="rank ${rc} mono">${String(i+1).padStart(2,'0')}</span></td><td><strong>${n}</strong></td><td><span class="badge" style="background:${tc.bg};color:${tc.color}">${tc.label}</span></td><td class="mono" style="color:var(--cyan);font-weight:700">${c}</td></tr>`;
+        }).join('')}</table>
       </div>
     </div>`;
 }
