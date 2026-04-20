@@ -92,7 +92,7 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
 <div class="hdr">
   <h1>🎮 开局一课 2026 · 报名数据看板</h1>
   <div class="sub mono">TENCENT GAMES FIRST LESSON · SIGNUP DASHBOARD</div>
-  <div class="badge mono">📊 更新 2026-04-20 · 报名期 4/14 - 4/30 · 第7天</div>
+  <div class="badge mono">📊 更新 2026-04-20 · 报名期 4/14 - 4/30 · 第7天 · 院校143所</div>
 </div>
 <div class="nav" id="nav"></div>
 
@@ -201,43 +201,100 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
 
 <!-- ===== SCHOOLS ===== -->
 <div class="page" id="page-schools">
-<div class="card" style="margin-bottom:16px;padding:20px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.3)">
-  <div style="font-size:14px;line-height:1.8">
-    <strong style="color:var(--amber);font-size:16px">⚠️ 数据源待更新</strong><br>
-    <span style="color:var(--dim)">目标院校表（UHR负责填报）当前 <strong>I-N 列报名数据列完全为空</strong>，UHR尚未录入4/14~4/28的院校级报名数据。</span><br><br>
-    <span style="color:var(--dim)">从各方向底表"学校"字段反查的估算数据误差较大（同名匹配/未覆盖新增院校），暂不展示。</span><br><br>
-    <strong style="color:var(--green)">📍 下一步行动</strong>：
-    <ul style="margin:6px 0 0 20px;color:var(--dim)">
-      <li>🔴 推动37所目标院校UHR本周内按周填报（0414启动/0416-0417/0420-0422）</li>
-      <li>🟡 UHR填报后切换本页为官方数据源</li>
-      <li>✅ 当前可从各方向页面(策划/运营/客户端/美术)查看 Top 院校（反查估算）</li>
-    </ul>
-  </div>
+<!-- KPI 卡片 -->
+<div class="kpi" style="grid-template-columns:repeat(4,1fr)">
+  <div class="kpi-card"><div class="k-label">目标院校覆盖</div><div class="k-val mono" style="color:var(--cyan)">143</div><div class="k-sub">7大标签分类</div></div>
+  <div class="kpi-card"><div class="k-label">目标院校报名</div><div class="k-val mono" style="color:var(--green)">951</div><div class="k-sub">占比 47.8%</div><div class="k-tag up">近半</div></div>
+  <div class="kpi-card"><div class="k-label">有报名院校</div><div class="k-val mono" style="color:var(--purple)">112</div><div class="k-sub">覆盖率 78.3%</div></div>
+  <div class="kpi-card"><div class="k-label">零报名院校</div><div class="k-val mono" style="color:var(--red)">31</div><div class="k-sub">需重点推动</div><div class="k-tag down">⚠️</div></div>
 </div>
+
+<!-- 标签分布 -->
 <div class="card" style="margin-bottom:16px">
-  <h3>📊 目标院校标签分布（37所）</h3>
+  <h3>📊 目标院校标签分布（143所）</h3>
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px">
     <div style="padding:12px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:8px;text-align:center">
       <div style="font-size:11px;color:var(--dim)">C9（核心目标）</div>
-      <div class="mono" style="font-size:24px;font-weight:900;color:var(--red);margin:4px 0">11</div>
-      <div style="font-size:10px;color:var(--dim)">上交/浙大/清华/北大等</div>
+      <div class="mono" style="font-size:24px;font-weight:900;color:var(--red);margin:4px 0">9</div>
+      <div style="font-size:10px;color:var(--cyan)">180人 · 20.0/校</div>
     </div>
     <div style="padding:12px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:8px;text-align:center">
       <div style="font-size:11px;color:var(--dim)">T28（头部院校）</div>
       <div class="mono" style="font-size:24px;font-weight:900;color:var(--amber);margin:4px 0">16</div>
-      <div style="font-size:10px;color:var(--dim)">华科/武大/中科大等</div>
+      <div style="font-size:10px;color:var(--cyan)">187人 · 11.7/校</div>
     </div>
     <div style="padding:12px;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.3);border-radius:8px;text-align:center">
-      <div style="font-size:11px;color:var(--dim)">海外院校</div>
-      <div class="mono" style="font-size:24px;font-weight:900;color:var(--cyan);margin:4px 0">6</div>
-      <div style="font-size:10px;color:var(--dim)">杜克/CMU/东大等</div>
+      <div style="font-size:11px;color:var(--dim)">T60（腰部院校）</div>
+      <div class="mono" style="font-size:24px;font-weight:900;color:var(--cyan);margin:4px 0">30</div>
+      <div style="font-size:10px;color:var(--cyan)">279人 · 9.3/校</div>
     </div>
-    <div style="padding:12px;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);border-radius:8px;text-align:center">
-      <div style="font-size:11px;color:var(--dim)">其他(垂类/美术)</div>
-      <div class="mono" style="font-size:24px;font-weight:900;color:var(--purple);margin:4px 0">4</div>
-      <div style="font-size:10px;color:var(--dim)">中戏/上戏/美术院校等</div>
+    <div style="padding:12px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:8px;text-align:center">
+      <div style="font-size:11px;color:var(--dim)">美术院校</div>
+      <div class="mono" style="font-size:24px;font-weight:900;color:var(--green);margin:4px 0">15</div>
+      <div style="font-size:10px;color:var(--cyan)">106人 · 7.1/校</div>
     </div>
   </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px">
+    <div style="padding:12px;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);border-radius:8px;text-align:center">
+      <div style="font-size:11px;color:var(--dim)">垂类院校</div>
+      <div class="mono" style="font-size:24px;font-weight:900;color:var(--purple);margin:4px 0">14</div>
+      <div style="font-size:10px;color:var(--cyan)">36人 · 2.6/校</div>
+    </div>
+    <div style="padding:12px;background:rgba(236,72,153,0.1);border:1px solid rgba(236,72,153,0.3);border-radius:8px;text-align:center">
+      <div style="font-size:11px;color:var(--dim)">海外院校</div>
+      <div class="mono" style="font-size:24px;font-weight:900;color:#ec4899;margin:4px 0">55</div>
+      <div style="font-size:10px;color:var(--cyan)">154人 · 2.8/校</div>
+    </div>
+    <div style="padding:12px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.3);border-radius:8px;text-align:center">
+      <div style="font-size:11px;color:var(--dim)">长尾院校</div>
+      <div class="mono" style="font-size:24px;font-weight:900;color:#a855f7;margin:4px 0">4</div>
+      <div style="font-size:10px;color:var(--cyan)">9人 · 2.3/校</div>
+    </div>
+    <div style="padding:12px;background:rgba(100,116,139,0.1);border:1px solid rgba(100,116,139,0.3);border-radius:8px;text-align:center">
+      <div style="font-size:11px;color:var(--dim)">非目标院校</div>
+      <div class="mono" style="font-size:24px;font-weight:900;color:var(--dim);margin:4px 0">642</div>
+      <div style="font-size:10px;color:var(--dim)">1,039人 · 52.2%</div>
+    </div>
+  </div>
+</div>
+
+<!-- 图表区 -->
+<div class="g2">
+  <div class="card"><h3>🏷️ 各标签报名占比</h3><canvas id="c-tag-pie" height="220"></canvas></div>
+  <div class="card"><h3>📊 各标签校均报名</h3><canvas id="c-tag-avg" height="220"></canvas></div>
+</div>
+
+<!-- 洞察 -->
+<div class="insight good">
+  <h4>✅ 核心院校表现优秀</h4>
+  <ul>
+    <li><strong>C9院校校均20人</strong>，浙江大学(51人)和北京大学(26人)领跑</li>
+    <li><strong>T28校均11.7人</strong>，电子科技大学(31人客户端方向强势)和华南理工(23人)表现突出</li>
+    <li><strong>目标院校覆盖率78.3%</strong>，112/143所已有报名</li>
+  </ul>
+</div>
+<div class="insight warn">
+  <h4>⚠️ 需要关注</h4>
+  <ul>
+    <li><strong>非目标院校占52.2%（1,039人）</strong>，超过半数来自非重点院校，品牌辐射力强但精准度有提升空间</li>
+    <li><strong>31所目标院校0报名</strong>，主要集中在海外顶尖院校（哈佛/MIT/剑桥/牛津等）和部分国内院校</li>
+    <li><strong>海外院校校均仅2.8人</strong>，港校表现好（港大26人）但英美校几乎为0</li>
+  </ul>
+</div>
+<div class="insight bad">
+  <h4>🚨 紧急行动</h4>
+  <ul>
+    <li>🔴 <strong>清华美院/南京艺术学院 0报名</strong> — 美术方向核心院校失守，需UHR专项推动</li>
+    <li>🔴 <strong>国防科技大学 0报名</strong> — 技术顶校，客户端方向需加推</li>
+    <li>🟡 <strong>垂类校均仅2.6人</strong> — 财经/师范院校转化极低，可考虑调整策略</li>
+  </ul>
+</div>
+
+<!-- 筛选+表格 -->
+<div class="card">
+  <h3>🏫 院校报名排行 <span id="school-summary" style="font-weight:400;font-size:11px;color:var(--dim);margin-left:10px"></span></h3>
+  <div id="tag-filters" style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap"></div>
+  <div id="school-table"></div>
 </div>
 </div>
 
@@ -251,7 +308,7 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
 <div class="modal-bg" id="modal" onclick="if(event.target===this)closeModal()">
   <div class="modal"><h2><span id="modal-title"></span><button class="close-btn" onclick="closeModal()">✕</button></h2><div id="modal-body"></div></div>
 </div>
-<div class="footer mono">007团队 · 开局一课PM | 更新 2026-04-20 17:20 | 总报名 1,990人 | <a href="https://github.com/yanlilyli/kaijuyike-2026-dashboard" style="color:var(--cyan)">GitHub</a></div>
+<div class="footer mono">007团队 · 开局一课PM | 更新 2026-04-20 20:00 | 总报名 1,990人 | 院校数据已接入 | <a href="https://github.com/yanlilyli/kaijuyike-2026-dashboard" style="color:var(--cyan)">GitHub</a></div>
 </div>
 
 <script>
@@ -348,7 +405,7 @@ function renderSchools(){
       <td style="text-align:center"><span class="badge" style="background:${tc.bg};color:${tc.color}">${tc.label}</span></td>
       <td style="color:var(--dim);font-size:11px">${s.uhr}</td>
       <td style="text-align:center" class="mono"><strong style="color:${s.count>0?'var(--cyan)':'var(--red)'}">${s.count}</strong></td>
-      <td style="text-align:center" class="mono">${(s.count/1990*100).toFixed(1)}%</td>
+      <td style="text-align:center" class="mono">${(s.count/SCHOOLS.reduce((a,b)=>a+b.count,0)*100).toFixed(1)}%</td>
       <td><div class="mini-bar"><div class="mini-bar-fill" style="width:${s.count/mx*100}%;background:${s.count>0?tc.color:'var(--red)'}"></div></div></td>
     </tr>`;
   });
@@ -424,7 +481,10 @@ function initPage(id){
     donut('c-channel',['自然流量 1781 (89.5%)','UHR 147 (7.4%)','公众号 22 (1.1%)','效果广告 16 (0.8%)','瓦友社 1 (0.1%)','其他 23 (1.2%)'],[1781,147,22,16,1,23],[C.cyan,C.purple,C.green,C.amber,C.red,C.dim]);
   }
   if(id==='schools'){
-    // 院校数据源待UHR填报，暂不渲染动态表格
+    renderTagFilters();renderSchools();
+    // 标签饼图
+    donut('c-tag-pie',['C9 180','T28 187','T60 279','美术 106','垂类 36','长尾 9','海外 154','非目标 1039'],[180,187,279,106,36,9,154,1039],['#ef4444','#f59e0b','#06b6d4','#22c55e','#8b5cf6','#a855f7','#ec4899','#475569']);
+    mc('c-tag-avg',{type:'bar',data:{labels:['C9','T28','T60','美术','垂类','长尾','海外'],datasets:[{data:[20.0,11.7,9.3,7.1,2.6,2.3,2.8],backgroundColor:['#ef4444','#f59e0b','#06b6d4','#22c55e','#8b5cf6','#a855f7','#ec4899'],borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(30,41,59,0.4)'},ticks:{callback:v=>v+'人/校'}},y:{grid:{display:false}}}}});
   }
   // Direction pages
   if(dirs[id]){
