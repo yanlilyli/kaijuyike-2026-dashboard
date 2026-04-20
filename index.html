@@ -100,8 +100,8 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
 <div class="page active" id="page-overview">
 <div class="kpi">
   <div class="kpi-card"><div class="k-label">报名总人数</div><div class="k-val mono" style="color:var(--cyan)">1990</div><div class="k-sub">目标 6,000+</div><div class="k-tag up">33.2%</div></div>
-  <div class="kpi-card"><div class="k-label">日均报名</div><div class="k-val mono" style="color:var(--green)">398</div><div class="k-sub">达标线 353/天</div><div class="k-tag up">↑ 超13%</div></div>
-  <div class="kpi-card"><div class="k-label">预测最终</div><div class="k-val mono" style="color:var(--purple)">5.2K</div><div class="k-sub">按工作日均398×剩余8日</div><div class="k-tag warn">略低于目标</div></div>
+  <div class="kpi-card"><div class="k-label">日均报名</div><div class="k-val mono" style="color:var(--green)">398</div><div class="k-sub">达标线 401/天</div><div class="k-tag warn">⚡ 接近达标线</div></div>
+  <div class="kpi-card"><div class="k-label">预测最终</div><div class="k-val mono" style="color:var(--purple)">5.2K</div><div class="k-sub">按日均398×剩余10日+已有</div><div class="k-tag warn">略低于目标</div></div>
   <div class="kpi-card"><div class="k-label">硕士占比</div><div class="k-val mono" style="color:var(--amber)">30.1%</div><div class="k-sub">598人</div><div class="k-tag up">质量优</div></div>
   <div class="kpi-card"><div class="k-label">剩余天数</div><div class="k-val mono" style="color:var(--red)">10</div><div class="k-sub">截止4/30</div><div class="k-tag warn">倒计时</div></div>
 </div>
@@ -155,7 +155,7 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
 <div class="modal-bg" id="modal" onclick="if(event.target===this)closeModal()">
   <div class="modal"><h2><span id="modal-title"></span><button class="close-btn" onclick="closeModal()">✕</button></h2><div id="modal-body"></div></div>
 </div>
-<div class="footer mono">007团队 · 开局一课PM | 更新 2026-04-20 10:50 | 总报名 1,990人 | <a href="https://github.com/yanlilyli/kaijuyike-2026-dashboard" style="color:var(--cyan)">GitHub</a></div>
+<div class="footer mono">007团队 · 开局一课PM | 更新 2026-04-20 14:17 | 总报名 1,990人 | <a href="https://github.com/yanlilyli/kaijuyike-2026-dashboard" style="color:var(--cyan)">GitHub</a></div>
 </div>
 
 <script>
@@ -252,7 +252,7 @@ function renderSchools(){
       <td style="text-align:center"><span class="badge" style="background:${tc.bg};color:${tc.color}">${tc.label}</span></td>
       <td style="color:var(--dim);font-size:11px">${s.uhr}</td>
       <td style="text-align:center" class="mono"><strong style="color:${s.count>0?'var(--cyan)':'var(--red)'}">${s.count}</strong></td>
-      <td style="text-align:center" class="mono">${(s.count/1720*100).toFixed(1)}%</td>
+      <td style="text-align:center" class="mono">${(s.count/1990*100).toFixed(1)}%</td>
       <td><div class="mini-bar"><div class="mini-bar-fill" style="width:${s.count/mx*100}%;background:${s.count>0?tc.color:'var(--red)'}"></div></div></td>
     </tr>`;
   });
