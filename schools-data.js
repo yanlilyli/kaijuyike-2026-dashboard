@@ -465,7 +465,7 @@ const SCHOOLS = [
   {name:'南京农业大学',tag:'非目标',uhr:'',count:1,s:1,c:0,a:0,o:0},
   {name:'111',tag:'非目标',uhr:'',count:1,s:0,c:1,a:0,o:0},
   {name:'四川工商学院',tag:'非目标',uhr:'',count:1,s:0,c:1,a:0,o:0},
-  {name:'King's College London',tag:'非目标',uhr:'',count:1,s:0,c:1,a:0,o:0},
+  {name:'Kings College London',tag:'非目标',uhr:'',count:1,s:0,c:1,a:0,o:0},
   {name:'北京联合大学',tag:'非目标',uhr:'',count:1,s:0,c:1,a:0,o:0},
   {name:'湖南信息学院',tag:'非目标',uhr:'',count:1,s:0,c:1,a:0,o:0},
   {name:'南华大学',tag:'非目标',uhr:'',count:1,s:0,c:1,a:0,o:0},
@@ -769,7 +769,7 @@ const SCHOOLS = [
   {name:'湖南工程学院',tag:'非目标',uhr:'',count:1,s:0,c:0,a:0,o:1},
   {name:'郑州财经学院',tag:'非目标',uhr:'',count:1,s:0,c:0,a:0,o:1},
   {name:'江西青年职业学院',tag:'非目标',uhr:'',count:1,s:0,c:0,a:0,o:1},
-  {name:'King's Coleege London',tag:'非目标',uhr:'',count:1,s:0,c:0,a:0,o:1},
+  {name:'Kings College London',tag:'非目标',uhr:'',count:1,s:0,c:0,a:0,o:1},
   {name:'广州南方学院番禺附属中学',tag:'非目标',uhr:'',count:1,s:0,c:0,a:0,o:1},
   {name:'佳木斯大学',tag:'非目标',uhr:'',count:1,s:0,c:0,a:0,o:1},
   {name:'济宁医学院',tag:'非目标',uhr:'',count:1,s:0,c:0,a:0,o:1},
@@ -783,4 +783,13 @@ const SCHOOLS = [
   {name:'广州科技职业技术大学',tag:'非目标',uhr:'',count:1,s:0,c:0,a:0,o:1},
 ];
 
-const TAG_COLORS={C9:{label:"C9",color:"#ef4444",bg:"rgba(239,68,68,0.15)"},T28:{label:"T28",color:"#f59e0b",bg:"rgba(245,158,11,0.15)"},T60:{label:"T60",color:"#06b6d4",bg:"rgba(6,182,212,0.15)"},"美术院校":{label:"美术院校",color:"#a855f7",bg:"rgba(168,85,247,0.15)"},"垂类":{label:"垂类",color:"#22c55e",bg:"rgba(34,197,94,0.15)"},"海外":{label:"海外",color:"#3b82f6",bg:"rgba(59,130,246,0.15)"},"非目标":{label:"非目标",color:"#94a3b8",bg:"rgba(148,163,184,0.15)"}};
+const TAG_COLORS = {
+  'C9': {bg:'rgba(239,68,68,0.15)',color:'#ef4444',label:'C9'},
+  'T28': {bg:'rgba(245,158,11,0.15)',color:'#f59e0b',label:'T28'},
+  'T60': {bg:'rgba(6,182,212,0.15)',color:'#06b6d4',label:'T60'},
+  '美术院校': {bg:'rgba(34,197,94,0.15)',color:'#22c55e',label:'美术院校'},
+  '垂类': {bg:'rgba(139,92,246,0.15)',color:'#8b5cf6',label:'垂类'},
+  '长尾': {bg:'rgba(168,85,247,0.15)',color:'#a855f7',label:'长尾'},
+  '海外': {bg:'rgba(236,72,153,0.15)',color:'#ec4899',label:'海外'},
+  '非目标': {bg:'rgba(100,116,139,0.15)',color:'#94a3b8',label:'非目标'},
+};
