@@ -92,24 +92,24 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
 <div class="hdr">
   <h1>🎮 开局一课 2026 · 报名数据看板</h1>
   <div class="sub mono">TENCENT GAMES FIRST LESSON · SIGNUP DASHBOARD</div>
-  <div class="badge mono">📊 更新 2026-04-22 · 报名期 4/14 - 4/30 · 第9天 · 院校1043所</div>
+  <div class="badge mono">📊 更新 2026-04-23 · 报名期 4/14 - 4/30 · 第10天 · 院校1072所</div>
 </div>
 <div class="nav" id="nav"></div>
 
 <!-- ===== OVERVIEW ===== -->
 <div class="page active" id="page-overview">
 <div class="kpi">
-  <div class="kpi-card"><div class="k-label">报名总人数</div><div class="k-val mono" style="color:var(--cyan)">2957</div><div class="k-sub">目标 6,000+</div><div class="k-tag up">49.3%</div></div>
-  <div class="kpi-card"><div class="k-label">日均报名</div><div class="k-val mono" style="color:var(--green)">422</div><div class="k-sub">达标线 433/天</div><div class="k-tag warn">⚠️ 接近达标线</div></div>
-  <div class="kpi-card"><div class="k-label">预测最终</div><div class="k-val mono" style="color:var(--purple)">5.5K</div><div class="k-sub">按日均422×剩余6工作日+已有</div><div class="k-tag warn">接近目标</div></div>
-  <div class="kpi-card"><div class="k-label">硕士占比</div><div class="k-val mono" style="color:var(--amber)">26.7%</div><div class="k-sub">791人</div><div class="k-tag up">质量优</div></div>
-  <div class="kpi-card"><div class="k-label">剩余天数</div><div class="k-val mono" style="color:var(--red)">8</div><div class="k-sub">截止4/30</div><div class="k-tag warn">倒计时</div></div>
+  <div class="kpi-card"><div class="k-label">报名总人数</div><div class="k-val mono" style="color:var(--cyan)">3130</div><div class="k-sub">目标 6,000+</div><div class="k-tag up">52.2%</div></div>
+  <div class="kpi-card"><div class="k-label">日均报名</div><div class="k-val mono" style="color:var(--green)">313</div><div class="k-sub">达标线 410/天</div><div class="k-tag warn">⚠️ 低于达标线</div></div>
+  <div class="kpi-card"><div class="k-label">预测最终</div><div class="k-val mono" style="color:var(--purple)">5.3K</div><div class="k-sub">按日均313×剩余7天+已有</div><div class="k-tag warn">接近目标</div></div>
+  <div class="kpi-card"><div class="k-label">硕士占比</div><div class="k-val mono" style="color:var(--amber)">26.3%</div><div class="k-sub">823人</div><div class="k-tag up">质量优</div></div>
+  <div class="kpi-card"><div class="k-label">剩余天数</div><div class="k-val mono" style="color:var(--red)">7</div><div class="k-sub">截止4/30</div><div class="k-tag warn">倒计时</div></div>
 </div>
 <div class="card"><h3>📈 报名进度</h3>
   <div style="display:flex;align-items:center;gap:12px">
-    <div style="flex:1"><div style="height:20px;background:var(--border);border-radius:10px;overflow:hidden"><div style="width:49.3%;height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));border-radius:10px"></div></div>
+    <div style="flex:1"><div style="height:20px;background:var(--border);border-radius:10px;overflow:hidden"><div style="width:52.2%;height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));border-radius:10px"></div></div>
     <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:var(--dim)"><span>0</span><span>1K</span><span>2K</span><span>3K</span><span>4K</span><span>6K</span></div></div>
-    <div class="mono" style="font-size:18px;font-weight:900;color:var(--cyan)">2957<span style="font-size:12px;color:var(--dim)">/6000</span></div>
+    <div class="mono" style="font-size:18px;font-weight:900;color:var(--cyan)">3130<span style="font-size:12px;color:var(--dim)">/6000</span></div>
   </div>
 </div>
 <!-- 每日趋势（总览内） -->
@@ -118,10 +118,10 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
   <div class="card"><h3>📈 累计报名趋势</h3><canvas id="c-cumul-overview" height="200"></canvas></div>
 </div>
 <div class="dir-row">
-  <div class="dir-card" onclick="showPage('strategy')"><div>🎯</div><div class="d-name" style="color:var(--purple)">游戏策划</div><div class="d-num mono" style="color:var(--purple)">898</div><div class="d-pct">30.4%</div><div class="d-bar"><div class="d-bar-fill" style="width:100%;background:var(--purple)"></div></div></div>
-  <div class="dir-card" onclick="showPage('ops')"><div>🎮</div><div class="d-name" style="color:var(--cyan)">游戏运营</div><div class="d-num mono" style="color:var(--cyan)">831</div><div class="d-pct">28.1%</div><div class="d-bar"><div class="d-bar-fill" style="width:92.5%;background:var(--cyan)"></div></div></div>
-  <div class="dir-card" onclick="showPage('client')"><div>💻</div><div class="d-name" style="color:var(--amber)">游戏客户端</div><div class="d-num mono" style="color:var(--amber)">825</div><div class="d-pct">27.9%</div><div class="d-bar"><div class="d-bar-fill" style="width:91.9%;background:var(--amber)"></div></div></div>
-  <div class="dir-card" onclick="showPage('art')"><div>🎨</div><div class="d-name" style="color:var(--green)">游戏美术</div><div class="d-num mono" style="color:var(--green)">403</div><div class="d-pct">13.6% ⚠️</div><div class="d-bar"><div class="d-bar-fill" style="width:44.9%;background:var(--green)"></div></div></div>
+  <div class="dir-card" onclick="showPage('strategy')"><div>🎯</div><div class="d-name" style="color:var(--purple)">游戏策划</div><div class="d-num mono" style="color:var(--purple)">954</div><div class="d-pct">30.5%</div><div class="d-bar"><div class="d-bar-fill" style="width:100%;background:var(--purple)"></div></div></div>
+  <div class="dir-card" onclick="showPage('client')"><div>💻</div><div class="d-name" style="color:var(--amber)">游戏客户端</div><div class="d-num mono" style="color:var(--amber)">871</div><div class="d-pct">27.8%</div><div class="d-bar"><div class="d-bar-fill" style="width:91.3%;background:var(--amber)"></div></div></div>
+  <div class="dir-card" onclick="showPage('ops')"><div>🎮</div><div class="d-name" style="color:var(--cyan)">游戏运营</div><div class="d-num mono" style="color:var(--cyan)">865</div><div class="d-pct">27.6%</div><div class="d-bar"><div class="d-bar-fill" style="width:90.7%;background:var(--cyan)"></div></div></div>
+  <div class="dir-card" onclick="showPage('art')"><div>🎨</div><div class="d-name" style="color:var(--green)">游戏美术</div><div class="d-num mono" style="color:var(--green)">440</div><div class="d-pct">14.1% ⚠️</div><div class="d-bar"><div class="d-bar-fill" style="width:46.1%;background:var(--green)"></div></div></div>
 </div>
 <div class="g2">
   <div class="card"><h3>🎯 方向占比</h3><canvas id="c-dir" height="220"></canvas></div>
@@ -132,46 +132,46 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
 
 <!-- ===== 毕业届次分析 ===== -->
 <div class="card" style="margin-bottom:16px">
-  <h3>📆 毕业届次分布（全体 2,957人）</h3>
+  <h3>📆 毕业届次分布（全体 3,130人）</h3>
   <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px">
     <div style="padding:14px;background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.3);border-radius:10px;text-align:center">
       <div style="font-size:11px;color:var(--dim)">27届（核心目标）</div>
-      <div class="mono" style="font-size:28px;font-weight:900;color:var(--purple);margin:4px 0">1345</div>
-      <div style="font-size:11px;color:var(--purple)">45.5%</div>
+      <div class="mono" style="font-size:28px;font-weight:900;color:var(--purple);margin:4px 0">1417</div>
+      <div style="font-size:11px;color:var(--purple)">45.3%</div>
     </div>
     <div style="padding:14px;background:rgba(6,182,212,0.12);border:1px solid rgba(6,182,212,0.3);border-radius:10px;text-align:center">
       <div style="font-size:11px;color:var(--dim)">28届</div>
-      <div class="mono" style="font-size:28px;font-weight:900;color:var(--cyan);margin:4px 0">708</div>
-      <div style="font-size:11px;color:var(--cyan)">23.9%</div>
+      <div class="mono" style="font-size:28px;font-weight:900;color:var(--cyan);margin:4px 0">755</div>
+      <div style="font-size:11px;color:var(--cyan)">24.1%</div>
     </div>
     <div style="padding:14px;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3);border-radius:10px;text-align:center">
       <div style="font-size:11px;color:var(--dim)">29届</div>
-      <div class="mono" style="font-size:28px;font-weight:900;color:var(--amber);margin:4px 0">430</div>
-      <div style="font-size:11px;color:var(--amber)">14.5%</div>
+      <div class="mono" style="font-size:28px;font-weight:900;color:var(--amber);margin:4px 0">456</div>
+      <div style="font-size:11px;color:var(--amber)">14.6%</div>
     </div>
     <div style="padding:14px;background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.3);border-radius:10px;text-align:center">
       <div style="font-size:11px;color:var(--dim)">30届</div>
       <div class="mono" style="font-size:28px;font-weight:900;color:var(--green);margin:4px 0">26</div>
-      <div style="font-size:11px;color:var(--green)">0.9%</div>
+      <div style="font-size:11px;color:var(--green)">0.8%</div>
     </div>
     <div style="padding:14px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:10px;text-align:center">
       <div style="font-size:11px;color:var(--dim)">其他</div>
-      <div class="mono" style="font-size:28px;font-weight:900;color:var(--red);margin:4px 0">448</div>
-      <div style="font-size:11px;color:var(--red)">15.1% ⚠️</div>
+      <div class="mono" style="font-size:28px;font-weight:900;color:var(--red);margin:4px 0">476</div>
+      <div style="font-size:11px;color:var(--red)">15.2% ⚠️</div>
     </div>
   </div>
   <div style="padding:12px;background:rgba(245,158,11,0.08);border-left:3px solid var(--amber);border-radius:6px;font-size:12px;line-height:1.7">
     <strong style="color:var(--amber)">💡 届次分析结论：</strong><br>
-    • <strong>27届(核心目标) 45.5%</strong>，目标届次精准度良好，1345人<br>
-    • <strong>"其他"届次 15.1%</strong>（448人）偏高，需持续抽查数据质量<br>
-    • <strong>28-29届合计 38.5%</strong>（1138人），低年级占比较大，可纳入明年人才池<br>
-    • <strong>30届 0.9%</strong>，基本为新生试水，长期关注
+    • <strong>27届(核心目标) 45.3%</strong>，目标届次精准度良好，1417人<br>
+    • <strong>"其他"届次 15.2%</strong>（476人）偏高，需持续抽查数据质量<br>
+    • <strong>28-29届合计 38.7%</strong>（1211人），低年级占比较大，可纳入明年人才池<br>
+    • <strong>30届 0.8%</strong>，基本为新生试水，长期关注
   </div>
 </div>
 
 <!-- ===== 渠道分析 ===== -->
 <div class="card" style="margin-bottom:16px">
-  <h3>🌐 报名渠道分布（全体 2,957人）</h3>
+  <h3>🌐 报名渠道分布（全体 3,130人）</h3>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px">
     <div>
       <canvas id="c-channel" height="220"></canvas>
@@ -179,22 +179,22 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
     <div>
       <table style="width:100%">
         <tr><th>渠道</th><th style="text-align:right">人数</th><th style="text-align:right">占比</th></tr>
-        <tr><td><span style="display:inline-block;width:10px;height:10px;background:#06b6d4;border-radius:50%;margin-right:6px"></span>雇主品牌自然流量</td><td class="mono" style="text-align:right;color:var(--cyan);font-weight:700">2,103</td><td class="mono" style="text-align:right">71.1%</td></tr>
-        <tr><td><span style="display:inline-block;width:10px;height:10px;background:#8b5cf6;border-radius:50%;margin-right:6px"></span>UHR</td><td class="mono" style="text-align:right;color:var(--purple);font-weight:700">390</td><td class="mono" style="text-align:right">13.2%</td></tr>
-        <tr><td><span style="display:inline-block;width:10px;height:10px;background:#ec4899;border-radius:50%;margin-right:6px"></span>瓦友社(wys)</td><td class="mono" style="text-align:right;color:#ec4899;font-weight:700">369</td><td class="mono" style="text-align:right">12.5%</td></tr>
-        <tr><td><span style="display:inline-block;width:10px;height:10px;background:#f59e0b;border-radius:50%;margin-right:6px"></span>效果广告(xggg26)</td><td class="mono" style="text-align:right;color:var(--amber);font-weight:700">42</td><td class="mono" style="text-align:right">1.4%</td></tr>
-        <tr><td><span style="display:inline-block;width:10px;height:10px;background:#22c55e;border-radius:50%;margin-right:6px"></span>公众号(gzh)</td><td class="mono" style="text-align:right;color:var(--green);font-weight:700">34</td><td class="mono" style="text-align:right">1.1%</td></tr>
-        <tr><td><span style="display:inline-block;width:10px;height:10px;background:#475569;border-radius:50%;margin-right:6px"></span>其他(joinqq888/bbs等)</td><td class="mono" style="text-align:right;color:var(--dim);font-weight:700">19</td><td class="mono" style="text-align:right">0.6%</td></tr>
+        <tr><td><span style="display:inline-block;width:10px;height:10px;background:#06b6d4;border-radius:50%;margin-right:6px"></span>雇主品牌自然流量</td><td class="mono" style="text-align:right;color:var(--cyan);font-weight:700">2,209</td><td class="mono" style="text-align:right">70.6%</td></tr>
+        <tr><td><span style="display:inline-block;width:10px;height:10px;background:#8b5cf6;border-radius:50%;margin-right:6px"></span>UHR</td><td class="mono" style="text-align:right;color:var(--purple);font-weight:700">420</td><td class="mono" style="text-align:right">13.4%</td></tr>
+        <tr><td><span style="display:inline-block;width:10px;height:10px;background:#ec4899;border-radius:50%;margin-right:6px"></span>瓦友社(wys)</td><td class="mono" style="text-align:right;color:#ec4899;font-weight:700">396</td><td class="mono" style="text-align:right">12.7%</td></tr>
+        <tr><td><span style="display:inline-block;width:10px;height:10px;background:#f59e0b;border-radius:50%;margin-right:6px"></span>效果广告(xggg26)</td><td class="mono" style="text-align:right;color:var(--amber);font-weight:700">50</td><td class="mono" style="text-align:right">1.6%</td></tr>
+        <tr><td><span style="display:inline-block;width:10px;height:10px;background:#22c55e;border-radius:50%;margin-right:6px"></span>公众号(gzh)</td><td class="mono" style="text-align:right;color:var(--green);font-weight:700">35</td><td class="mono" style="text-align:right">1.1%</td></tr>
+        <tr><td><span style="display:inline-block;width:10px;height:10px;background:#475569;border-radius:50%;margin-right:6px"></span>其他(joinqq888/bbs等)</td><td class="mono" style="text-align:right;color:var(--dim);font-weight:700">20</td><td class="mono" style="text-align:right">0.6%</td></tr>
       </table>
     </div>
   </div>
   <div style="padding:12px;background:rgba(6,182,212,0.08);border-left:3px solid var(--cyan);border-radius:6px;font-size:12px;line-height:1.7">
     <strong style="color:var(--cyan)">📊 渠道关键结论：</strong><br>
-    • <strong>雇主品牌自然流量占71.1%（2,103人）</strong> — 绝对主力，说明开局一课品牌力强，持续优化落地页体验<br>
-    • <strong>UHR 13.2%（390人）</strong> — 校招官推荐效果稳定，美术方向UHR占比提升至39人，较前期明显改善<br>
-    • <strong>瓦友社 12.5%（369人）🔥</strong> — 今年首次尝试的高校玩家社区渠道，目标人群精准，增长迅猛（客户端134人最多）<br>
-    • <strong>效果广告 1.4%（42人）</strong> — 今年首次尝试，for项目品牌曝光，转化率较低但品牌触达价值待评估<br>
-    • <strong>公众号 1.1%（34人）</strong> — 运营方向最受益（14人），可作为内容运营补充渠道
+    • <strong>雇主品牌自然流量占70.6%（2,209人）</strong> — 绝对主力，说明开局一课品牌力强，持续优化落地页体验<br>
+    • <strong>UHR 13.4%（420人）</strong> — 校招官推荐效果稳定，较昨日+30人<br>
+    • <strong>瓦友社 12.7%（396人）🔥</strong> — 今年首次尝试的高校玩家社区渠道，目标人群精准，客户端141人最多<br>
+    • <strong>效果广告 1.6%（50人）</strong> — 今年首次尝试，for项目品牌曝光，转化率较低但品牌触达价值待评估<br>
+    • <strong>公众号 1.1%（35人）</strong> — 运营方向最受益（15人），可作为内容运营补充渠道
   </div>
 </div>
 </div>
@@ -203,47 +203,47 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
 <div class="page" id="page-schools">
 <!-- KPI 卡片 -->
 <div class="kpi" style="grid-template-columns:repeat(4,1fr)">
-  <div class="kpi-card"><div class="k-label">目标院校覆盖</div><div class="k-val mono" style="color:var(--cyan)">112</div><div class="k-sub">7大标签分类</div></div>
-  <div class="kpi-card"><div class="k-label">目标院校报名</div><div class="k-val mono" style="color:var(--green)">1298</div><div class="k-sub">占比 43.9%</div><div class="k-tag up">近半</div></div>
-  <div class="kpi-card"><div class="k-label">有报名院校</div><div class="k-val mono" style="color:var(--purple)">112</div><div class="k-sub">覆盖率 100%</div></div>
-  <div class="kpi-card"><div class="k-label">非目标院校</div><div class="k-val mono" style="color:var(--dim)">931</div><div class="k-sub">1,659人 · 56.1%</div></div>
+  <div class="kpi-card"><div class="k-label">目标院校覆盖</div><div class="k-val mono" style="color:var(--cyan)">108</div><div class="k-sub">7大标签分类</div></div>
+  <div class="kpi-card"><div class="k-label">目标院校报名</div><div class="k-val mono" style="color:var(--green)">1379</div><div class="k-sub">占比 44.1%</div><div class="k-tag up">近半</div></div>
+  <div class="kpi-card"><div class="k-label">有报名院校</div><div class="k-val mono" style="color:var(--purple)">1072</div><div class="k-sub">覆盖广泛</div></div>
+  <div class="kpi-card"><div class="k-label">非目标院校</div><div class="k-val mono" style="color:var(--dim)">964</div><div class="k-sub">1,751人 · 55.9%</div></div>
 </div>
 
 <!-- 标签分布 -->
 <div class="card" style="margin-bottom:16px">
-  <h3>📊 目标院校标签分布（112所）</h3>
+  <h3>📊 目标院校标签分布（108所）</h3>
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px">
     <div style="padding:12px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:8px;text-align:center">
       <div style="font-size:11px;color:var(--dim)">C9（核心目标）</div>
       <div class="mono" style="font-size:24px;font-weight:900;color:var(--red);margin:4px 0">9</div>
-      <div style="font-size:10px;color:var(--cyan)">236人 · 26.2/校</div>
+      <div style="font-size:10px;color:var(--cyan)">248人 · 27.6/校</div>
     </div>
     <div style="padding:12px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:8px;text-align:center">
       <div style="font-size:11px;color:var(--dim)">T28（头部院校）</div>
       <div class="mono" style="font-size:24px;font-weight:900;color:var(--amber);margin:4px 0">14</div>
-      <div style="font-size:10px;color:var(--cyan)">265人 · 18.9/校</div>
+      <div style="font-size:10px;color:var(--cyan)">281人 · 20.1/校</div>
     </div>
     <div style="padding:12px;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.3);border-radius:8px;text-align:center">
       <div style="font-size:11px;color:var(--dim)">T60（腰部院校）</div>
       <div class="mono" style="font-size:24px;font-weight:900;color:var(--cyan);margin:4px 0">29</div>
-      <div style="font-size:10px;color:var(--cyan)">389人 · 13.4/校</div>
+      <div style="font-size:10px;color:var(--cyan)">422人 · 14.6/校</div>
     </div>
     <div style="padding:12px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:8px;text-align:center">
       <div style="font-size:11px;color:var(--dim)">美术院校</div>
-      <div class="mono" style="font-size:24px;font-weight:900;color:var(--green);margin:4px 0">14</div>
-      <div style="font-size:10px;color:var(--cyan)">159人 · 11.4/校</div>
+      <div class="mono" style="font-size:24px;font-weight:900;color:var(--green);margin:4px 0">13</div>
+      <div style="font-size:10px;color:var(--cyan)">172人 · 13.2/校</div>
     </div>
   </div>
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px">
     <div style="padding:12px;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);border-radius:8px;text-align:center">
       <div style="font-size:11px;color:var(--dim)">垂类院校</div>
       <div class="mono" style="font-size:24px;font-weight:900;color:var(--purple);margin:4px 0">9</div>
-      <div style="font-size:10px;color:var(--cyan)">49人 · 5.4/校</div>
+      <div style="font-size:10px;color:var(--cyan)">52人 · 5.8/校</div>
     </div>
     <div style="padding:12px;background:rgba(236,72,153,0.1);border:1px solid rgba(236,72,153,0.3);border-radius:8px;text-align:center">
       <div style="font-size:11px;color:var(--dim)">海外院校</div>
-      <div class="mono" style="font-size:24px;font-weight:900;color:#ec4899;margin:4px 0">37</div>
-      <div style="font-size:10px;color:var(--cyan)">200人 · 5.4/校</div>
+      <div class="mono" style="font-size:24px;font-weight:900;color:#ec4899;margin:4px 0">34</div>
+      <div style="font-size:10px;color:var(--cyan)">204人 · 6.0/校</div>
     </div>
     <div style="padding:12px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.3);border-radius:8px;text-align:center">
       <div style="font-size:11px;color:var(--dim)">长尾院校</div>
@@ -252,8 +252,8 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
     </div>
     <div style="padding:12px;background:rgba(100,116,139,0.1);border:1px solid rgba(100,116,139,0.3);border-radius:8px;text-align:center">
       <div style="font-size:11px;color:var(--dim)">非目标院校</div>
-      <div class="mono" style="font-size:24px;font-weight:900;color:var(--dim);margin:4px 0">931</div>
-      <div style="font-size:10px;color:var(--dim)">1,659人 · 56.1%</div>
+      <div class="mono" style="font-size:24px;font-weight:900;color:var(--dim);margin:4px 0">964</div>
+      <div style="font-size:10px;color:var(--dim)">1,751人 · 55.9%</div>
     </div>
   </div>
 </div>
@@ -268,16 +268,16 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
 <div class="insight good">
   <h4>✅ 核心院校表现优秀</h4>
   <ul>
-    <li><strong>C9院校校均26.2人</strong>，浙江大学(64人)和北京大学(30人)领跑</li>
-    <li><strong>T28校均18.9人</strong>，华南理工(43人)和电子科技大学(40人客户端方向强势)表现突出</li>
-    <li><strong>112所目标院校全部有报名</strong>，覆盖率100%</li>
+    <li><strong>C9院校校均27.6人</strong>，浙江大学(68人)和复旦大学(34人)领跑</li>
+    <li><strong>T28校均20.1人</strong>，华南理工(45人)和香港中文大学深圳(45人)表现突出</li>
+    <li><strong>108所目标院校全部有报名</strong>，覆盖率100%</li>
   </ul>
 </div>
 <div class="insight warn">
   <h4>⚠️ 需要关注</h4>
   <ul>
-    <li><strong>非目标院校占56.1%（1,659人）</strong>，超过半数来自非重点院校，品牌辐射力强但精准度有提升空间</li>
-    <li><strong>海外院校校均5.4人</strong>，港校表现好（港大40人）但英美校偏低</li>
+    <li><strong>非目标院校占55.9%（1,751人）</strong>，超过半数来自非重点院校，品牌辐射力强但精准度有提升空间</li>
+    <li><strong>海外院校校均6.0人</strong>，港校表现好（港大43人/港中深45人）但英美校偏低</li>
   </ul>
 </div>
 <div class="insight bad">
@@ -307,7 +307,7 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
 <div class="modal-bg" id="modal" onclick="if(event.target===this)closeModal()">
   <div class="modal"><h2><span id="modal-title"></span><button class="close-btn" onclick="closeModal()">✕</button></h2><div id="modal-body"></div></div>
 </div>
-<div class="footer mono">007团队 · 开局一课PM | 更新 2026-04-22 12:15 | 总报名 2,957人 | 院校数据已接入 | <a href="https://github.com/yanlilyli/kaijuyike-2026-dashboard" style="color:var(--cyan)">GitHub</a></div>
+<div class="footer mono">007团队 · 开局一课PM | 更新 2026-04-23 11:00 | 总报名 3,130人 | 院校数据已接入 | <a href="https://github.com/yanlilyli/kaijuyike-2026-dashboard" style="color:var(--cyan)">GitHub</a></div>
 </div>
 
 <script>
@@ -315,41 +315,41 @@ Chart.defaults.color='#94a3b8';Chart.defaults.borderColor='#1e293b';Chart.defaul
 const C={cyan:'#06b6d4',purple:'#8b5cf6',amber:'#f59e0b',green:'#22c55e',red:'#ef4444',dim:'#475569'};
 
 // === DATA ===
-const daily=[{d:'4/14',total:423,s:130,o:123,c:116,a:54},{d:'4/15',total:362,s:111,o:105,c:99,a:47},{d:'4/16',total:546,s:192,o:149,c:146,a:59},{d:'4/17',total:389,s:127,o:103,c:109,a:50},{d:'4/20',total:270,s:81,o:61,c:81,a:47},{d:'4/21',total:112,s:42,o:34,c:21,a:15},{d:'4/22',total:855,s:215,o:256,c:253,a:131}];
+const daily=[{d:'4/14',total:423,s:130,o:123,c:116,a:54},{d:'4/15',total:362,s:111,o:105,c:99,a:47},{d:'4/16',total:546,s:192,o:149,c:146,a:59},{d:'4/17',total:389,s:127,o:103,c:109,a:50},{d:'4/20',total:270,s:81,o:61,c:81,a:47},{d:'4/21',total:112,s:42,o:34,c:21,a:15},{d:'4/22',total:855,s:215,o:256,c:253,a:131},{d:'4/23',total:173,s:56,o:34,c:46,a:37}];
 const dirs={
-  strategy:{name:'游戏策划',icon:'🎯',color:C.purple,total:898,pct:'30.4%',field:'s',
-    edu:{本科:544,硕士:291,博士:3,其他:60},grad:{'27届':451,'28届':197,'29届':111,'30届':6,'其他':133},
-    daily:[130,111,192,127,81,42,215],
+  strategy:{name:'游戏策划',icon:'🎯',color:C.purple,total:954,pct:'30.5%',field:'s',
+    edu:{本科:579,硕士:309,博士:3,其他:63},grad:{'27届':478,'28届':211,'29届':116,'30届':6,'其他':143},
+    daily:[130,111,192,127,81,42,215,56],
     insights:[
-      {type:'good',title:'✅ 策划方向持续领先',points:['报名898人，四方向中最多（30.4%）','27届占50.2%，目标届次精准度高','硕士占比32.4%，质量优秀']},
-      {type:'good',title:'💡 4/22爆发增长',points:['4/22新增215人，较4/21(42)暴增5倍','单日新增仅次于4/16(192)，创历史新高','可能受UHR定向推送+周二集中宣推影响']},
-      {type:'warn',title:'⚠️ 关注点',points:['方向占比从32.5%降至30.4%，运营和客户端追赶势头强劲','院校分散度高，需推动更多校内传播','策划方向最受欢迎，可作为宣传主打方向']}
+      {type:'good',title:'✅ 策划方向持续领先',points:['报名954人，四方向中最多（30.5%）','27届占50.1%，目标届次精准度高','硕士占比32.4%，质量优秀']},
+      {type:'warn',title:'⚠️ 增速放缓',points:['4/23新增56人，较4/22(215)大幅回落','昨日爆发后回归常态，需观察明日走势','方向占比30.5%稳定']},
+      {type:'warn',title:'⚠️ 关注点',points:['UHR渠道贡献122人(12.8%)，持续稳定','院校分散度高，需推动更多校内传播','策划方向最受欢迎，可作为宣传主打方向']}
     ]
   },
-  ops:{name:'游戏运营',icon:'🎮',color:C.cyan,total:831,pct:'28.1%',field:'o',
-    edu:{本科:491,硕士:268,博士:2,其他:70},grad:{'27届':403,'28届':180,'29届':90,'30届':6,'其他':152},
-    daily:[123,105,149,103,61,34,256],
+  ops:{name:'游戏运营',icon:'🎮',color:C.cyan,total:865,pct:'27.6%',field:'o',
+    edu:{本科:491,硕士:268,博士:2,其他:70},grad:{'27届':416,'28届':187,'29届':96,'30届':6,'其他':160},
+    daily:[123,105,149,103,61,34,256,34],
     insights:[
-      {type:'good',title:'✅ 运营方向爆发增长',points:['4/22新增256人，单日增量四方向最高','硕士268人占32.3%，高学历人才持续涌入','27届占48.5%，目标届次匹配良好']},
-      {type:'warn',title:'⚠️ 数据质量需关注',points:['"其他"届次152人（18.3%），占比仍偏高','可能存在填写错误或非目标人群报名','建议抽查"其他"类别的具体毕业年份']},
-      {type:'good',title:'💡 建议',points:['运营方向硕士多，可侧重推广"运营→产品经理"的职业路径','4/22爆发说明渠道推送见效，保持投放力度','关注"其他"届次数据，及时清洗异常数据']}
+      {type:'good',title:'✅ 运营方向稳步增长',points:['累计865人，硕士268人占31.0%，高学历人才持续涌入','27届占48.1%，目标届次匹配良好','4/23新增34人，爆发后回归']},
+      {type:'warn',title:'⚠️ 数据质量需关注',points:['"其他"届次160人（18.5%），占比仍偏高','可能存在填写错误或非目标人群报名','建议抽查"其他"类别的具体毕业年份']},
+      {type:'good',title:'💡 建议',points:['运营方向硕士多，可侧重推广"运营→产品经理"的职业路径','瓦友社渠道贡献130人(15.0%)，效果显著','关注"其他"届次数据，及时清洗异常数据']}
     ]
   },
-  client:{name:'游戏客户端',icon:'💻',color:C.amber,total:825,pct:'27.9%',field:'c',
-    edu:{本科:548,硕士:190,博士:5,其他:82},grad:{'27届':331,'28届':227,'29届':150,'30届':9,'其他':108},
-    daily:[116,99,146,109,81,21,253],
+  client:{name:'游戏客户端',icon:'💻',color:C.amber,total:871,pct:'27.8%',field:'c',
+    edu:{本科:583,硕士:201,博士:5,其他:82},grad:{'27届':349,'28届':240,'29届':158,'30届':9,'其他':115},
+    daily:[116,99,146,109,81,21,253,46],
     insights:[
-      {type:'good',title:'✅ 客户端强势反弹',points:['4/22新增253人，从4/21低谷(21人)暴增12倍','累计825人，与运营(831)差距缩至6人','本科占66.4%，技术方向本科占比高属正常']},
-      {type:'warn',title:'⚠️ 低年级占比偏高',points:['27届仅40.1%，四方向中最低','28-29届合计377人（45.7%），超过27届','说明低年级学生对客户端技术兴趣浓厚，但短期转化率可能偏低']},
+      {type:'good',title:'✅ 客户端稳定增长',points:['累计871人，4/23新增46人','本科占66.9%，技术方向本科占比高属正常','瓦友社渠道贡献141人(16.2%)，技术社区效果好']},
+      {type:'warn',title:'⚠️ 低年级占比偏高',points:['27届仅40.1%，四方向中最低','28-29届合计398人（45.7%），超过27届','说明低年级学生对客户端技术兴趣浓厚，但短期转化率可能偏低']},
       {type:'warn',title:'💡 建议',points:['针对27届计算机/软件专业学生加大推广','在技术社区（GitHub、掘金、CSDN）投放','低年级候选人可纳入长期人才池，为明年储备']}
     ]
   },
-  art:{name:'游戏美术',icon:'🎨',color:C.green,total:403,pct:'13.6%',field:'a',
-    edu:{本科:317,硕士:42,博士:1,其他:43},grad:{'27届':160,'28届':104,'29届':79,'30届':5,'其他':55},
-    daily:[54,47,59,50,47,15,131],
+  art:{name:'游戏美术',icon:'🎨',color:C.green,total:440,pct:'14.1%',field:'a',
+    edu:{本科:348,硕士:45,博士:2,其他:45},grad:{'27届':174,'28届':117,'29届':86,'30届':5,'其他':58},
+    daily:[54,47,59,50,47,15,131,37],
     insights:[
-      {type:'warn',title:'⚠️ 美术方向增长可观但仍偏低',points:['4/22新增131人，较4/21(15)增长8.7倍','累计403人占13.6%，仍不到策划的一半','需要持续推动UHR定向美术院校宣推']},
-      {type:'warn',title:'⚠️ 质量指标偏弱',points:['硕士仅42人（10.4%），远低于其他方向（23-32%）','27届仅160人（39.7%），目标届次占比最低','低年级（28-29届）合计183人占45.4%']},
+      {type:'warn',title:'⚠️ 美术方向缓慢增长',points:['4/23新增37人，累计440人占14.1%','仍不到策划的一半，需持续加大推广','UHR渠道贡献42人(9.5%)']},
+      {type:'warn',title:'⚠️ 质量指标偏弱',points:['硕士仅45人（10.2%），远低于其他方向（23-32%）','27届仅174人（39.5%），目标届次占比最低','低年级（28-29届）合计203人占46.1%']},
       {type:'bad',title:'💡 紧急行动',points:['🔴 定向美术类院校推广：国美、央美、广美、川美、鲁美、北影动画学院','🔴 在站酷、花瓣、Behance等设计社区投放','🔴 利用"游戏美术岗位高薪"做吸引力包装','美术UHR定向宣推方案已启动']}
     ]
   }
@@ -475,17 +475,17 @@ function initPage(id){
       {label:'美术',data:daily.map(d=>d.a),backgroundColor:C.green+'b3',borderRadius:3}
     ]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{padding:8,usePointStyle:true,pointStyleWidth:8,font:{size:10}}}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,grid:{color:'rgba(30,41,59,0.4)'}}}}});
     let cum=0;mc('c-cumul-overview',{type:'line',data:{labels:daily.map(d=>d.d),datasets:[{label:'累计',data:daily.map(d=>(cum+=d.total,cum)),borderColor:C.cyan,backgroundColor:C.cyan+'20',fill:true,tension:.3,pointRadius:6,pointBackgroundColor:C.cyan}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'rgba(30,41,59,0.4)'}},x:{grid:{display:false}}}}});
-    donut('c-dir',['策划 683','运营 575','客户端 572','美术 272'],[683,575,572,272],[C.purple,C.cyan,C.amber,C.green]);
-    sbar('c-edu',['策划','运营','客户端','美术'],[{label:'本科',data:[411,328,386,218],backgroundColor:C.cyan+'b3',borderRadius:3},{label:'硕士',data:[241,214,147,33],backgroundColor:C.purple+'b3',borderRadius:3},{label:'其他',data:[31,33,39,21],backgroundColor:C.dim+'80',borderRadius:3}]);
-    sbar('c-grad',['策划','运营','客户端','美术'],[{label:'27届',data:[362,289,248,100],backgroundColor:C.purple+'cc',borderRadius:3},{label:'28届',data:[137,109,154,72],backgroundColor:C.cyan+'b3',borderRadius:3},{label:'29届',data:[70,48,78,53],backgroundColor:C.amber+'99',borderRadius:3},{label:'其他',data:[114,129,92,47],backgroundColor:C.dim+'66',borderRadius:3}]);
-    mc('c-master',{type:'bar',data:{labels:['运营 37.2%','策划 35.3%','客户端 25.7%','美术 12.1%'],datasets:[{data:[37.2,35.3,25.7,12.1],backgroundColor:[C.cyan,C.purple,C.amber,C.green],borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(30,41,59,0.4)'},ticks:{callback:v=>v+'%'}},y:{grid:{display:false}}}}});
-    donut('c-channel',['雇主品牌 2103 (71.1%)','UHR 390 (13.2%)','瓦友社 369 (12.5%)','效果广告 42 (1.4%)','公众号 34 (1.1%)','其他 19 (0.6%)'],[2103,390,369,42,34,19],[C.cyan,C.purple,'#ec4899',C.amber,C.green,C.dim]);
+    donut('c-dir',['策划 954','运营 865','客户端 871','美术 440'],[954,865,871,440],[C.purple,C.cyan,C.amber,C.green]);
+    sbar('c-edu',['策划','运营','客户端','美术'],[{label:'本科',data:[579,491,583,348],backgroundColor:C.cyan+'b3',borderRadius:3},{label:'硕士',data:[309,268,201,45],backgroundColor:C.purple+'b3',borderRadius:3},{label:'其他',data:[66,72,87,47],backgroundColor:C.dim+'80',borderRadius:3}]);
+    sbar('c-grad',['策划','运营','客户端','美术'],[{label:'27届',data:[478,416,349,174],backgroundColor:C.purple+'cc',borderRadius:3},{label:'28届',data:[211,187,240,117],backgroundColor:C.cyan+'b3',borderRadius:3},{label:'29届',data:[116,96,158,86],backgroundColor:C.amber+'99',borderRadius:3},{label:'其他',data:[149,166,124,63],backgroundColor:C.dim+'66',borderRadius:3}]);
+    mc('c-master',{type:'bar',data:{labels:['策划 32.4%','运营 31.0%','客户端 23.1%','美术 10.2%'],datasets:[{data:[32.4,31.0,23.1,10.2],backgroundColor:[C.purple,C.cyan,C.amber,C.green],borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(30,41,59,0.4)'},ticks:{callback:v=>v+'%'}},y:{grid:{display:false}}}}});
+    donut('c-channel',['雇主品牌 2209 (70.6%)','UHR 420 (13.4%)','瓦友社 396 (12.7%)','效果广告 50 (1.6%)','公众号 35 (1.1%)','其他 20 (0.6%)'],[2209,420,396,50,35,20],[C.cyan,C.purple,'#ec4899',C.amber,C.green,C.dim]);
   }
   if(id==='schools'){
     renderTagFilters();renderSchools();
     // 标签饼图
-    donut('c-tag-pie',['C9 236','T28 265','T60 389','美术 159','垂类 49','海外 200','非目标 1659'],[236,265,389,159,49,200,1659],['#ef4444','#f59e0b','#06b6d4','#22c55e','#8b5cf6','#ec4899','#475569']);
-    mc('c-tag-avg',{type:'bar',data:{labels:['C9','T28','T60','美术','垂类','海外'],datasets:[{data:[26.2,18.9,13.4,11.4,5.4,5.4],backgroundColor:['#ef4444','#f59e0b','#06b6d4','#22c55e','#8b5cf6','#ec4899'],borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(30,41,59,0.4)'},ticks:{callback:v=>v+'人/校'}},y:{grid:{display:false}}}}});
+    donut('c-tag-pie',['C9 248','T28 281','T60 422','美术 172','垂类 52','海外 204','非目标 1751'],[248,281,422,172,52,204,1751],['#ef4444','#f59e0b','#06b6d4','#22c55e','#8b5cf6','#ec4899','#475569']);
+    mc('c-tag-avg',{type:'bar',data:{labels:['C9','T28','T60','美术','垂类','海外'],datasets:[{data:[27.6,20.1,14.6,13.2,5.8,6.0],backgroundColor:['#ef4444','#f59e0b','#06b6d4','#22c55e','#8b5cf6','#ec4899'],borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(30,41,59,0.4)'},ticks:{callback:v=>v+'人/校'}},y:{grid:{display:false}}}}});
   }
   // Direction pages
   if(dirs[id]){
