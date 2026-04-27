@@ -302,7 +302,7 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
 <div class="page" id="page-daily-schools">
 <div class="card" style="margin-bottom:16px">
   <h3>📈 院校每日报名数据 · UHR进展沟通</h3>
-  <div style="font-size:12px;color:var(--dim);margin-bottom:14px">每所院校在各日期的累计报名人数，红色标注当日新增。点击日期tab切换「每日TOP20增长排行」视图。</div>
+  <div style="font-size:12px;color:var(--dim);margin-bottom:14px">每所院校每天的累计报名人数（最新在前），绿色标注当日新增。数据从4/21起逐日追踪。</div>
   <div id="daily-date-tabs" style="display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap"></div>
   <div style="overflow-x:auto" id="daily-school-content"></div>
 </div>
@@ -510,9 +510,10 @@ function initPage(id){
     }
     function renderMatrix(){
       const tc=TAG_COLORS||{};
-      let h='<table class="school-table"><tr><th>排名</th><th>院校</th><th>标签</th>';
-      SCHOOL_DATES.forEach(d=>{h+='<th style="text-align:center">'+d+'</th>';});
-      h+='<th style="text-align:center;color:var(--cyan)">累计</th></tr>';
+      const n=SCHOOL_DATES.length;
+      let h='<table class="school-table" style="table-layout:auto"><tr><th style="width:40px">排名</th><th style="min-width:120px">院校</th><th style="width:60px">标签</th>';
+      SCHOOL_DATES.forEach(d=>{h+='<th style="text-align:center;min-width:80px;white-space:nowrap">'+d+'</th>';});
+      h+='<th style="text-align:center;color:var(--cyan);width:60px">累计</th></tr>';
       SCHOOL_MATRIX.forEach((r,i)=>{
         const t=(tc[r.tag]||tc['非目标']||{color:'#94a3b8',bg:'rgba(148,163,184,0.15)',label:'?'});
         const rc=i<3?'rank '+['r1','r2','r3'][i]:'rank';
@@ -521,8 +522,12 @@ function initPage(id){
         h+='<td style="text-align:center"><span class="badge" style="background:'+t.bg+';color:'+t.color+'">'+t.label+'</span></td>';
         r.series.forEach((v,j)=>{
           const delta=r.deltas[j];
-          if(j>0&&delta>0){h+='<td style="text-align:center" class="mono">'+v+' <span style="color:var(--green);font-size:10px">(+'+delta+')</span></td>';}
-          else{h+='<td style="text-align:center" class="mono">'+(v||'-')+'</td>';}
+          const isLast=(j===n-1); // 最老的日期，不显示增量
+          if(!isLast&&delta>0){
+            h+='<td style="text-align:center;white-space:nowrap" class="mono">'+v+' <span style="color:var(--green);font-size:10px">(+'+delta+')</span></td>';
+          } else {
+            h+='<td style="text-align:center" class="mono">'+(v||'-')+'</td>';
+          }
         });
         h+='<td style="text-align:center" class="mono"><strong style="color:var(--cyan)">'+r.total+'</strong></td></tr>';
       });
