@@ -6,6 +6,7 @@
 <title>开局一课2026 · 报名数据看板</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="schools-data.js"></script>
+<script src="schools-daily.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0a0e1a;--card:#111827;--border:#1e293b;--cyan:#06b6d4;--purple:#8b5cf6;--amber:#f59e0b;--green:#22c55e;--red:#ef4444;--txt:#e2e8f0;--dim:#94a3b8}
@@ -297,6 +298,16 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
 </div>
 </div>
 
+<!-- ===== DAILY SCHOOLS ===== -->
+<div class="page" id="page-daily-schools">
+<div class="card" style="margin-bottom:16px">
+  <h3>📈 院校每日报名增长 TOP10 · 用于UHR进展沟通</h3>
+  <div style="font-size:12px;color:var(--dim);margin-bottom:14px">每天新增报名人数最多的院校排行，含方向拆分。点击日期切换查看。</div>
+  <div id="daily-date-tabs" style="display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap"></div>
+  <div id="daily-school-content"></div>
+</div>
+</div>
+
 <!-- ===== DIRECTION PAGES (template-driven) ===== -->
 <div class="page" id="page-strategy"></div>
 <div class="page" id="page-ops"></div>
@@ -357,7 +368,7 @@ const dirs={
 
 // === NAV ===
 const pages=[
-  {id:'overview',label:'📊 总览'},{id:'schools',label:'🏫 院校分析'},
+  {id:'overview',label:'📊 总览'},{id:'schools',label:'🏫 院校分析'},{id:'daily-schools',label:'📈 院校日增'},
   {id:'strategy',label:'🎯 策划'},{id:'ops',label:'🎮 运营'},
   {id:'client',label:'💻 客户端'},{id:'art',label:'🎨 美术'}
 ];
@@ -486,6 +497,55 @@ function initPage(id){
     // 标签饼图
     donut('c-tag-pie',['C9 401','T28 413','T60 580','美术 273','垂类 64','海外 266','非目标 2208'],[401,413,580,273,64,266,2208],['#ef4444','#f59e0b','#06b6d4','#22c55e','#8b5cf6','#ec4899','#475569']);
     mc('c-tag-avg',{type:'bar',data:{labels:['C9','T28','T60','美术','垂类','海外'],datasets:[{data:[27.6,20.1,14.6,13.2,5.8,6.0],backgroundColor:['#ef4444','#f59e0b','#06b6d4','#22c55e','#8b5cf6','#ec4899'],borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(30,41,59,0.4)'},ticks:{callback:v=>v+'人/校'}},y:{grid:{display:false}}}}});
+  }
+  // Daily Schools page
+  if(id==='daily-schools'){
+    const dates=Object.keys(SCHOOL_DAILY).reverse();
+    let activeDate=dates[0];
+    function renderDateTabs(){
+      document.getElementById('daily-date-tabs').innerHTML=dates.map(d=>
+        `<button class="nav-btn${d===activeDate?' active':''}" onclick="window._selectDailyDate('${d}')" style="padding:8px 14px;font-size:12px">${d} <span style="font-size:10px;color:var(--dim)">(+${SCHOOL_DAILY[d].totalNew})</span></button>`
+      ).join('');
+    }
+    function renderDailyContent(date){
+      const data=SCHOOL_DAILY[date];
+      if(!data){document.getElementById('daily-school-content').innerHTML='<div style="color:var(--dim)">暂无数据</div>';return;}
+      const tc=TAG_COLORS||{};
+      let h=`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px">
+        <div style="padding:12px;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.3);border-radius:8px;text-align:center">
+          <div style="font-size:10px;color:var(--dim)">当日新增</div>
+          <div class="mono" style="font-size:28px;font-weight:900;color:var(--cyan)">${data.totalNew}</div>
+        </div>
+        <div style="padding:12px;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);border-radius:8px;text-align:center">
+          <div style="font-size:10px;color:var(--dim)">有增长院校</div>
+          <div class="mono" style="font-size:28px;font-weight:900;color:var(--purple)">${data.top20.length>=20?'20+':data.top20.length}</div>
+        </div>
+        <div style="padding:12px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:8px;text-align:center">
+          <div style="font-size:10px;color:var(--dim)">新增院校</div>
+          <div class="mono" style="font-size:28px;font-weight:900;color:var(--green)">${data.newSchools>0?'+'+data.newSchools:data.newSchools}</div>
+        </div>
+      </div>`;
+      h+=`<table class="school-table"><tr><th>排名</th><th>院校</th><th>标签</th><th style="text-align:center">日增</th><th style="text-align:center">策划</th><th style="text-align:center">客户端</th><th style="text-align:center">美术</th><th style="text-align:center">运营</th><th style="text-align:center">累计</th></tr>`;
+      data.top20.forEach((d,i)=>{
+        const t=(tc[d.tag]||tc['非目标']||{color:'#94a3b8',bg:'rgba(148,163,184,0.15)',label:'非目标'});
+        const rc=i<3?['rank r1','rank r2','rank r3'][i]:'rank';
+        h+=`<tr>
+          <td><span class="${rc} mono">${String(i+1).padStart(2,'0')}</span></td>
+          <td><strong>${d.name}</strong></td>
+          <td style="text-align:center"><span class="badge" style="background:${t.bg};color:${t.color}">${t.label}</span></td>
+          <td style="text-align:center" class="mono"><strong style="color:var(--green)">+${d.delta}</strong></td>
+          <td style="text-align:center" class="mono" style="color:var(--purple)">${d.ds>0?'+'+d.ds:d.ds||'-'}</td>
+          <td style="text-align:center" class="mono" style="color:var(--amber)">${d.dc>0?'+'+d.dc:d.dc||'-'}</td>
+          <td style="text-align:center" class="mono" style="color:var(--green)">${d.da>0?'+'+d.da:d.da||'-'}</td>
+          <td style="text-align:center" class="mono" style="color:var(--cyan)">${d.do_>0?'+'+d.do_:d.do_||'-'}</td>
+          <td style="text-align:center" class="mono">${d.total}</td>
+        </tr>`;
+      });
+      h+='</table>';
+      document.getElementById('daily-school-content').innerHTML=h;
+    }
+    window._selectDailyDate=function(d){activeDate=d;renderDateTabs();renderDailyContent(d);};
+    renderDateTabs();renderDailyContent(activeDate);
   }
   // Direction pages
   if(dirs[id]){
