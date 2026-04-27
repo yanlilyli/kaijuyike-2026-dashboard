@@ -301,10 +301,10 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
 <!-- ===== DAILY SCHOOLS ===== -->
 <div class="page" id="page-daily-schools">
 <div class="card" style="margin-bottom:16px">
-  <h3>📈 院校每日报名增长 TOP10 · 用于UHR进展沟通</h3>
-  <div style="font-size:12px;color:var(--dim);margin-bottom:14px">每天新增报名人数最多的院校排行，含方向拆分。点击日期切换查看。</div>
+  <h3>📈 院校每日报名数据 · UHR进展沟通</h3>
+  <div style="font-size:12px;color:var(--dim);margin-bottom:14px">每所院校在各日期的累计报名人数，红色标注当日新增。点击日期tab切换「每日TOP20增长排行」视图。</div>
   <div id="daily-date-tabs" style="display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap"></div>
-  <div id="daily-school-content"></div>
+  <div style="overflow-x:auto" id="daily-school-content"></div>
 </div>
 </div>
 
@@ -501,51 +501,61 @@ function initPage(id){
   // Daily Schools page
   if(id==='daily-schools'){
     const dates=Object.keys(SCHOOL_DAILY).reverse();
+    let mode='matrix'; // matrix or daily
     let activeDate=dates[0];
-    function renderDateTabs(){
-      document.getElementById('daily-date-tabs').innerHTML=dates.map(d=>
-        `<button class="nav-btn${d===activeDate?' active':''}" onclick="window._selectDailyDate('${d}')" style="padding:8px 14px;font-size:12px">${d} <span style="font-size:10px;color:var(--dim)">(+${SCHOOL_DAILY[d].totalNew})</span></button>`
-      ).join('');
+    function renderTabs(){
+      let h='<button class="nav-btn'+(mode==='matrix'?' active':'')+'" onclick="window._dailyMode(\'matrix\')" style="padding:8px 14px;font-size:12px">📊 全院校趋势</button>';
+      dates.forEach(d=>{h+='<button class="nav-btn'+(mode==='daily'&&activeDate===d?' active':'')+'" onclick="window._dailyMode(\'daily\',\''+d+'\')" style="padding:8px 14px;font-size:12px">'+d+' <span style="font-size:10px;color:var(--dim)">(+'+SCHOOL_DAILY[d].totalNew+')</span></button>';});
+      document.getElementById('daily-date-tabs').innerHTML=h;
     }
-    function renderDailyContent(date){
-      const data=SCHOOL_DAILY[date];
-      if(!data){document.getElementById('daily-school-content').innerHTML='<div style="color:var(--dim)">暂无数据</div>';return;}
+    function renderMatrix(){
       const tc=TAG_COLORS||{};
-      let h=`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px">
-        <div style="padding:12px;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.3);border-radius:8px;text-align:center">
-          <div style="font-size:10px;color:var(--dim)">当日新增</div>
-          <div class="mono" style="font-size:28px;font-weight:900;color:var(--cyan)">${data.totalNew}</div>
-        </div>
-        <div style="padding:12px;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);border-radius:8px;text-align:center">
-          <div style="font-size:10px;color:var(--dim)">有增长院校</div>
-          <div class="mono" style="font-size:28px;font-weight:900;color:var(--purple)">${data.top20.length>=20?'20+':data.top20.length}</div>
-        </div>
-        <div style="padding:12px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:8px;text-align:center">
-          <div style="font-size:10px;color:var(--dim)">新增院校</div>
-          <div class="mono" style="font-size:28px;font-weight:900;color:var(--green)">${data.newSchools>0?'+'+data.newSchools:data.newSchools}</div>
-        </div>
-      </div>`;
-      h+=`<table class="school-table"><tr><th>排名</th><th>院校</th><th>标签</th><th style="text-align:center">日增</th><th style="text-align:center">策划</th><th style="text-align:center">客户端</th><th style="text-align:center">美术</th><th style="text-align:center">运营</th><th style="text-align:center">累计</th></tr>`;
-      data.top20.forEach((d,i)=>{
-        const t=(tc[d.tag]||tc['非目标']||{color:'#94a3b8',bg:'rgba(148,163,184,0.15)',label:'非目标'});
-        const rc=i<3?['rank r1','rank r2','rank r3'][i]:'rank';
-        h+=`<tr>
-          <td><span class="${rc} mono">${String(i+1).padStart(2,'0')}</span></td>
-          <td><strong>${d.name}</strong></td>
-          <td style="text-align:center"><span class="badge" style="background:${t.bg};color:${t.color}">${t.label}</span></td>
-          <td style="text-align:center" class="mono"><strong style="color:var(--green)">+${d.delta}</strong></td>
-          <td style="text-align:center" class="mono" style="color:var(--purple)">${d.ds>0?'+'+d.ds:d.ds||'-'}</td>
-          <td style="text-align:center" class="mono" style="color:var(--amber)">${d.dc>0?'+'+d.dc:d.dc||'-'}</td>
-          <td style="text-align:center" class="mono" style="color:var(--green)">${d.da>0?'+'+d.da:d.da||'-'}</td>
-          <td style="text-align:center" class="mono" style="color:var(--cyan)">${d.do_>0?'+'+d.do_:d.do_||'-'}</td>
-          <td style="text-align:center" class="mono">${d.total}</td>
-        </tr>`;
+      let h='<table class="school-table"><tr><th>排名</th><th>院校</th><th>标签</th>';
+      SCHOOL_DATES.forEach(d=>{h+='<th style="text-align:center">'+d+'</th>';});
+      h+='<th style="text-align:center;color:var(--cyan)">累计</th></tr>';
+      SCHOOL_MATRIX.forEach((r,i)=>{
+        const t=(tc[r.tag]||tc['非目标']||{color:'#94a3b8',bg:'rgba(148,163,184,0.15)',label:'?'});
+        const rc=i<3?'rank '+['r1','r2','r3'][i]:'rank';
+        h+='<tr><td><span class="'+rc+' mono">'+String(i+1).padStart(2,'0')+'</span></td>';
+        h+='<td><strong>'+r.name+'</strong></td>';
+        h+='<td style="text-align:center"><span class="badge" style="background:'+t.bg+';color:'+t.color+'">'+t.label+'</span></td>';
+        r.series.forEach((v,j)=>{
+          const delta=r.deltas[j];
+          if(j>0&&delta>0){h+='<td style="text-align:center" class="mono">'+v+' <span style="color:var(--green);font-size:10px">(+'+delta+')</span></td>';}
+          else{h+='<td style="text-align:center" class="mono">'+(v||'-')+'</td>';}
+        });
+        h+='<td style="text-align:center" class="mono"><strong style="color:var(--cyan)">'+r.total+'</strong></td></tr>';
       });
       h+='</table>';
       document.getElementById('daily-school-content').innerHTML=h;
     }
-    window._selectDailyDate=function(d){activeDate=d;renderDateTabs();renderDailyContent(d);};
-    renderDateTabs();renderDailyContent(activeDate);
+    function renderDaily(date){
+      const data=SCHOOL_DAILY[date];
+      if(!data){document.getElementById('daily-school-content').innerHTML='<div style="color:var(--dim)">暂无数据</div>';return;}
+      const tc=TAG_COLORS||{};
+      let h='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px">';
+      h+='<div style="padding:12px;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.3);border-radius:8px;text-align:center"><div style="font-size:10px;color:var(--dim)">当日新增</div><div class="mono" style="font-size:28px;font-weight:900;color:var(--cyan)">'+data.totalNew+'</div></div>';
+      h+='<div style="padding:12px;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);border-radius:8px;text-align:center"><div style="font-size:10px;color:var(--dim)">增长院校数</div><div class="mono" style="font-size:28px;font-weight:900;color:var(--purple)">'+(data.top20.length>=20?'20+':data.top20.length)+'</div></div>';
+      h+='<div style="padding:12px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:8px;text-align:center"><div style="font-size:10px;color:var(--dim)">新增院校</div><div class="mono" style="font-size:28px;font-weight:900;color:var(--green)">+'+(data.newSchools)+'</div></div></div>';
+      h+='<table class="school-table"><tr><th>排名</th><th>院校</th><th>标签</th><th style="text-align:center">日增</th><th style="text-align:center">策划</th><th style="text-align:center">客户端</th><th style="text-align:center">美术</th><th style="text-align:center">运营</th><th style="text-align:center">累计</th></tr>';
+      data.top20.forEach((d,i)=>{
+        const t=(tc[d.tag]||tc['非目标']||{color:'#94a3b8',bg:'rgba(148,163,184,0.15)',label:'?'});
+        const rc=i<3?'rank '+['r1','r2','r3'][i]:'rank';
+        h+='<tr><td><span class="'+rc+' mono">'+String(i+1).padStart(2,'0')+'</span></td>';
+        h+='<td><strong>'+d.name+'</strong></td>';
+        h+='<td style="text-align:center"><span class="badge" style="background:'+t.bg+';color:'+t.color+'">'+t.label+'</span></td>';
+        h+='<td style="text-align:center" class="mono"><strong style="color:var(--green)">+'+d.delta+'</strong></td>';
+        h+='<td style="text-align:center" class="mono">'+(d.ds>0?'+'+d.ds:'-')+'</td>';
+        h+='<td style="text-align:center" class="mono">'+(d.dc>0?'+'+d.dc:'-')+'</td>';
+        h+='<td style="text-align:center" class="mono">'+(d.da>0?'+'+d.da:'-')+'</td>';
+        h+='<td style="text-align:center" class="mono">'+(d.do_>0?'+'+d.do_:'-')+'</td>';
+        h+='<td style="text-align:center" class="mono">'+d.total+'</td></tr>';
+      });
+      h+='</table>';
+      document.getElementById('daily-school-content').innerHTML=h;
+    }
+    window._dailyMode=function(m,d){mode=m;if(d)activeDate=d;renderTabs();if(mode==='matrix')renderMatrix();else renderDaily(activeDate);};
+    renderTabs();renderMatrix();
   }
   // Direction pages
   if(dirs[id]){
