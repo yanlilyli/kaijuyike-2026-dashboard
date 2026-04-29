@@ -523,30 +523,33 @@ function initPage(id){
     }
 
     function renderMatrix(){
-      // 表头：序号 | 学校名字 | 标签 | 4/29 | 4/28 | ... | 4/14 | 累计
+      // 表头：序号 | 学校名字 | 标签 | 4/29 | ... | 4/14 | 累计
       // 固定列区（序号+学校+标签），日期滚动区，累计固定在最右
+      const sorted=[...SCHOOL_MATRIX].sort((a,b)=>b.total-a.total);
+      const maxDeltas=Math.max(...sorted.map(r=>r.deltas.length)); // 最大deltas长度
       let html='<div style="overflow-x:auto">';
       html+='<table class="school-table" style="border-collapse:collapse;min-width:100%;table-layout:fixed">';
       
-      // --- 表头行 ---
+      // colgroup：固定3列+日期列+累计列
       html+='<colgroup>';
-      html+='<col style="width:48px"><col style="width:180px"><col style="width:64px">'; // 序号+学校+标签，固定宽度
-      allDates.forEach(()=>html+='<col style="width:50px">'); // 每个日期列50px
-      html+='<col style="width:56px">'; // 累计
+      html+='<col style="width:48px"><col style="width:180px"><col style="width:64px">';
+      for(let i=0;i<maxDeltas;i++) html+='<col style="width:50px">';
+      html+='<col style="width:56px">';
       html+='</colgroup>';
+      
+      // 表头行
       html+='<tr>';
       html+='<th style="position:sticky;left:0;top:0;z-index:3;background:var(--bg);text-align:center;padding:8px 4px;font-size:11px;border-bottom:1px solid var(--border)">序号</th>';
       html+='<th style="position:sticky;left:48px;top:0;z-index:3;background:var(--bg);text-align:left;padding:8px 8px;font-size:11px;border-bottom:1px solid var(--border)">院校名称</th>';
       html+='<th style="position:sticky;left:228px;top:0;z-index:3;background:var(--bg);text-align:center;padding:8px 4px;font-size:11px;border-bottom:1px solid var(--border)">标签</th>';
-      allDates.forEach(d=>{
-        const short=d.replace('2026-0','').replace('2026-','');
-        html+='<th style="text-align:center;padding:8px 2px;font-size:10px;color:var(--dim);border-bottom:1px solid var(--border)">'+short+'</th>';
-      });
+      for(let i=0;i<maxDeltas;i++){
+        const d=allDates[i];
+        html+='<th style="text-align:center;padding:8px 2px;font-size:10px;color:var(--dim);border-bottom:1px solid var(--border)">'+(d?d.replace('2026-0','').replace('2026-',''):'?')+'</th>';
+      }
       html+='<th style="position:sticky;right:0;top:0;z-index:3;background:var(--bg);text-align:center;padding:8px 4px;font-size:11px;color:var(--cyan);border-bottom:1px solid var(--border)">累计</th>';
       html+='</tr>';
 
-      // --- 数据行 ---
-      const sorted=[...SCHOOL_MATRIX].sort((a,b)=>b.total-a.total);
+      // 数据行
       sorted.forEach((r,i)=>{
         const t=(tc[r.tag]||tc['非目标']||{color:'#94a3b8',bg:'rgba(148,163,184,0.15)',label:'?'});
         const rc=i<3?'rank '+['r1','r2','r3'][i]:'rank';
@@ -557,14 +560,15 @@ function initPage(id){
         html+='<td style="position:sticky;left:48px;z-index:1;background:var(--card);text-align:left;padding:6px 8px;font-size:13px;border-bottom:1px solid var(--border);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="'+r.name+'"><strong>'+r.name+'</strong></td>';
         // 标签
         html+='<td style="position:sticky;left:228px;z-index:1;background:var(--card);text-align:center;padding:6px 4px;border-bottom:1px solid var(--border)"><span class="badge" style="background:'+t.bg+';color:'+t.color+';font-size:10px;padding:2px 6px;white-space:nowrap">'+t.label+'</span></td>';
-        // 每日日增
-        r.deltas.forEach(delta=>{
+        // 每日日增（与表头对齐，不足补-）
+        for(let j=0;j<maxDeltas;j++){
+          const delta=r.deltas[j];
           if(delta>0){
             html+='<td style="text-align:center;padding:6px 2px;font-size:12px;border-bottom:1px solid var(--border)" class="mono"><span style="color:var(--green);font-weight:700">+'+delta+'</span></td>';
           } else {
             html+='<td style="text-align:center;color:#334155;padding:6px 2px;font-size:11px;border-bottom:1px solid var(--border)" class="mono">-</td>';
           }
-        });
+        }
         // 累计
         html+='<td style="position:sticky;right:0;z-index:1;background:var(--card);text-align:center;padding:6px 4px;font-size:13px;font-weight:700;color:var(--cyan);border-bottom:1px solid var(--border);border-left:1px solid var(--border)">'+r.total+'</td>';
         html+='</tr>';
