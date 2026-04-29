@@ -200,5 +200,6 @@ const SCHOOLS = [
   {name:'北京林业大学',tag:'其他',uhr:'',count:5,s:1,c:1,a:2,o:1},
   {name:'河北工业大学',tag:'其他',uhr:'',count:5,s:1,c:3,a:0,o:1},
   {name:'电子科技大学成都学院',tag:'其他',uhr:'',count:5,s:1,c:1,a:2,o:1},
-  {name:'暂无',tag:'其他',uhr:'',count:5,s:0,c:5,a:0,o:0},
+  {name:'暂无',tag:'其他',uhr:'',count:5,s:0,c:5,a:0,o:0}
 ];
+const TAG_COLORS={C9:{label:"C9",color:"#ef4444",bg:"rgba(239,68,68,0.15)"},T28:{label:"T28",color:"#f59e0b",bg:"rgba(245,158,11,0.15)"},T60:{label:"T60",color:"#06b6d4",bg:"rgba(6,182,212,0.15)"},"美术院校":{label:"美术院校",color:"#a855f7",bg:"rgba(168,85,247,0.15)"},"垂类":{label:"垂类",color:"#22c55e",bg:"rgba(34,197,94,0.15)"},"海外":{label:"海外",color:"#3b82f6",bg:"rgba(59,130,246,0.15)"},"其他":{label:"其他",color:"#94a3b8",bg:"rgba(148,163,184,0.15)"}};
