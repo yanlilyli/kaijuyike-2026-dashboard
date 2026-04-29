@@ -304,6 +304,7 @@ tr.clickable{cursor:pointer}tr.clickable:hover td{background:rgba(6,182,212,0.08
   <h3>📈 院校每日报名数据 · UHR进展沟通</h3>
   <div style="font-size:12px;color:var(--dim);margin-bottom:14px">每所院校每天的累计报名人数（最新在前），绿色标注当日新增。数据从4/21起逐日追踪。</div>
   <div id="daily-date-tabs" style="display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap"></div>
+  <div style="position:relative;height:160px;margin-bottom:8px"><canvas id="c-daily-schools-trend"></canvas></div>
   <div style="overflow-x:auto" id="daily-school-content"></div>
 </div>
 </div>
@@ -500,18 +501,43 @@ function initPage(id){
   }
   // Daily Schools page
   if(id==='daily-schools'){
-    const dates=Object.keys(SCHOOL_DAILY).reverse();
+    const dates=Object.keys(SCHOOLS_DAILY).reverse();
     let mode='matrix'; // matrix or daily
     let activeDate=dates[0];
     function renderTabs(){
       let h='<button class="nav-btn'+(mode==='matrix'?' active':'')+'" onclick="window._dailyMode(\'matrix\')" style="padding:8px 14px;font-size:12px">📊 全院校趋势</button>';
-      dates.forEach(d=>{h+='<button class="nav-btn'+(mode==='daily'&&activeDate===d?' active':'')+'" onclick="window._dailyMode(\'daily\',\''+d+'\')" style="padding:8px 14px;font-size:12px">'+d+' <span style="font-size:10px;color:var(--dim)">(+'+SCHOOL_DAILY[d].totalNew+')</span></button>';});
+      dates.forEach(d=>{h+='<button class="nav-btn'+(mode==='daily'&&activeDate===d?' active':'')+'" onclick="window._dailyMode(\'daily\',\''+d+'\')" style="padding:8px 14px;font-size:12px">'+d+' <span style="font-size:10px;color:var(--dim)">(+'+SCHOOLS_DAILY[d].totalNew+')</span></button>';});
       document.getElementById('daily-date-tabs').innerHTML=h;
     }
     function renderMatrix(){
       const tc=TAG_COLORS||{};
       const n=SCHOOL_DATES.length;
-      let h='<table class="school-table" style="table-layout:auto"><tr><th style="width:40px">排名</th><th style="min-width:120px">院校</th><th style="width:60px">标签</th>';
+      // 每日趋势摘要图表（只用4/22起有delta的日期）
+      const dailyDates=Object.keys(SCHOOLS_DAILY).sort();
+      const dailyTotals=dailyDates.map(d=>SCHOOLS_DAILY[d].totalNew);
+      const dailySchools=dailyDates.map(d=>SCHOOLS_DAILY[d].newSchools);
+      // 已有chart则destroy
+      const existingChart=window._dailySchoolsChart;
+      if(existingChart){try{existingChart.destroy();}catch(e){}}
+      window._dailySchoolsChart=mc('c-daily-schools-trend',{
+        type:'bar',
+        data:{
+          labels:dailyDates.map(d=>d.replace('2026-0','').replace('2026-','')),
+          datasets:[
+            {label:'日新增报名',data:dailyTotals,backgroundColor:'rgba(6,182,212,0.7)',borderRadius:6,order:1},
+            {label:'新增院校数',data:dailySchools,backgroundColor:'rgba(168,85,247,0.5)',borderRadius:6,type:'line',tension:0.4,order:2,yAxisID:'y2'}
+          ]
+        },
+        options:{
+          responsive:true,
+          plugins:{legend:{display:true,labels:{font:{size:11},boxWidth:12},position:'top'}},
+          scales:{
+            y:{beginAtZero:true,grid:{color:'rgba(30,41,59,0.4)'},title:{display:true,text:'报名人数',font:{size:10},color:'var(--dim)'},position:'left'},
+            y2:{beginAtZero:true,grid:{display:false},title:{display:true,text:'新增院校',font:{size:10},color:'var(--dim)'},position:'right'}
+          }
+        }
+      });
+      let h='<table class="school-table" style="table-layout:auto;margin-top:16px"><tr><th style="width:40px">排名</th><th style="min-width:120px">院校</th><th style="width:60px">标签</th>';
       SCHOOL_DATES.forEach(d=>{h+='<th style="text-align:center;min-width:80px;white-space:nowrap">'+d+'</th>';});
       h+='<th style="text-align:center;color:var(--cyan);width:60px">累计</th></tr>';
       SCHOOL_MATRIX.forEach((r,i)=>{
@@ -535,7 +561,7 @@ function initPage(id){
       document.getElementById('daily-school-content').innerHTML=h;
     }
     function renderDaily(date){
-      const data=SCHOOL_DAILY[date];
+      const data=SCHOOLS_DAILY[date];
       if(!data){document.getElementById('daily-school-content').innerHTML='<div style="color:var(--dim)">暂无数据</div>';return;}
       const tc=TAG_COLORS||{};
       let h='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px">';
