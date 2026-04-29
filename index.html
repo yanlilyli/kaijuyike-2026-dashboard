@@ -524,14 +524,15 @@ function initPage(id){
 
     function renderMatrix(){
       // 表头：院校 | 标签 | 4/29 | 4/28 | ... | 4/14 | 累计
-      let html='<table class="school-table" style="white-space:nowrap">';
+      let html='<div style="overflow-x:auto">';
+      html+='<table class="school-table" style="white-space:nowrap;min-width:900px">';
       // 表头行
-      html+='<tr><th style="min-width:160px;text-align:left">院校名称</th><th style="width:60px;text-align:center">标签</th>';
+      html+='<tr><th style="min-width:200px;text-align:left;position:sticky;left:0;background:var(--bg);border-right:1px solid var(--border);z-index:2">院校名称</th><th style="width:60px;text-align:center;position:sticky;left:200px;background:var(--bg);border-right:1px solid var(--border);z-index:2">标签</th>';
       allDates.forEach(d=>{
         const short=d.replace('2026-0','').replace('2026-','');
-        html+='<th style="text-align:center;min-width:60px;font-size:11px">'+short+'</th>';
+        html+='<th style="text-align:center;min-width:52px;font-size:11px;position:sticky;top:0;background:var(--bg)">'+short+'</th>';
       });
-      html+='<th style="text-align:center;color:var(--cyan);min-width:60px">累计</th></tr>';
+      html+='<th style="text-align:center;color:var(--cyan);min-width:60px;position:sticky;right:0;background:var(--bg);border-left:1px solid var(--border);z-index:2">累计</th></tr>';
 
       // 按累计排序
       const sorted=[...SCHOOL_MATRIX].sort((a,b)=>b.total-a.total);
@@ -540,22 +541,20 @@ function initPage(id){
         const rc=i<3?'rank '+['r1','r2','r3'][i]:'rank';
         const rnk=String(i+1).padStart(2,'0');
         html+='<tr>';
-        html+='<td><span class="'+rc+' mono" style="font-size:10px;opacity:0.6;margin-right:6px">'+rnk+'</span><strong>'+r.name+'</strong></td>';
-        html+='<td style="text-align:center"><span class="badge" style="background:'+t.bg+';color:'+t.color+';font-size:10px;padding:2px 6px">'+t.label+'</span></td>';
+        html+='<td style="position:sticky;left:0;background:var(--card);border-right:1px solid var(--border)"><span class="'+rc+' mono" style="font-size:10px;opacity:0.6;margin-right:6px">'+rnk+'</span><strong>'+r.name+'</strong></td>';
+        html+='<td style="text-align:center;position:sticky;left:200px;background:var(--card);border-right:1px solid var(--border)"><span class="badge" style="background:'+t.bg+';color:'+t.color+';font-size:10px;padding:2px 6px">'+t.label+'</span></td>';
         // 每日日增列
         r.deltas.forEach((delta,j)=>{
           if(delta>0){
             html+='<td style="text-align:center" class="mono"><span style="color:var(--green);font-weight:600">+'+delta+'</span></td>';
-          } else if(delta===0){
-            html+='<td style="text-align:center;color:var(--dim-border)" class="mono">-</td>';
           } else {
             html+='<td style="text-align:center;color:var(--dim-border)" class="mono">-</td>';
           }
         });
-        html+='<td style="text-align:center"><strong style="color:var(--cyan)">'+r.total+'</strong></td>';
+        html+='<td style="text-align:center;position:sticky;right:0;background:var(--card);border-left:1px solid var(--border)"><strong style="color:var(--cyan)">'+r.total+'</strong></td>';
         html+='</tr>';
       });
-      html+='</table>';
+      html+='</table></div>';
       document.getElementById('daily-school-content').innerHTML=html;
     }
 
